@@ -33,4 +33,36 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 1. php artisan make:auth
 2. create admin folder in the view
 3. create categories, posts and users folders in the admin
+4. git init, git add. , git commit -m "message"
+5. modify User model and create Role model
+6. Relationship setup between uses and roles table
+
+7. Create resource route for admin/user  Route::resource('admin/users', 'AdminUsersController');
+8. Create AdminUsersController    php artisan make:controller --resource AdminUsersController
+
+9. Install nodejs packages   npm install
+
+10. modify gulpfile.js (to merge all css files to 1 file and all js files to 1 file)and run (gulp)
+
+11. add admin.blade.php to layouts view folder
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
