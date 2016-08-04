@@ -9,7 +9,7 @@
                 <div class="col-md-6">
                     <h3 class="title">
                         Users
-                        <a href="item-editor.html" class="btn btn-primary btn-sm rounded-s">
+                        <a href="{{route('admin.users.create')}}" class="btn btn-primary btn-sm rounded-s">
                             Add New
                         </a><div class="action dropdown">
                         <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,9 +60,7 @@
                     <div class="item-col item-col-header item-col-author">
                         <div class="no-overflow"> <span>Posts</span> </div>
                     </div>
-                    <div class="item-col item-col-header item-col-date">
-                        <div> <span>Registered</span> </div>
-                    </div>
+
                     <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
                 </div>
             </li>
@@ -91,7 +89,7 @@
                         </div>
                         <div class="item-col item-col-sales">
                             <div class="item-heading">Name</div>
-                            <div> {{$user->name}} </div>
+                            <div> {{$user->firstname . ' ' . $user->lastname}} </div>
                         </div>
                         <div class="item-col item-col-stats no-overflow">
                             <div class="item-heading">Email</div>
@@ -99,15 +97,11 @@
                         </div>
                         <div class="item-col item-col-category no-overflow">
                             <div class="item-heading">Role</div>
-                            <div class="no-overflow"> Adminstrator </div>
+                            <div class="no-overflow"> {{$user->role->name}} </div>
                         </div>
                         <div class="item-col item-col-author">
                             <div class="item-heading">Posts</div>
                             <div class="no-overflow"> <a href=""></a> </div>
-                        </div>
-                        <div class="item-col item-col-date">
-                            <div class="item-heading">Registered</div>
-                            <div class="no-overflow"> 21 SEP 10:45 </div>
                         </div>
                         <div class="item-col fixed item-col-actions-dropdown">
                             <div class="item-actions-dropdown">

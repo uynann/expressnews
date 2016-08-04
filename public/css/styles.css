@@ -3,13 +3,16 @@
 ---------------------------------------------------------------------------*/
 
 .items-list-page .item-list .item-col.item-col-title {
-    -ms-flex-positive: 4;
-    flex-grow: 4;
-    -ms-flex-negative: 4;
+    -ms-flex-positive: 6;
+    flex-grow: 6;
+    -ms-flex-negative: 6;
 }
 
 .items-list-page .item-list .item-col.item-col-sales {
     text-align: left;
+    -ms-flex-positive: 6;
+    flex-grow: 6;
+    -ms-flex-negative: 6;
 }
 
 .items-list-page .item-list .item-col.item-col-stats {

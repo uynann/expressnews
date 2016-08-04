@@ -42,11 +42,7 @@ else
                             </div>
                         </form>
                     </div>
-                    <div class="header-block header-block-buttons">
-                        <a href="https://github.com/modularcode/modular-admin-html" class="btn btn-sm header-btn"> <i class="fa fa-github-alt"></i> <span>View on GitHub</span> </a>
-                        <a href="https://github.com/modularcode/modular-admin-html/stargazers" class="btn btn-sm header-btn"> <i class="fa fa-star"></i> <span>Star Us</span> </a>
-                        <a href="https://github.com/modularcode/modular-admin-html/releases/download/v1.0.1/modular-admin-html-1.0.1.zip" class="btn btn-sm header-btn"> <i class="fa fa-cloud-download"></i> <span>Download .zip</span> </a>
-                    </div>
+
                     <div class="header-block header-block-nav">
                         <ul class="nav-profile">
                             <li class="notifications new">
@@ -115,7 +111,7 @@ else
                     <div class="sidebar-container">
                         <div class="sidebar-header">
                             <div class="brand">
-                                <div class="logo"> <span class="l l1"></span> <span class="l l2"></span> <span class="l l3"></span> <span class="l l4"></span> <span class="l l5"></span> </div> Modular Admin </div>
+                                <div class="logo"> <span class="l l1"></span> <span class="l l2"></span> <span class="l l3"></span> <span class="l l4"></span> <span class="l l5"></span> </div> Code Hacking </div>
                         </div>
                         <nav class="menu">
                             <ul class="nav metismenu" id="sidebar-menu">
@@ -123,13 +119,16 @@ else
                                     <a href="index.html"> <i class="fa fa-home"></i> Dashboard </a>
                                 </li>
                                 <li>
-                                    <a href=""> <i class="fa fa-th-large"></i> Items Manager <i class="fa arrow"></i> </a>
+                                    <a href=""> <i class="fa fa-user"></i> Users <i class="fa arrow"></i> </a>
                                     <ul>
-                                        <li> <a href="items-list.html">
-                                            Items List
+                                        <li> <a href="{{route('admin.users.index')}}">
+                                            All Users
+                                            </a> </li>
+                                        <li> <a href="{{route('admin.users.create')}}">
+                                            Add New
                                             </a> </li>
                                         <li> <a href="item-editor.html">
-                                            Item Editor
+                                            Your Profile
                                             </a> </li>
                                     </ul>
                                 </li>
