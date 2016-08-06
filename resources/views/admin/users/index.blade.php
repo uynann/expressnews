@@ -46,10 +46,10 @@
                         <div> <span>Picture</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-title">
-                        <div> <span>Username</span> </div>
+                        <div> <span>Firstname</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-sales">
-                        <div> <span>Name</span> </div>
+                        <div> <span>Lastname</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>Email</span> </div>
@@ -79,17 +79,17 @@
                             </a>
                         </div>
                         <div class="item-col fixed pull-left item-col-title">
-                            <div class="item-heading">Username</div>
+                            <div class="item-heading">Firstname</div>
                             <div>
                                 <a href="item-editor.html" class="">
                                     <h4 class="item-title">
-                                        {{$user->name}}
+                                        {{$user->firstname}}
                                     </h4> </a>
                             </div>
                         </div>
                         <div class="item-col item-col-sales">
-                            <div class="item-heading">Name</div>
-                            <div> {{$user->firstname . ' ' . $user->lastname}} </div>
+                            <div class="item-heading">Lastname</div>
+                            <div> {{$user->lastname}} </div>
                         </div>
                         <div class="item-col item-col-stats no-overflow">
                             <div class="item-heading">Email</div>

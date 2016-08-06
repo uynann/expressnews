@@ -33,3 +33,11 @@
     flex-grow: 2;
     -ms-flex-negative: 2;
 }
+
+.has-error {
+    color: #ff4444;
+}
+
+.has-error input {
+    border-color: #ff4444;
+}

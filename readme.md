@@ -46,7 +46,15 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 11. add admin.blade.php to layouts view folder
 
+12. add index.blade.php to admin/users
 
+13. add create.blade.php to admin/uses
+
+14. require laravelcollective/html
+
+15. create UsersCreateRequest (php artisan make:request UsersCreateRequest)
+
+16. create Photo model and migration
 
 
 
