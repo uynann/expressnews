@@ -56,7 +56,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 16. create Photo model and migration
 
-
+17. adding dropzoneJs and handling the server for uploading photo
 
 
 

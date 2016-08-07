@@ -9,6 +9,6 @@ class Photo extends Model
     //
 
     protected $fillable = [
-        'file'
-    ]
+        'file_name', 'file_size', 'file_mime', 'file_path',
+    ];
 }

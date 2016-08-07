@@ -5,37 +5,37 @@ var $ref = $("#ref");
 
 // Configure responsive bootstrap toolkit
 config.ResponsiveBootstrapToolkitVisibilityDivs = {
-    'xs': $('<div class="device-xs 				  hidden-sm-up"></div>'),
+    'xs': $('<div class="device-xs                   hidden-sm-up"></div>'),
     'sm': $('<div class="device-sm hidden-xs-down hidden-md-up"></div>'),
     'md': $('<div class="device-md hidden-sm-down hidden-lg-up"></div>'),
     'lg': $('<div class="device-lg hidden-md-down hidden-xl-up"></div>'),
-    'xl': $('<div class="device-xl hidden-lg-down			  "></div>'),
+    'xl': $('<div class="device-xl hidden-lg-down              "></div>'),
 };
 
 ResponsiveBootstrapToolkit.use('Custom', config.ResponsiveBootstrapToolkitVisibilityDivs);
 
 //validation configuration
 config.validations = {
-	debug: true,
-	errorClass:'has-error',
-	validClass:'success',
-	errorElement:"span",
+    debug: true,
+    errorClass:'has-error',
+    validClass:'success',
+    errorElement:"span",
 
-	// add error class
-	highlight: function(element, errorClass, validClass) {
-		$(element).parents("div.form-group")
-		.addClass(errorClass)
-		.removeClass(validClass); 
-	}, 
+    // add error class
+    highlight: function(element, errorClass, validClass) {
+        $(element).parents("div.form-group")
+        .addClass(errorClass)
+        .removeClass(validClass);
+    },
 
-	// add error class
-	unhighlight: function(element, errorClass, validClass) {
-		$(element).parents(".has-error")
-		.removeClass(errorClass)
-		.addClass(validClass); 
-	},
+    // add error class
+    unhighlight: function(element, errorClass, validClass) {
+        $(element).parents(".has-error")
+        .removeClass(errorClass)
+        .addClass(validClass);
+    },
 
-	// submit handler
+    // submit handler
     submitHandler: function(form) {
         form.submit();
     }
@@ -50,174 +50,174 @@ config.chart = {};
 config.chart.colorPrimary = tinycolor($ref.find(".chart .color-primary").css("color"));
 config.chart.colorSecondary = tinycolor($ref.find(".chart .color-secondary").css("color"));
 $(function() {
-	animate({
-		name: 'flipInY',
-		selector: '.error-card > .error-title-block'
-	});
+    animate({
+        name: 'flipInY',
+        selector: '.error-card > .error-title-block'
+    });
 
 
-	setTimeout(function(){
-		var $el = $('.error-card > .error-container');
+    setTimeout(function(){
+        var $el = $('.error-card > .error-container');
 
-		animate({
-			name: 'fadeInUp',
-			selector: $el 
-		});
+        animate({
+            name: 'fadeInUp',
+            selector: $el
+        });
 
-		$el.addClass('visible');
-	}, 1000);
+        $el.addClass('visible');
+    }, 1000);
 })
 //LoginForm validation
 $(function() {
-	if (!$('#login-form').length) {
+    if (!$('#login-form').length) {
         return false;
     }
 
     var loginValidationSettings = {
-	    rules: {
-	        username: {
-	            required: true,
-	            email: true
-	        },
-	        password: "required",
-	        agree: "required"
-	    },
-	    messages: {
-	        username: {
-	            required: "Please enter username",
-	            email: "Please enter a valid email address"
-	        },
-	        password:  "Please enter password",
-	        agree: "Please accept our policy"
-	    },
-	    invalidHandler: function() {
-			animate({
-				name: 'shake',
-				selector: '.auth-container > .card'
-			});
-		}
-	}
+        rules: {
+            username: {
+                required: true,
+                email: true
+            },
+            password: "required",
+            agree: "required"
+        },
+        messages: {
+            username: {
+                required: "Please enter username",
+                email: "Please enter a valid email address"
+            },
+            password:  "Please enter password",
+            agree: "Please accept our policy"
+        },
+        invalidHandler: function() {
+            animate({
+                name: 'shake',
+                selector: '.auth-container > .card'
+            });
+        }
+    }
 
-	$.extend(loginValidationSettings, config.validations);
+    $.extend(loginValidationSettings, config.validations);
 
     $('#login-form').validate(loginValidationSettings);
 })
 //LoginForm validation
 $(function() {
-	if (!$('#reset-form').length) {
+    if (!$('#reset-form').length) {
         return false;
     }
 
     var resetValidationSettings = {
-	    rules: {
-	        email1: {
-	            required: true,
-	            email: true
-	        }
-	    },
-	    messages: {
-	        email1: {
-	            required: "Please enter email address",
-	            email: "Please enter a valid email address"
-	        }
-	    },
-	    invalidHandler: function() {
-			animate({
-				name: 'shake',
-				selector: '.auth-container > .card'
-			});
-		}
-	}
+        rules: {
+            email1: {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            email1: {
+                required: "Please enter email address",
+                email: "Please enter a valid email address"
+            }
+        },
+        invalidHandler: function() {
+            animate({
+                name: 'shake',
+                selector: '.auth-container > .card'
+            });
+        }
+    }
 
-	$.extend(resetValidationSettings, config.validations);
+    $.extend(resetValidationSettings, config.validations);
 
     $('#reset-form').validate(resetValidationSettings);
 })
 //LoginForm validation
 $(function() {
-	if (!$('#signup-form').length) {
+    if (!$('#signup-form').length) {
         return false;
     }
 
     var signupValidationSettings = {
-	    rules: {
-	    	firstname: {
-	    		required: true,
-	    	},
-	    	lastname: {
-	    		required: true,
-	    	},
-	        email: {
-	            required: true,
-	            email: true
-	        },
-	        password: {
-				required: true,
-				minlength: 8
-	        },
-	        retype_password: {
-				required: true,
-				minlength: 8,
-				equalTo: "#password"
-			},
-			agree: {
-				required: true,
-			}
-	    },
-	    groups: {
-	    	name: "firstname lastname",
-			pass: "password retype_password",
-		},
-		errorPlacement: function(error, element) {
-			if (
-				element.attr("name") == "firstname" || 
-				element.attr("name") == "lastname" 
-			) {
-				error.insertAfter($("#lastname").closest('.row'));
-				element.parents("div.form-group")
-				.addClass('has-error');
-			} 
-			else if (
-				element.attr("name") == "password" || 
-				element.attr("name") == "retype_password" 
-			) {
-				error.insertAfter($("#retype_password").closest('.row'));
-				element.parents("div.form-group")
-				.addClass('has-error');
-			}
-			else if (element.attr("name") == "agree") {
-				error.insertAfter("#agree-text");
-			}
-			else {
-				error.insertAfter(element);
-			}
-		},
-	    messages: {
-	    	firstname: "Please enter firstname and lastname",
-	    	lastname: "Please enter firstname and lastname",
-	        email: {
-	            required: "Please enter email",
-	            email: "Please enter a valid email address"
-	        },
-	        password: {
-	        	required: "Please enter password fields.",
-	        	minlength: "Passwords should be at least 8 characters."
-	        },
-	        retype_password: {
-	        	required: "Please enter password fields.",
-	        	minlength: "Passwords should be at least 8 characters."
-	        },
-	        agree: "Please accept our policy"
-	    },
-	    invalidHandler: function() {
-			animate({
-				name: 'shake',
-				selector: '.auth-container > .card'
-			});
-		}
-	}
+        rules: {
+            firstname: {
+                required: true,
+            },
+            lastname: {
+                required: true,
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true,
+                minlength: 8
+            },
+            retype_password: {
+                required: true,
+                minlength: 8,
+                equalTo: "#password"
+            },
+            agree: {
+                required: true,
+            }
+        },
+        groups: {
+            name: "firstname lastname",
+            pass: "password retype_password",
+        },
+        errorPlacement: function(error, element) {
+            if (
+                element.attr("name") == "firstname" ||
+                element.attr("name") == "lastname"
+            ) {
+                error.insertAfter($("#lastname").closest('.row'));
+                element.parents("div.form-group")
+                .addClass('has-error');
+            }
+            else if (
+                element.attr("name") == "password" ||
+                element.attr("name") == "retype_password"
+            ) {
+                error.insertAfter($("#retype_password").closest('.row'));
+                element.parents("div.form-group")
+                .addClass('has-error');
+            }
+            else if (element.attr("name") == "agree") {
+                error.insertAfter("#agree-text");
+            }
+            else {
+                error.insertAfter(element);
+            }
+        },
+        messages: {
+            firstname: "Please enter firstname and lastname",
+            lastname: "Please enter firstname and lastname",
+            email: {
+                required: "Please enter email",
+                email: "Please enter a valid email address"
+            },
+            password: {
+                required: "Please enter password fields.",
+                minlength: "Passwords should be at least 8 characters."
+            },
+            retype_password: {
+                required: "Please enter password fields.",
+                minlength: "Passwords should be at least 8 characters."
+            },
+            agree: "Please accept our policy"
+        },
+        invalidHandler: function() {
+            animate({
+                name: 'shake',
+                selector: '.auth-container > .card'
+            });
+        }
+    }
 
-	$.extend(signupValidationSettings, config.validations);
+    $.extend(signupValidationSettings, config.validations);
 
     $('#signup-form').validate(signupValidationSettings);
 });
@@ -225,89 +225,89 @@ $(function() {
 *        Animation Settings
 ***********************************************/
 function animate(options) {
-	var animationName = "animated " + options.name;
-	var animationEnd = "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend";
-	$(options.selector)
-	.addClass(animationName)
-	.one(animationEnd, 
-		function(){
-			$(this).removeClass(animationName);
-		}
-	);
+    var animationName = "animated " + options.name;
+    var animationEnd = "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend";
+    $(options.selector)
+    .addClass(animationName)
+    .one(animationEnd,
+        function(){
+            $(this).removeClass(animationName);
+        }
+    );
 }
 
 $(function() {
-	var $itemActions = $(".item-actions-dropdown");
+    var $itemActions = $(".item-actions-dropdown");
 
-	$(document).on('click',function(e) {
-		if (!$(e.target).closest('.item-actions-dropdown').length) {
-			$itemActions.removeClass('active');
-		}
-	});
-	
-	$('.item-actions-toggle-btn').on('click',function(e){
-		e.preventDefault();
+    $(document).on('click',function(e) {
+        if (!$(e.target).closest('.item-actions-dropdown').length) {
+            $itemActions.removeClass('active');
+        }
+    });
 
-		var $thisActionList = $(this).closest('.item-actions-dropdown');
+    $('.item-actions-toggle-btn').on('click',function(e){
+        e.preventDefault();
 
-		$itemActions.not($thisActionList).removeClass('active');
+        var $thisActionList = $(this).closest('.item-actions-dropdown');
 
-		$thisActionList.toggleClass('active');	
-	});
+        $itemActions.not($thisActionList).removeClass('active');
+
+        $thisActionList.toggleClass('active');
+    });
 });
 
 /***********************************************
 *        NProgress Settings
 ***********************************************/
-var npSettings = { 
-	easing: 'ease', 
-	speed: 500 
+var npSettings = {
+    easing: 'ease',
+    speed: 500
 }
 
 NProgress.configure(npSettings);
 $(function() {
-	setSameHeights();
+    setSameHeights();
 
-	var resizeTimer;
+    var resizeTimer;
 
-	$(window).resize(function() {
-		clearTimeout(resizeTimer);
+    $(window).resize(function() {
+        clearTimeout(resizeTimer);
         resizeTimer = setTimeout(setSameHeights, 150);
-	});
+    });
 });
 
 
 function setSameHeights($container) {
 
-	$container = $container || $('.sameheight-container');
+    $container = $container || $('.sameheight-container');
 
-	var viewport = ResponsiveBootstrapToolkit.current();
+    var viewport = ResponsiveBootstrapToolkit.current();
 
-	$container.each(function() {
+    $container.each(function() {
 
-		var $items = $(this).find(".sameheight-item");
+        var $items = $(this).find(".sameheight-item");
 
-		// Get max height of items in container
-		var maxHeight = 0;
+        // Get max height of items in container
+        var maxHeight = 0;
 
-		$items.each(function() {
-			$(this).css({height: 'auto'});
-			maxHeight = Math.max(maxHeight, $(this).innerHeight());
-		});
+        $items.each(function() {
+            $(this).css({height: 'auto'});
+            maxHeight = Math.max(maxHeight, $(this).innerHeight());
+        });
 
 
-		// Set heights of items
-		$items.each(function() {
-			// Ignored viewports for item
-			var excludedStr = $(this).data('exclude') || '';
-			var excluded = excludedStr.split(',');
+        // Set heights of items
+        $items.each(function() {
+            // Ignored viewports for item
+            var excludedStr = $(this).data('exclude') || '';
+            var excluded = excludedStr.split(',');
 
-			// Set height of element if it's not excluded on 
-			if (excluded.indexOf(viewport) === -1) {
-				$(this).innerHeight(maxHeight);
-			}
-		});
-	});
+            // Set height of element if it's not excluded on
+            if (excluded.indexOf(viewport) === -1) {
+                $(this).innerHeight(maxHeight);
+            }
+        });
+    });
 }
 
 //Flot Bar Chart
@@ -641,7 +641,7 @@ $(function() {
 
 });
 $(function() {
-    
+
     if (!$('#morris-one-line-chart').length) {
         return false;
     }
@@ -649,7 +649,7 @@ $(function() {
     function drawMorrisCharts() {
 
         $('#morris-one-line-chart').empty();
-        
+
         Morris.Line({
             element: 'morris-one-line-chart',
                 data: [
@@ -778,11 +778,11 @@ $(function() {
     var item = 'visits';
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-       
+
        el = e.target;
        item = $(el).attr('href').replace('#', '');
        switchHistoryCharts(item);
-       
+
     });
 
     $(document).on("themechange", function(){
@@ -814,7 +814,7 @@ $(function() {
             { x: '2015-09-04', y: 75 },
             { x: '2015-09-05', y: 50 },
             { x: '2015-09-06', y: 75 },
-            { x: '2015-09-07', y: 86 } 
+            { x: '2015-09-07', y: 86 }
         ];
 
 
@@ -849,46 +849,46 @@ $(function() {
     function drawDownloadsChart(){
 
         var dataDownloads = [
-            { 
+            {
                 year: '2006',
                 downloads: 1300
             },
-            { 
-                year: '2007', 
+            {
+                year: '2007',
                 downloads: 1526
             },
-            { 
-                year: '2008', 
+            {
+                year: '2008',
                 downloads: 2000
             },
-            { 
-                year: '2009', 
+            {
+                year: '2009',
                 downloads: 1800
             },
-            { 
-                year: '2010', 
+            {
+                year: '2010',
                 downloads: 1650
-            },    
-            { 
-                year: '2011', 
+            },
+            {
+                year: '2011',
                 downloads: 620
             },
-            { 
-                year: '2012', 
+            {
+                year: '2012',
                 downloads: 1000
             },
-            { 
-                year: '2013', 
+            {
+                year: '2013',
                 downloads: 1896
             },
-            { 
-                year: '2014', 
+            {
+                year: '2014',
                 downloads: 850
             },
-            { 
-                year: '2015', 
+            {
+                year: '2015',
                 downloads: 1500
-            }  
+            }
         ];
 
 
@@ -912,43 +912,43 @@ $(function() {
 
 
 $(function() {
-	
-
-	function drawDashboardItemsListSparklines(){
-		$(".dashboard-page .items .sparkline").each(function() {
-			var type = $(this).data('type');
-
-			// There is predefined data
-			if ($(this).data('data')) {
-				var data = $(this).data('data').split(',').map(function(item) {
-					if (item.indexOf(":") > 0) {
-						return item.split(":");
-					}
-					else {
-						return item;
-					}
-				});
-			}
-			// Generate random data
-			else {
-				var data = [];
-				for (var i = 0; i < 17; i++) {
-					data.push(Math.round(100 * Math.random()));
-				}
-			}
 
 
-			$(this).sparkline(data, {
-				barColor: config.chart.colorPrimary.toString(),
-				height: $(this).height(),
-				type: type
-			});
-		});
-	}
+    function drawDashboardItemsListSparklines(){
+        $(".dashboard-page .items .sparkline").each(function() {
+            var type = $(this).data('type');
 
-	drawDashboardItemsListSparklines();
+            // There is predefined data
+            if ($(this).data('data')) {
+                var data = $(this).data('data').split(',').map(function(item) {
+                    if (item.indexOf(":") > 0) {
+                        return item.split(":");
+                    }
+                    else {
+                        return item;
+                    }
+                });
+            }
+            // Generate random data
+            else {
+                var data = [];
+                for (var i = 0; i < 17; i++) {
+                    data.push(Math.round(100 * Math.random()));
+                }
+            }
 
-	$(document).on("themechange", function(){
+
+            $(this).sparkline(data, {
+                barColor: config.chart.colorPrimary.toString(),
+                height: $(this).height(),
+                type: type
+            });
+        });
+    }
+
+    drawDashboardItemsListSparklines();
+
+    $(document).on("themechange", function(){
         drawDashboardItemsListSparklines();
     });
 });
@@ -958,7 +958,7 @@ $(function() {
 
     if (!$dashboardSalesBreakdownChart.length) {
         return false;
-    } 
+    }
 
     function drawSalesChart(){
 
@@ -987,7 +987,7 @@ $(function() {
     $(document).on("themechange", function(){
        drawSalesChart();
     });
-    
+
 })
 $(function() {
 
@@ -1007,7 +1007,7 @@ $(function() {
 
         var sales_data = {
             us: 2000,
-            ru: 2000, 
+            ru: 2000,
             gb: 10000,
             fr: 10000,
             de: 10000,
@@ -1041,63 +1041,63 @@ $(function() {
 });
 $(function() {
 
-	$('.actions-list > li').on('click', '.check', function(e){
-		e.preventDefault();
+    $('.actions-list > li').on('click', '.check', function(e){
+        e.preventDefault();
 
-		$(this).parents('.tasks-item')
-		.find('.checkbox')
-		.prop("checked",  true);
+        $(this).parents('.tasks-item')
+        .find('.checkbox')
+        .prop("checked",  true);
 
-		removeActionList();
-	});
+        removeActionList();
+    });
 
 });
 //LoginForm validation
 $(function() {
-	if (!$('.form-control').length) {
+    if (!$('.form-control').length) {
         return false;
     }
 
     $('.form-control').focus(function() {
-		$(this).siblings('.input-group-addon').addClass('focus');
-	});
+        $(this).siblings('.input-group-addon').addClass('focus');
+    });
 
-	$('.form-control').blur(function() {
-		$(this).siblings('.input-group-addon').removeClass('focus');
-	});
+    $('.form-control').blur(function() {
+        $(this).siblings('.input-group-addon').removeClass('focus');
+    });
 });
 $(function(){
 
-	// set sortable options
-	$('.images-container').sortable({
-		animation: 150,
-		handle: ".control-btn.move",
-		draggable: ".image-container",
-		onMove: function (evt) {
-			var $relatedElem = $(evt.related);
+    // set sortable options
+    $('.images-container').sortable({
+        animation: 150,
+        handle: ".control-btn.move",
+        draggable: ".image-container",
+        onMove: function (evt) {
+            var $relatedElem = $(evt.related);
 
-	        if ($relatedElem.hasClass('add-image')) {
-	        	return false;
-	        }
-	    }
-	});
+            if ($relatedElem.hasClass('add-image')) {
+                return false;
+            }
+        }
+    });
 
 
-	$controlsButtons = $('.controls');
+    $controlsButtons = $('.controls');
 
-	$controlsButtonsStar = $controlsButtons.find('.star');
-	$controlsButtonsRemove = $controlsButtons.find('.remove');
+    $controlsButtonsStar = $controlsButtons.find('.star');
+    $controlsButtonsRemove = $controlsButtons.find('.remove');
 
-	$controlsButtonsStar.on('click',function(e){
-		e.preventDefault();
+    $controlsButtonsStar.on('click',function(e){
+        e.preventDefault();
 
-		$controlsButtonsStar.removeClass('active');
-		$controlsButtonsStar.parents('.image-container').removeClass('main');
+        $controlsButtonsStar.removeClass('active');
+        $controlsButtonsStar.parents('.image-container').removeClass('main');
 
-		$(this).addClass('active');
+        $(this).addClass('active');
 
-		$(this).parents('.image-container').addClass('main');
-	})
+        $(this).parents('.image-container').addClass('main');
+    })
 
 })
 $(function() {
@@ -1108,7 +1108,7 @@ $(function() {
 
 
     $('#select-all-items').on('change', function() {
-        var $this = $(this).children(':checkbox').get(0);    
+        var $this = $(this).children(':checkbox').get(0);
 
         $(this).parents('li')
             .siblings()
@@ -1146,234 +1146,234 @@ $(function() {
 });
 $(function() {
 
-	$(".wyswyg").each(function() {
+    $(".wyswyg").each(function() {
 
-		var $toolbar = $(this).find(".toolbar");
-		var $editor = $(this).find(".editor");
-
-
-		var editor = new Quill($editor.get(0), {
-			theme: 'snow'
-		});
-
-		editor.addModule('toolbar', {
-			container: $toolbar.get(0)     // Selector for toolbar container
-		});
+        var $toolbar = $(this).find(".toolbar");
+        var $editor = $(this).find(".editor");
 
 
+        var editor = new Quill($editor.get(0), {
+            theme: 'snow'
+        });
 
-	});
-	
+        editor.addModule('toolbar', {
+            container: $toolbar.get(0)     // Selector for toolbar container
+        });
+
+
+
+    });
+
 });
 $(function () {
 
-	$('#sidebar-menu, #customize-menu').metisMenu({
-		activeClass: 'open'
-	});
+    $('#sidebar-menu, #customize-menu').metisMenu({
+        activeClass: 'open'
+    });
 
 
-	$('#sidebar-collapse-btn').on('click', function(event){
-		event.preventDefault();
-		
-		$("#app").toggleClass("sidebar-open");
-	});
+    $('#sidebar-collapse-btn').on('click', function(event){
+        event.preventDefault();
 
-	$("#sidebar-overlay").on('click', function() {
-		$("#app").removeClass("sidebar-open");
-	});
-	
+        $("#app").toggleClass("sidebar-open");
+    });
+
+    $("#sidebar-overlay").on('click', function() {
+        $("#app").removeClass("sidebar-open");
+    });
+
 });
 $(function() {
-	$('.nav-profile > li > a').on('click', function() {
-		var $el = $(this).next();
+    $('.nav-profile > li > a').on('click', function() {
+        var $el = $(this).next();
 
-		animate({
-			name: 'flipInX',
-			selector: $el
-		});
-	});
+        animate({
+            name: 'flipInX',
+            selector: $el
+        });
+    });
 })
 $(function () {
 
-	// Local storage settings
-	var themeSettings = getThemeSettings();
+    // Local storage settings
+    var themeSettings = getThemeSettings();
 
-	// Elements
+    // Elements
 
-	var $app = $('#app');
-	var $styleLink = $('#theme-style');
-	var $customizeMenu = $('#customize-menu');
+    var $app = $('#app');
+    var $styleLink = $('#theme-style');
+    var $customizeMenu = $('#customize-menu');
 
-	// Color switcher
-	var $customizeMenuColorBtns = $customizeMenu.find('.color-item');
+    // Color switcher
+    var $customizeMenuColorBtns = $customizeMenu.find('.color-item');
 
-	// Position switchers
-	var $customizeMenuRadioBtns = $customizeMenu.find('.radio');
-
-
-	// /////////////////////////////////////////////////
-
-	// Initial state
-
-	// On setting event, set corresponding options
-
-	// Update customize view based on options
-
-	// Update theme based on options
-
-	/************************************************
-	*				Initial State
-	*************************************************/
-
-	setThemeSettings();
-
-	/************************************************
-	*					Events
-	*************************************************/
-
-	// set theme type
-	$customizeMenuColorBtns.on('click', function() {
-		themeSettings.themeName = $(this).data('theme');
-
-		setThemeSettings();
-	});
+    // Position switchers
+    var $customizeMenuRadioBtns = $customizeMenu.find('.radio');
 
 
-	$customizeMenuRadioBtns.on('click', function() {
+    // /////////////////////////////////////////////////
 
-		var optionName = $(this).prop('name');
-		var value = $(this).val();
+    // Initial state
 
-		themeSettings[optionName] = value;
+    // On setting event, set corresponding options
 
-		setThemeSettings();
-	});
+    // Update customize view based on options
 
-	function setThemeSettings() {
-		setThemeState()
-		.delay(config.delayTime)
-		.queue(function (next) {
+    // Update theme based on options
 
-			setThemeColor();
-			setThemeControlsState();
-			saveThemeSettings();
+    /************************************************
+    *                Initial State
+    *************************************************/
 
-			$(document).trigger("themechange");	
-			
-			next();
-		});	
-	}
+    setThemeSettings();
 
-	/************************************************
-	*			Update theme based on options
-	*************************************************/
+    /************************************************
+    *                    Events
+    *************************************************/
 
-	function setThemeState() {
-		// set theme type
-		if (themeSettings.themeName) {
-			$styleLink.attr('href', 'css/app-' + themeSettings.themeName + '.css');
-		}
-		else {
-			$styleLink.attr('href', 'css/app.css');
-		}
+    // set theme type
+    $customizeMenuColorBtns.on('click', function() {
+        themeSettings.themeName = $(this).data('theme');
 
-		// App classes
-		$app.removeClass('header-fixed footer-fixed sidebar-fixed');
+        setThemeSettings();
+    });
 
-		// set header
-		$app.addClass(themeSettings.headerPosition);
 
-		// set footer
-		$app.addClass(themeSettings.footerPosition);
+    $customizeMenuRadioBtns.on('click', function() {
 
-		// set footer
-		$app.addClass(themeSettings.sidebarPosition);
+        var optionName = $(this).prop('name');
+        var value = $(this).val();
 
-		return $app;
-	}
+        themeSettings[optionName] = value;
 
-	/************************************************
-	*			Update theme controls based on options
-	*************************************************/
+        setThemeSettings();
+    });
 
-	function setThemeControlsState() {
-		// set color switcher
-		$customizeMenuColorBtns.each(function() {
-			if($(this).data('theme') === themeSettings.themeName) {
-				$(this).addClass('active');
-			}
-			else {
-				$(this).removeClass('active');
-			}
-		});
+    function setThemeSettings() {
+        setThemeState()
+        .delay(config.delayTime)
+        .queue(function (next) {
 
-		// set radio buttons
-		$customizeMenuRadioBtns.each(function() {
-			var name = $(this).prop('name');
-			var value = $(this).val();
+            setThemeColor();
+            setThemeControlsState();
+            saveThemeSettings();
 
-			if (themeSettings[name] === value) {
-				$(this).prop("checked", true );
-			}
-			else {
-				$(this).prop("checked", false );
-			}
-		});
-	}
+            $(document).trigger("themechange");
 
-	/************************************************
-	*			Update theme color
-	*************************************************/
-	function setThemeColor(){
-		config.chart.colorPrimary = tinycolor($ref.find(".chart .color-primary").css("color"));	
-		config.chart.colorSecondary = tinycolor($ref.find(".chart .color-secondary").css("color"));	
-	}
+            next();
+        });
+    }
 
-	/************************************************
-	*				Storage Functions
-	*************************************************/
+    /************************************************
+    *            Update theme based on options
+    *************************************************/
 
-	function getThemeSettings() {
-		var settings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) : {};
+    function setThemeState() {
+        // set theme type
+        if (themeSettings.themeName) {
+            $styleLink.attr('href', 'css/app-' + themeSettings.themeName + '.css');
+        }
+        else {
+            $styleLink.attr('href', 'css/app.css');
+        }
 
-		settings.headerPosition = settings.headerPosition || '';
-		settings.sidebarPosition = settings.sidebarPosition || '';
-		settings.footerPosition = settings.footerPosition || '';
+        // App classes
+        $app.removeClass('header-fixed footer-fixed sidebar-fixed');
 
-		return settings;
-	}
+        // set header
+        $app.addClass(themeSettings.headerPosition);
 
-	function saveThemeSettings() {
-		localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
-	}
+        // set footer
+        $app.addClass(themeSettings.footerPosition);
+
+        // set footer
+        $app.addClass(themeSettings.sidebarPosition);
+
+        return $app;
+    }
+
+    /************************************************
+    *            Update theme controls based on options
+    *************************************************/
+
+    function setThemeControlsState() {
+        // set color switcher
+        $customizeMenuColorBtns.each(function() {
+            if($(this).data('theme') === themeSettings.themeName) {
+                $(this).addClass('active');
+            }
+            else {
+                $(this).removeClass('active');
+            }
+        });
+
+        // set radio buttons
+        $customizeMenuRadioBtns.each(function() {
+            var name = $(this).prop('name');
+            var value = $(this).val();
+
+            if (themeSettings[name] === value) {
+                $(this).prop("checked", true );
+            }
+            else {
+                $(this).prop("checked", false );
+            }
+        });
+    }
+
+    /************************************************
+    *            Update theme color
+    *************************************************/
+    function setThemeColor(){
+        config.chart.colorPrimary = tinycolor($ref.find(".chart .color-primary").css("color"));
+        config.chart.colorSecondary = tinycolor($ref.find(".chart .color-secondary").css("color"));
+    }
+
+    /************************************************
+    *                Storage Functions
+    *************************************************/
+
+    function getThemeSettings() {
+        var settings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) : {};
+
+        settings.headerPosition = settings.headerPosition || '';
+        settings.sidebarPosition = settings.sidebarPosition || '';
+        settings.footerPosition = settings.footerPosition || '';
+
+        return settings;
+    }
+
+    function saveThemeSettings() {
+        localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+    }
 
 });
 var modalMedia = {
-	$el: $("#modal-media"),
-	result: {},
-	options: {},
-	open: function(options) {
-		options = options || {};
-		this.options = options;
+    $el: $("#modal-media"),
+    result: {},
+    options: {},
+    open: function(options) {
+        options = options || {};
+        this.options = options;
 
 
-		this.$el.modal('show');
-	},
-	close: function() {
-		if ($.isFunction(this.options.beforeClose)) {
-			this.options.beforeClose(this.result);
-		}
+        this.$el.modal('show');
+    },
+    close: function() {
+        if ($.isFunction(this.options.beforeClose)) {
+            this.options.beforeClose(this.result);
+        }
 
-		this.$el.modal('hide');
+        this.$el.modal('hide');
 
-		if ($.isFunction(this.options.afterClose)) {
-			this.options.beforeClose(this.result);
-		}
-	}
+        if ($.isFunction(this.options.afterClose)) {
+            this.options.beforeClose(this.result);
+        }
+    }
 };
 $(function() {
 
-	$("body").addClass("loaded");
+    $("body").addClass("loaded");
 
 });
 
@@ -1385,5 +1385,10 @@ $(function() {
 // start load bar
 NProgress.start();
 
-// end loading bar 
+// end loading bar
 NProgress.done();
+
+/***********************************************
+*        Upload Files with DropzoneJs
+***********************************************/
+

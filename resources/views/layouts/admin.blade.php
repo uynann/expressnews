@@ -306,11 +306,16 @@ else
                                     <div class="tab-pane fade active in" id="upload" role="tabpanel">
                                         <div class="upload-container">
                                             <div id="dropzone">
-                                                <form action="/" method="POST" enctype="multipart/form-data" class="dropzone needsclick dz-clickable" id="demo-upload">
+                                                <form action="{{ url('admin/users/upload') }}" class="dropzone needsclick dz-clickable" id="demo-upload">
                                                     <div class="dz-message-block">
                                                         <div class="dz-message needsclick"> Drop files here or click to upload. </div>
                                                     </div>
+
+                                                    {{ csrf_field() }}
+
                                                 </form>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -351,8 +356,9 @@ else
             </div>
         </div>
         <script src="{{asset('js/vendor.js')}}"></script>
-        <script src="{{asset('js/app.js')}}"></script>
 
+        <script src="{{asset('js/dropzone.js')}}"></script>
+        <script src="{{asset('js/app.js')}}"></script>
         @yield('footer')
 
     </body>

@@ -25,9 +25,7 @@ Route::get('/admin', function() {
     return view('admin.index');
 });
 
-
-
-
+Route::post('admin/users/upload', 'AdminUsersController@upload');
 
 
 
