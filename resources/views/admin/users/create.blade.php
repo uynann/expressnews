@@ -88,17 +88,11 @@
            <label class="col-sm-2 form-control-label text-xs-right">Images:</label>
             <div class="col-sm-10">
                 <div class="images-container">
-                    <div class="image-container">
+                    <div class="image-container" id="image-container">
                         <div class="controls">
-                            <a href="" class="control-btn move"> <i class="fa fa-arrows"></i> </a>
-                            <!--
--->
-                            <a href="" class="control-btn star"> <i class="fa"></i> </a>
-                            <!--
--->
                             <a href="#" class="control-btn remove" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o"></i> </a>
                         </div>
-                        <div class="image" style="background-image:url('https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg')"></div>
+                        <div class="image" style="background-image:url()"></div>
                     </div>
                     <a href="#" class="add-image" data-toggle="modal" data-target="#modal-media">
                         <div class="image-container new">
@@ -107,6 +101,7 @@
                     </a>
                 </div>
             </div>
+            <input type="hidden" id="photo-id" name="photo_id">
         </div>
 
         <div class="form-group row">

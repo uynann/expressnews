@@ -75,7 +75,7 @@
                             </label> </div>
                         <div class="item-col fixed item-col-img md">
                             <a href="item-editor.html">
-                                <div class="item-img rounded" style="background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg)"></div>
+                                <div class="item-img rounded" style="background-image: url({{ isset($user->photo->file_path) ? asset($user->photo->file_path) : 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }})"></div>
                             </a>
                         </div>
                         <div class="item-col fixed pull-left item-col-title">

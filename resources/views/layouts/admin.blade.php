@@ -300,7 +300,17 @@ else
                                 <div class="tab-content modal-tab-content">
                                     <div class="tab-pane fade" id="gallery" role="tabpanel">
                                         <div class="images-container">
-                                            <div class="row"> </div>
+                                            <ul class="row image-row">
+                                                @if(isset($photos))
+                                              @foreach($photos as $photo)
+                                                <li class="col-sm-2" photo-id="{{$photo->id}}">
+                                                    <img src="{{ asset($photo->file_path) }}" alt="" class="image-gallary img-thumbnail">
+                                                    <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                                                </li>
+                                              @endforeach
+                                              @endif
+
+                                            </ul>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade active in" id="upload" role="tabpanel">
@@ -321,7 +331,7 @@ else
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Insert Selected</button> </div>
+                            <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary" id="insert-selected" data-dismiss="modal">Insert Selected</button> </div>
                         </div>
                         <!-- /.modal-content -->
                     </div>

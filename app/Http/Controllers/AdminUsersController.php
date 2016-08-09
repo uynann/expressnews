@@ -33,7 +33,8 @@ class AdminUsersController extends Controller
     {
         //
         $roles = Role::lists('name', 'id')->all();
-        return view('admin.users.create', compact('roles'));
+        $photos = Photo::all();
+        return view('admin.users.create', compact('roles', 'photos'));
     }
 
     /**

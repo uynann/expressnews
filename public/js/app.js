@@ -1392,3 +1392,27 @@ NProgress.done();
 *        Upload Files with DropzoneJs
 ***********************************************/
 
+
+/***********************************************
+*        Select Picture
+***********************************************/
+$(function() {
+
+    $('#insert-selected').prop( "disabled", true );
+
+    $('ul.image-row li').click(function () {
+        $('ul.image-row li.selected').removeClass('selected');
+        $(this).toggleClass('selected');
+        $('#insert-selected').prop( "disabled", false );
+    });
+
+    $('#insert-selected').click(function() {
+        var photo_id = $('ul.image-row li.selected').attr('photo-id');
+        var photo_path = $('ul.image-row li.selected img').attr('src');
+        $('#photo-id').val(photo_id);
+        $('#image-container').show();
+        $('#image-container .image').css('background-image', 'url(' + photo_path + ')');
+    });
+
+});
+

@@ -41,3 +41,47 @@
 .has-error input {
     border-color: #ff4444;
 }
+
+.image-gallary {
+    width: 100%;
+    height: 110px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+#modal-media .modal-tab-content {
+    height: 300px;
+    overflow-y:auto;
+}
+
+ul.image-row li {
+    list-style: none;
+    position: relative;
+}
+
+ul.image-row {
+    padding: 0;
+}
+
+ul.image-row li.selected img {
+    border: 4px solid #85ce36;
+}
+
+ul.image-row li span {
+    display: none;
+}
+
+ul.image-row li.selected span {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 7px;
+    background-color: #85ce36;
+    color: #fff;
+    padding: 2px 5px;
+}
+
+#image-container {
+    display: none;
+}
