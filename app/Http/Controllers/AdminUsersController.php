@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\User;
 use App\Role;
 use App\Http\Requests\UsersRequest;
+use App\Http\Requests\UsersEditRequest;
 use App\Photo;
 
 class AdminUsersController extends Controller
@@ -33,7 +34,7 @@ class AdminUsersController extends Controller
     {
         //
         $roles = Role::lists('name', 'id')->all();
-        $photos = Photo::all();
+        $photos = Photo::orderBy('id', 'desc')->get();
         return view('admin.users.create', compact('roles', 'photos'));
     }
 
@@ -48,9 +49,13 @@ class AdminUsersController extends Controller
         //
         $input = $request->all();
 
+        if ($input['role_id'] == '') {
+            $input['role_id'] = 2;
+        }
+
         $input['password'] = bcrypt($request->password);
         User::create($input);
-        return redirect('/admin/users');
+        return redirect('/admin/users/create')->with('status', 'User created!');
     }
 
     /**
@@ -73,6 +78,10 @@ class AdminUsersController extends Controller
     public function edit($id)
     {
         //
+        $user = User::findOrFail($id);
+        $roles = Role::lists('name', 'id')->all();
+        $photos = Photo::orderBy('id', 'desc')->get();
+        return view('admin.users.edit', compact('user', 'roles', 'photos'));
     }
 
     /**
@@ -82,9 +91,19 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersEditRequest $request, $id)
     {
         //
+        $user = User::findOrFail($id);
+        if (trim($request->password) == '') {
+            $input = $request->except('password');
+        } else {
+            $input = $request->all();
+            $input['password'] = bcrypt($request->password);
+        }
+
+        $user->update($input);
+        return redirect('/admin/users/' . $id. '/edit')->with('status', 'User updated!');
     }
 
     /**

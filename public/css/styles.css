@@ -85,3 +85,32 @@ ul.image-row li.selected span {
 #image-container {
     display: none;
 }
+
+.status {
+    background-color: #fff;
+    font-size: 0.9em;
+    padding: 8px 20px;
+    margin-top: 5px;
+    position: relative;
+    border-left: 4px solid #85ce36;
+    border-bottom: 2px solid #e2e2e2;
+}
+
+.status span {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    background-color: #d7dde4;
+    color: #fff;
+    height: 16px;
+    width: 16px;
+    text-align: center;
+    border-radius: 8px;
+    line-height: 16px;
+    font-size: 0.8em;
+}
+
+.status span:hover, .status span:active {
+    background-color: #cf4944;
+}

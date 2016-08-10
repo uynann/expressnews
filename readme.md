@@ -58,7 +58,46 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 17. adding dropzoneJs and handling the server for uploading photo
 
+18. adding edit page for users
 
+** Request for Create Update and Delete
+
+------------------------------------------------------------------------------------------------------------
+public function rules()
+{
+    $user = User::find($this->users);
+
+    switch($this->method())
+    {
+    case 'GET':
+    case 'DELETE':
+    {
+        return [];
+    }
+    case 'POST':
+    {
+        return [
+            'user.name.first' => 'required',
+            'user.name.last'  => 'required',
+            'user.email'      => 'required|email|unique:users,email',
+            'user.password'   => 'required|confirmed',
+        ];
+    }
+    case 'PUT':
+    case 'PATCH':
+    {
+        return [
+            'user.name.first' => 'required',
+            'user.name.last'  => 'required',
+            'user.email'      => 'required|email|unique:users,email,'.$user->id,
+            'user.password'   => 'required|confirmed',
+        ];
+    }
+    default:break;
+    }
+}
+
+------------------------------------------------------------------------------------------------------------
 
 
 

@@ -1414,5 +1414,18 @@ $(function() {
         $('#image-container .image').css('background-image', 'url(' + photo_path + ')');
     });
 
+    if ($('#photo-id').val()) {
+        $('#image-container').show();
+    }
+
 });
 
+
+/***********************************************
+*        Close Status Message
+***********************************************/
+$(function() {
+    $('.status span').click(function() {
+        $('.status').remove();
+    });
+});

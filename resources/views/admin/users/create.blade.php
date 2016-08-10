@@ -7,7 +7,11 @@
     <div class="title-block">
         <h3 class="title">
             Add New User <span class="sparkline bar" data-type="bar"></span>
-        </h3> </div>
+        </h3>
+        @if(session('status'))
+        <div class="status update-status">{{ session('status') }} <a href="{{route('admin.users.index')}}">Back to Users</a><span><i class="fa fa-times" aria-hidden="true"></i></span></div>
+        @endif
+    </div>
 
     {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store', 'name'=>'item', 'files'=>true]) !!}
 
@@ -80,7 +84,7 @@
         <div class="form-group row">
             {!! Form::label('role', 'Role:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
             <div class="col-sm-10">
-                {!! Form::select('role', ['' => 'Select Role'] + $roles, 'selected', ['class' => 'c-select form-control boxed']) !!}
+                {!! Form::select('role_id', ['' => 'Select Role'] + $roles, 'selected', ['class' => 'c-select form-control boxed']) !!}
             </div>
         </div>
 

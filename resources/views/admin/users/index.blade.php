@@ -116,7 +116,7 @@
                                             <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o "></i> </a>
                                         </li>
                                         <li>
-                                            <a class="edit" href="item-editor.html"> <i class="fa fa-pencil"></i> </a>
+                                            <a class="edit" href="{{route('admin.users.edit', $user->id) }}"> <i class="fa fa-pencil"></i> </a>
                                         </li>
                                     </ul>
                                 </div>
