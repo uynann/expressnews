@@ -116,6 +116,8 @@ class AdminUsersController extends Controller
     {
         //
         if ($id != 1) {
+//            $user = User::findOrFail($id);
+//            unlink(public_path() . '/' . $user->photo->file_path); // Delete Image from directory
             User::findOrFail($id)->delete();
             return redirect('/admin/users')->with('status', 'User deleted!');
         } else {

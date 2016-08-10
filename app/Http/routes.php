@@ -31,6 +31,7 @@ Route::post('admin/users/upload', 'AdminUsersController@upload');
 Route::group(['middleware' => 'admin'], function() {
     Route::resource('admin/users', 'AdminUsersController');
     Route::post('admin/users/upload', 'AdminUsersController@upload');
+    Route::resource('admin/posts', 'AdminPostsController');
 });
 
 

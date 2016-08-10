@@ -103,7 +103,9 @@ public function rules()
 ------------------------------------------------------------------------------------------------------------
 
 
+20. Implementing deleting of Users
 
+21. Add Security (Add middleware Admin to all admin route)
 
 
 

@@ -2,33 +2,33 @@
 1. Admin - Users Page
 ---------------------------------------------------------------------------*/
 
-.items-list-page .item-list .item-col.item-col-title {
+.users-list-page .item-list .item-col.item-col-title {
     -ms-flex-positive: 6;
     flex-grow: 6;
     -ms-flex-negative: 6;
 }
 
-.items-list-page .item-list .item-col.item-col-sales {
+.users-list-page .item-list .item-col.item-col-sales {
     text-align: left;
     -ms-flex-positive: 6;
     flex-grow: 6;
     -ms-flex-negative: 6;
 }
 
-.items-list-page .item-list .item-col.item-col-stats {
+.users-list-page .item-list .item-col.item-col-stats {
     text-align: left;
     -ms-flex-positive: 8;
     flex-grow: 8;
     -ms-flex-negative: 8;
 }
 
-.items-list-page .item-list .item-col.item-col-category {
+.users-list-page .item-list .item-col.item-col-category {
     -ms-flex-positive: 4;
     flex-grow: 4;
     -ms-flex-negative: 4;
 }
 
-.items-list-page .item-list .item-col.item-col-author {
+.users-list-page .item-list .item-col.item-col-author {
     -ms-flex-positive: 2;
     flex-grow: 2;
     -ms-flex-negative: 2;

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<article class="content items-list-page">
+<article class="content items-list-page users-list-page">
     <div class="title-search-block">
         <div class="title-block">
             <div class="row">

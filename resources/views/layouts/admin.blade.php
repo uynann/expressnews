@@ -119,6 +119,23 @@ else
                                     <a href="/admin"> <i class="fa fa-home"></i> Dashboard </a>
                                 </li>
                                 <li>
+                                    <a href=""> <i class="fa fa-file-text-o"></i> Posts <i class="fa arrow"></i> </a>
+                                    <ul>
+                                        <li> <a href="{{route('admin.posts.index')}}">
+                                            All Posts
+                                            </a> </li>
+                                        <li> <a href="{{route('admin.posts.create')}}">
+                                            Add New
+                                            </a> </li>
+                                        <li> <a href="item-editor.html">
+                                            Categories
+                                            </a> </li>
+                                        <li> <a href="item-editor.html">
+                                            Tags
+                                            </a> </li>
+                                    </ul>
+                                </li>
+                                <li>
                                     <a href=""> <i class="fa fa-user"></i> Users <i class="fa arrow"></i> </a>
                                     <ul>
                                         <li> <a href="{{route('admin.users.index')}}">
