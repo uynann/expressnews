@@ -19,7 +19,7 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::resource('admin/users', 'AdminUsersController');
+
 
 Route::get('/admin', function() {
     return view('admin.index');
@@ -28,6 +28,10 @@ Route::get('/admin', function() {
 Route::post('admin/users/upload', 'AdminUsersController@upload');
 
 
+Route::group(['middleware' => 'admin'], function() {
+    Route::resource('admin/users', 'AdminUsersController');
+    Route::post('admin/users/upload', 'AdminUsersController@upload');
+});
 
 
 

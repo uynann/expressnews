@@ -114,3 +114,8 @@ ul.image-row li.selected span {
 .status span:hover, .status span:active {
     background-color: #cf4944;
 }
+
+.delete-user-form {
+    display: inline-block;
+    margin-right: 10px;
+}

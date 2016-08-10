@@ -21,8 +21,12 @@
                         </div>
                         </div>
                     </h3>
+
                 </div>
             </div>
+            @if(session('status'))
+                <div class="status update-status">{{ session('status') }} <span><i class="fa fa-times" aria-hidden="true"></i></span></div>
+            @endif
         </div>
         <div class="items-search">
             <form class="form-inline">
@@ -33,6 +37,7 @@
                     </span> </div>
             </form>
         </div>
+
     </div>
     <div class="card items">
         <ul class="item-list striped">
@@ -70,7 +75,7 @@
                 <li class="item">
                     <div class="item-row">
                         <div class="item-col fixed item-col-check"> <label class="item-check" id="select-all-items">
-                            <input type="checkbox" class="checkbox">
+                            <input type="checkbox" class="checkbox" name="checkboxUsersArray[]" value="{{ $user->id }}">
                             <span></span>
                             </label> </div>
                         <div class="item-col fixed item-col-img md">
@@ -112,9 +117,13 @@
                                     </span> </a>
                                 <div class="item-actions-block">
                                     <ul class="item-actions-list">
+
+                                       @if ($user->id != 1)
                                         <li>
-                                            <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o "></i> </a>
+                                            <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal" id="remove-user"> <i class="fa fa-trash-o " data-user-id="{{ $user->id }}"></i> </a>
                                         </li>
+                                        @endif
+
                                         <li>
                                             <a class="edit" href="{{route('admin.users.edit', $user->id) }}"> <i class="fa fa-pencil"></i> </a>
                                         </li>

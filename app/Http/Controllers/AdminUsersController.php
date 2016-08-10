@@ -115,6 +115,13 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
+        if ($id != 1) {
+            User::findOrFail($id)->delete();
+            return redirect('/admin/users')->with('status', 'User deleted!');
+        } else {
+            return redirect('/admin/users')->with('status', 'This user cannot be deleted!');
+        }
+
     }
 
     public function upload(Request $request)

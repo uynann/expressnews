@@ -29,6 +29,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 =========================================================================================================================
 ##
+login to app
+email: uynann93@gmail.com
+password: uynann
 
 1. php artisan make:auth
 2. create admin folder in the view
