@@ -115,7 +115,30 @@ ul.image-row li.selected span {
     background-color: #cf4944;
 }
 
-.delete-user-form {
+.delete-item-form {
     display: inline-block;
     margin-right: 10px;
 }
+
+/* --------------------------------------------------------------------------
+1. Admin - Posts Page
+---------------------------------------------------------------------------*/
+
+.posts-list-page .item-list .item-col.item-col-title {
+    -ms-flex-positive: 11;
+    flex-grow: 11;
+    -ms-flex-negative: 11;
+}
+
+.posts-list-page .item-list .item-col.item-col-sales {
+    text-align: left;
+}
+
+.posts-list-page .item-list .item-col.item-col-stats {
+    text-align: left;
+}
+
+.posts-list-page div.item-col.fixed.pull-left.item-col-title {
+    width: 450px;
+}
+

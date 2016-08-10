@@ -367,9 +367,15 @@ else
                             </div>
                             <div class="modal-footer">
                                @if(isset($user))
-                                    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id], 'class' => 'delete-user-form']) !!}
+                                    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id], 'class' => 'delete-item-form']) !!}
                                         {!! Form::submit('Yes', ['class'=>'btn btn-primary']) !!}
                                     {!! Form::close() !!}
+                                @endif
+
+                                @if(isset($post))
+                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminPostsController@destroy', $post->id], 'class' => 'delete-item-form']) !!}
+                                {!! Form::submit('Yes', ['class'=>'btn btn-primary']) !!}
+                                {!! Form::close() !!}
                                 @endif
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                             </div>

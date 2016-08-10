@@ -1435,11 +1435,11 @@ $(function() {
 *        Confirmed Delete User
 ***********************************************/
 $(function() {
-    $('#remove-user i').click(function() {
-        var action = $('.delete-user-form').attr('action');
-        var user_id = $(this).attr('data-user-id');
-        action = action.slice(0, action.lastIndexOf('/') + 1) + user_id;
+    $('.remove-item i').click(function() {
+        var action = $('.delete-item-form').attr('action');
+        var item_id = $(this).attr('data-item-id');
+        action = action.slice(0, action.lastIndexOf('/') + 1) + item_id;
 
-        $('.delete-user-form').attr('action', action);
+        $('.delete-item-form').attr('action', action);
     });
 });

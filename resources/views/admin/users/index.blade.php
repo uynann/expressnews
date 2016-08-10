@@ -106,7 +106,7 @@
                         </div>
                         <div class="item-col item-col-author">
                             <div class="item-heading">Posts</div>
-                            <div class="no-overflow"> <a href=""></a> </div>
+                            <div class="no-overflow"> <a href="">{{ count($user->posts) }} </a></div>
                         </div>
                         <div class="item-col fixed item-col-actions-dropdown">
                             <div class="item-actions-dropdown">
@@ -120,7 +120,7 @@
 
                                        @if ($user->id != 1)
                                         <li>
-                                            <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal" id="remove-user"> <i class="fa fa-trash-o " data-user-id="{{ $user->id }}"></i> </a>
+                                            <a class="remove remove-item" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o " data-item-id="{{ $user->id }}"></i> </a>
                                         </li>
                                         @endif
 
