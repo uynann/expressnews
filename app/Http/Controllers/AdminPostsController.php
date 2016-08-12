@@ -33,7 +33,7 @@ class AdminPostsController extends Controller
      */
     public function create()
     {
-        $categories = Category::orderBy('id', 'desc')->get();
+        $categories = Category::whereNotIn('id', [5])->orderBy('id', 'desc')->get();
         $tags = Tag::orderBy('id', 'desc')->get();
         $photos = Photo::orderBy('id', 'desc')->get();
 //        $next_tag_record_id = Tag::lastInsertId(null);
@@ -50,16 +50,59 @@ class AdminPostsController extends Controller
     {
         $input = $request->all();
         $user = Auth::user();
+        $post = new Post();
+
+        $input['user_id'] = $user->id;
 
         if (isset($input['publish'])) {
             $input['status'] = 'publish';
-            $user->posts()->create($input);
+
+            $post->title = $input['title'];
+            $post->user_id = $input['user_id'];
+            $post->photo_id = $input['photo_id'];
+            $post->body = $input['body'];
+            $post->status = $input['status'];
+
+            $post->save();
+
+            // add to pivot table
+            if (isset($input['categories'])) {
+                $post->categories()->attach($input['categories']);
+            } else {
+                $post->categories()->attach(5);
+            }
+
+            if (isset($input['tags'])) {
+                $post->tags()->attach($input['tags']);
+            }
+
             return redirect('/admin/posts/create')->with('status', 'Post published!');
         } else {
             $input['status'] = 'draft';
-            $user->posts()->create($input);
+
+            $post->title = $input['title'];
+            $post->user_id = $input['user_id'];
+            $post->photo_id = $input['photo_id'];
+            $post->body = $input['body'];
+            $post->status = $input['status'];
+
+            $post->save();
+
+            // add to pivot table
+            if (isset($input['categories'])) {
+                $post->categories()->attach(5);
+            } else {
+                $post->categories()->attach(5);
+            }
+
+            if (isset($input['tags'])) {
+                $post->tags()->attach($input['tags']);
+            }
+
+
             return redirect('/admin/posts/create')->with('status', 'Post saved!');
         }
+
     }
 
     /**
