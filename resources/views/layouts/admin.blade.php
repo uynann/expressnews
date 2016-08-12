@@ -8,10 +8,17 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
         <!-- Place favicon.ico in the root directory -->
         <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
-        <link rel="stylesheet" href="{{asset('css/app.css')}}">
+        <link rel="stylesheet" href="{{asset('css/app-default.css')}}">
         <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+
+        <!-- Froala Editor style -->
+        <link rel="stylesheet" href="{{asset('css/froala.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+
         <!-- Theme initialization -->
         <script>
 var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
@@ -318,14 +325,16 @@ else
                                     <div class="tab-pane fade" id="gallery" role="tabpanel">
                                         <div class="images-container">
                                             <ul class="row image-row">
-                                                @if(isset($photos))
+                                            @if(isset($photos))
                                               @foreach($photos as $photo)
-                                                <li class="col-sm-2" photo-id="{{$photo->id}}">
-                                                    <img src="{{ asset($photo->file_path) }}" alt="" class="image-gallary img-thumbnail">
-                                                    <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                                                <li class="col-sm-2" >
+                                                    <div class="image-wrapper" photo-id="{{ $photo->id }}">
+                                                        <img src="{{ asset($photo->file_path) }}" alt="" class="image-gallary">
+                                                        <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                                                    </div>
                                                 </li>
                                               @endforeach
-                                              @endif
+                                            @endif
 
                                             </ul>
                                         </div>
@@ -333,7 +342,7 @@ else
                                     <div class="tab-pane fade active in" id="upload" role="tabpanel">
                                         <div class="upload-container">
                                             <div id="dropzone">
-                                                <form action="{{ url('admin/users/upload') }}" class="dropzone needsclick dz-clickable" id="demo-upload">
+                                                <form action="{{ url('admin/upload') }}" class="dropzone needsclick dz-clickable" id="demo-upload">
                                                     <div class="dz-message-block">
                                                         <div class="dz-message needsclick"> Drop files here or click to upload. </div>
                                                     </div>
@@ -373,9 +382,9 @@ else
                                 @endif
 
                                 @if(isset($post))
-                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminPostsController@destroy', $post->id], 'class' => 'delete-item-form']) !!}
-                                {!! Form::submit('Yes', ['class'=>'btn btn-primary']) !!}
-                                {!! Form::close() !!}
+                                    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminPostsController@destroy', $post->id], 'class' => 'delete-item-form']) !!}
+                                        {!! Form::submit('Yes', ['class'=>'btn btn-primary']) !!}
+                                    {!! Form::close() !!}
                                 @endif
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                             </div>
@@ -398,7 +407,41 @@ else
         <script src="{{asset('js/vendor.js')}}"></script>
 
         <script src="{{asset('js/dropzone.js')}}"></script>
-        <script src="{{asset('js/app.js')}}"></script>
+
+        <!-- Froala JS file -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+
+        <script type="text/javascript" src="{{ asset('js/froala/froala_editor.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/align.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/char_counter.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/code_beautifier.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/code_view.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/color.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/draggable.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/emoticons.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/entities.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/file.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/font_size.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/font_family.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/fullscreen.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/image.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/image_manager.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/line_breaker.min.js') }}" ></script>
+{{--        <script type="text/javascript" src="{{ asset('js/froala/inline_style.min.js') }}" ></script>--}}
+        <script type="text/javascript" src="{{ asset('js/froala/link.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/lists.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/paragraph_format.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/paragraph_style.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/quick_insert.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/quote.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/table.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/save.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/url.min.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('js/froala/video.min.js') }}" ></script>
+
+
+        <script src="{{ asset('js/app.js') }}"></script>
         @yield('footer')
 
     </body>

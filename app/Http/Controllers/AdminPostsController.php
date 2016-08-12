@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Post;
+use App\Category;
+use App\Tag;
+use App\Photo;
+use App\Http\Requests\PostsCreateRequest;
+use Auth;
 
 class AdminPostsController extends Controller
 {
@@ -28,7 +33,11 @@ class AdminPostsController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::orderBy('id', 'desc')->get();
+        $tags = Tag::orderBy('id', 'desc')->get();
+        $photos = Photo::orderBy('id', 'desc')->get();
+//        $next_tag_record_id = Tag::lastInsertId(null);
+        return view('admin.posts.create', compact('categories', 'tags', 'photos'));
     }
 
     /**
@@ -37,9 +46,20 @@ class AdminPostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostsCreateRequest $request)
     {
-        //
+        $input = $request->all();
+        $user = Auth::user();
+
+        if (isset($input['publish'])) {
+            $input['status'] = 'publish';
+            $user->posts()->create($input);
+            return redirect('/admin/posts/create')->with('status', 'Post published!');
+        } else {
+            $input['status'] = 'draft';
+            $user->posts()->create($input);
+            return redirect('/admin/posts/create')->with('status', 'Post saved!');
+        }
     }
 
     /**
@@ -85,5 +105,11 @@ class AdminPostsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function upload(Request $request)
+    {
+
     }
 }

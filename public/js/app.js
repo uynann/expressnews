@@ -1400,15 +1400,15 @@ $(function() {
 
     $('#insert-selected').prop( "disabled", true );
 
-    $('ul.image-row li').click(function () {
-        $('ul.image-row li.selected').removeClass('selected');
+    $('ul.image-row li .image-wrapper').click(function () {
+        $('ul.image-row li .image-wrapper.selected').removeClass('selected');
         $(this).toggleClass('selected');
         $('#insert-selected').prop( "disabled", false );
     });
 
     $('#insert-selected').click(function() {
-        var photo_id = $('ul.image-row li.selected').attr('photo-id');
-        var photo_path = $('ul.image-row li.selected img').attr('src');
+        var photo_id = $('ul.image-row li .image-wrapper.selected').attr('photo-id');
+        var photo_path = $('ul.image-row li .image-wrapper.selected img').attr('src');
         $('#photo-id').val(photo_id);
         $('#image-container').show();
         $('#image-container .image').css('background-image', 'url(' + photo_path + ')');
@@ -1443,3 +1443,29 @@ $(function() {
         $('.delete-item-form').attr('action', action);
     });
 });
+
+/***********************************************
+*        Initialize the post editor
+***********************************************/
+$(function() {
+    $('textarea#post-editor').froalaEditor();
+});
+
+
+/***********************************************
+*        Add and Select Tags
+***********************************************/
+$(function() {
+
+    $('.used-tags span').click(function() {
+        $('.selected-tags').append('<span class="selected-tag"><i class="fa fa-times-circle" aria-hidden="true"></i> ' + $(this).attr('data-tag-name') + ' <input type="hidden" name="tags[]" value="' + $(this).attr('data-tag-id') + '"></span>');
+    });
+
+    $('.selected-tags').on('click', '.selected-tag i', function () {
+        $(this).parent().remove();
+    });
+
+    /* When click on btn-add-tag */
+
+});
+

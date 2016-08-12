@@ -89,7 +89,7 @@
         </div>
 
         <div class="form-group row">
-           <label class="col-sm-2 form-control-label text-xs-right">Images:</label>
+           <label class="col-sm-2 form-control-label text-xs-right">Picture:</label>
             <div class="col-sm-10">
                 <div class="images-container">
                     <div class="image-container" id="image-container">

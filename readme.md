@@ -107,9 +107,12 @@ public function rules()
 
 21. Add Security (Add middleware Admin to all admin route)
 
+22. Create Migration and Models for Posts
 
-
-
+23. Create index.blade.php in admin/posts folder and display all posts
+24. Carete create.balde.php in admin/posts and handle the create route
+25. Add status and deleted_at column to posts table and implement softDelete to posts table
+26. Add froala editor to create post page
 
 
 

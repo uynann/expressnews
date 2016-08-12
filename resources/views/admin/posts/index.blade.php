@@ -78,10 +78,13 @@
                     <div class="item-col fixed pull-left item-col-title">
                         <div class="item-heading">Title</div>
                         <div>
-                            <a href="item-editor.html" class="">
+                            <a href="item-editor.html">
                                 <h4 class="item-title">
                                     {{$post->title}}
-                                </h4> </a>
+                                </h4>  </a>
+                                @if($post->status == 'draft')
+                            <span style="font-weight:bold"> &mdash; Draft </span>
+                                @endif
                         </div>
                     </div>
                     <div class="item-col item-col-sales">
@@ -90,11 +93,24 @@
                     </div>
                     <div class="item-col item-col-stats no-overflow">
                         <div class="item-heading">Categories</div>
-                        <div> <a href=""> </a></div>
+                        <div class="categories-tags">
+                        @if (count($post->categories))
+                            @foreach($post->categories as $category)
+                                <a href=""> {{ $category->name }} </a> &nbsp;
+                            @endforeach
+                        @endif
+
+                        </div>
                     </div>
                     <div class="item-col item-col-category no-overflow">
                         <div class="item-heading">Tags</div>
-                        <div class="no-overflow"> <a href=""></a> </div>
+                        <div class="categories-tags">
+                        @if (count($post->tags))
+                            @foreach($post->tags as $tag)
+                                <a href=""> {{ $tag->name }} </a> &nbsp;
+                            @endforeach
+                        @endif
+                        </div>
                     </div>
                     <div class="item-col item-col-date">
                         <div class="item-heading">Published</div>

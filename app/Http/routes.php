@@ -25,13 +25,14 @@ Route::get('/admin', function() {
     return view('admin.index');
 });
 
-Route::post('admin/users/upload', 'AdminUsersController@upload');
-
 
 Route::group(['middleware' => 'admin'], function() {
     Route::resource('admin/users', 'AdminUsersController');
-    Route::post('admin/users/upload', 'AdminUsersController@upload');
+    Route::post('admin/upload', 'AdminUsersController@upload');
     Route::resource('admin/posts', 'AdminPostsController');
+
+    // handle uploading images from froala editor
+    Route::post('admin/upload/post-image', 'AdminPostsController@upload');
 });
 
 
