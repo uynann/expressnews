@@ -1414,7 +1414,7 @@ $(function() {
         $('#image-container .image').css('background-image', 'url(' + photo_path + ')');
     });
 
-    if ($('#photo-id').val()) {
+    if ($('#photo-id').val() && ($('#photo-id').val() != 0)) {
         $('#image-container').show();
     }
 
