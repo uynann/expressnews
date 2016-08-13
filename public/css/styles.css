@@ -191,6 +191,11 @@ ul.image-row li .image-wrapper.selected span {
     cursor: pointer;
 }
 
+.used-tags span:active,
+.used-tags span:hover {
+    color: #85ce36;
+}
+
 .used-tags {
     margin: 5px 0 10px 0;
     display: block;
@@ -217,8 +222,36 @@ ul.image-row li .image-wrapper.selected span {
     color: #cf4944;
 }
 
+.post-status .post-status-change {
+    margin-top: 10px;
+    display: none;
+}
 
+.post-status .post-status-change .ok-post-status-change {
+    margin-bottom: 0;
+    margin-right: 5px;
+}
 
+.post-status .post-status-change select {
+    width: 60%;
+    display: inline-block;
+    height: 32px;
+    margin-right: 5px;
+}
+
+.post-status .post-status-change .cancel-post-status-change,
+.post-status .post-status-show .edit-post-status {
+    text-decoration: underline;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.post-status .post-status-change .cancel-post-status-change:hover,
+.post-status .post-status-show .edit-post-status:hover,
+.post-status .post-status-change .cancel-post-status-change:active,
+.post-status .post-status-show .edit-post-status:active {
+    color: #85ce36;
+}
 
 
 

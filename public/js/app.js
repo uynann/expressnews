@@ -1418,6 +1418,11 @@ $(function() {
         $('#image-container').show();
     }
 
+    $('.control-btn.remove').click(function() {
+        $('#image-container').hide();
+        $('#photo-id').val('');
+    });
+
 });
 
 
@@ -1469,3 +1474,27 @@ $(function() {
 
 });
 
+
+/***********************************************
+*        Edit Status
+***********************************************/
+$(function() {
+    $('.edit-post-status').click(function() {
+        $('.post-status-change').show();
+        $('.edit-post-status').hide()
+    });
+
+    $('.cancel-post-status-change').click(function() {
+        $('.post-status-change').hide();
+        $('.edit-post-status').show();
+    });
+
+    $('.ok-post-status-change').click(function() {
+        var status_selected = $('.post-status-change select').val();
+        $('#status-holder').val(status_selected);
+        $('.post-status-change').hide();
+        $('.edit-post-status').show();
+        $('.post-status-show strong').text(status_selected);
+        $('.post-status-show strong').css('textTransform', 'capitalize')
+    });
+});

@@ -81,7 +81,7 @@
                     <div class="images-container">
                         <div class="image-container" id="image-container">
                             <div class="controls">
-                                <a href="#" class="control-btn remove" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o"></i> </a>
+                                <a href="#" class="control-btn remove"> <i class="fa fa-trash-o"></i> </a>
                             </div>
                             <div class="image" style="background-image:url()"></div>
                         </div>
@@ -92,7 +92,7 @@
                         </a>
                     </div>
                 </div>
-                <input type="hidden" id="photo-id" name="photo_id">
+                {!! Form::hidden('photo_id', null, ['id' => 'photo-id']) !!}
             </div>
 
             <div class="form-group row">

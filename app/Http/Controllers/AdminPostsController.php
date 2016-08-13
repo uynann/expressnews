@@ -113,7 +113,7 @@ class AdminPostsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -124,7 +124,12 @@ class AdminPostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $categories = Category::whereNotIn('id', [5])->orderBy('id', 'desc')->get();
+        $tags = Tag::orderBy('id', 'desc')->get();
+        $photos = Photo::orderBy('id', 'desc')->get();
+        return view('admin.posts.edit', compact('categories', 'tags', 'photos', 'post', 'categoriesid'));
     }
 
     /**
@@ -134,9 +139,20 @@ class AdminPostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostsCreateRequest $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $input = $request->all();
+        $post->update($input);
+
+        $post->categories()->sync($input['categories']);
+        $post->tags()->sync($input['tags'], true);
+
+        if ($input['status'] == 'publish') {
+            return redirect('/admin/posts/' . $id. '/edit')->with('status', 'Post updated!');
+        } else {
+            return redirect('/admin/posts/' . $id. '/edit')->with('status', 'Post saved!');
+        }
     }
 
     /**
@@ -147,7 +163,19 @@ class AdminPostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        if ($id != 1) {
+//            We don't it, because we used softDelete, so we still have related categories and tags if we restore post
+//            $post->categories()->detach();
+//            $post->tags()->detach();
+
+            $post->delete();
+
+            return redirect('/admin/posts')->with('status', 'Post deleted!');
+        } else {
+            return redirect('/admin/users')->with('status', 'This post cannot be deleted!');
+        }
     }
 
 
