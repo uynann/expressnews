@@ -3,7 +3,7 @@
 @section('content')
 
 
-<article class="content item-editor-page">
+<article class="content item-editor-page user-create-page">
     <div class="title-block">
         <h3 class="title">
             Add New User <span class="sparkline bar" data-type="bar"></span>

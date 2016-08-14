@@ -3,13 +3,21 @@
 @section('content')
 
 
-<article class="content item-editor-page">
+<article class="content item-editor-page user-editor-page">
     <div class="title-block">
-        <h3 class="title">
-            Edit User <span class="sparkline bar" data-type="bar"></span> <a href="{{route('admin.users.create')}}" class="btn btn-primary btn-sm rounded-s">
-            Add New
-            </a>
-        </h3>
+
+        @if($user->id == Auth::user()->id)
+            <h3 class="title">
+                Profile <span class="sparkline bar" data-type="bar"></span>
+            </h3>
+        @else
+            <h3 class="title">
+                Edit User <span class="sparkline bar" data-type="bar"></span> <a href="{{route('admin.users.create')}}" class="btn btn-primary btn-sm rounded-s">
+                Add New
+                </a>
+            </h3>
+        @endif
+
         @if(session('status'))
         <div class="status update-status">{{ session('status') }} <a href="{{route('admin.users.index')}}">Back to Users</a><span><i class="fa fa-times" aria-hidden="true"></i></span></div>
         @endif
@@ -112,7 +120,12 @@
 
         <div class="form-group row">
             <div class="col-sm-10 col-sm-offset-2">
-                {!! Form::submit('Update', ['class'=>'btn btn-primary']) !!}
+                @if($user->id == Auth::user()->id)
+                    {!! Form::submit('Update Profile', ['class'=>'btn btn-primary']) !!}
+                @else
+                    {!! Form::submit('Update', ['class'=>'btn btn-primary']) !!}
+                @endif
+
             </div>
         </div>
 

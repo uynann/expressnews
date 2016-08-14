@@ -15,8 +15,8 @@ class Category extends Model
         return $this->belongsToMany('App\Post');
     }
 
-    public function setNameAttribute($value)
-    {
-        return ucfirst($value);
-    }
+//    public function setNameAttribute($value)
+//    {
+//        return ucfirst($value);
+//    }
 }

@@ -104,7 +104,7 @@ else
                                     {{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}
                                     </span> </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <a class="dropdown-item" href="#"> <i class="fa fa-user icon"></i> Profile </a>
+                                    <a class="dropdown-item" href="{{route('admin.users.edit', Auth::user()->id) }}"> <i class="fa fa-user icon"></i> Profile </a>
                                     <a class="dropdown-item" href="#"> <i class="fa fa-bell icon"></i> Notifications </a>
                                     <a class="dropdown-item" href="#"> <i class="fa fa-gear icon"></i> Settings </a>
                                     <div class="dropdown-divider"></div>
@@ -134,14 +134,17 @@ else
                                         <li> <a href="{{route('admin.posts.create')}}">
                                             Add New
                                             </a> </li>
-                                        <li> <a href="item-editor.html">
-                                            Categories
-                                            </a> </li>
-                                        <li> <a href="item-editor.html">
-                                            Tags
-                                            </a> </li>
                                     </ul>
                                 </li>
+
+                                <li>
+                                    <a href="{{ route('admin.categories.index') }}"> <i class="fa fa-list-alt" aria-hidden="true"></i> Categories</a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('admin.tags.index') }}"> <i class="fa fa-tags" aria-hidden="true"></i> Tags</a>
+                                </li>
+
                                 <li>
                                     <a href=""> <i class="fa fa-user"></i> Users <i class="fa arrow"></i> </a>
                                     <ul>
@@ -151,11 +154,13 @@ else
                                         <li> <a href="{{route('admin.users.create')}}">
                                             Add New
                                             </a> </li>
-                                        <li> <a href="item-editor.html">
+                                        <li> <a href="{{route('admin.users.edit', Auth::user()->id) }}">
                                             Your Profile
                                             </a> </li>
                                     </ul>
                                 </li>
+
+
                                 <li>
                                     <a href=""> <i class="fa fa-bar-chart"></i> Charts <i class="fa arrow"></i> </a>
                                     <ul>
@@ -385,6 +390,18 @@ else
                                     {!! Form::open(['method'=>'DELETE', 'action'=>['AdminPostsController@destroy', $post->id], 'class' => 'delete-item-form']) !!}
                                         {!! Form::submit('Yes', ['class'=>'btn btn-primary']) !!}
                                     {!! Form::close() !!}
+                                @endif
+
+                                @if(isset($category))
+                                    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminCategoriesController@destroy', $category->id], 'class' => 'delete-item-form']) !!}
+                                        {!! Form::submit('Yes', ['class'=>'btn btn-primary']) !!}
+                                    {!! Form::close() !!}
+                                @endif
+
+                                @if(isset($tag))
+                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminTagsController@destroy', $tag->id], 'class' => 'delete-item-form']) !!}
+                                {!! Form::submit('Yes', ['class'=>'btn btn-primary']) !!}
+                                {!! Form::close() !!}
                                 @endif
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                             </div>

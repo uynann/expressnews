@@ -254,6 +254,43 @@ ul.image-row li .image-wrapper.selected span {
 }
 
 
+/* --------------------------------------------------------------------------
+1. Admin - Categories Page
+---------------------------------------------------------------------------*/
 
+.items-list-page.categories-list-create-page .items-search {
+    position: static;
+    margin-bottom: 0;
+}
 
+.items-list-page.categories-list-create-page .col-sm-6:last-child {
+    text-align: right;
+}
 
+.title-sm {
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+
+.form-group .form-controll-sm {
+    height: 32px;
+    font-size: 0.9em;
+}
+
+.form-group .form-controll-label-sm {
+    font-size: 0.9em;
+}
+
+.items-list-page.categories-list-create-page .item-list .item-col.item-col-sales {
+    text-align: left;
+    -ms-flex-positive: 8;
+    flex-grow: 8;
+    -ms-flex-negative: 8;
+}
+
+.items-list-page.categories-list-create-page .item-list .item-col.item-col-stats {
+    text-align: left;
+    -ms-flex-positive: 11;
+    flex-grow: 11;
+    -ms-flex-negative: 11;
+}

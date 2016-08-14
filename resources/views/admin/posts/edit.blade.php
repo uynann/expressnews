@@ -2,7 +2,7 @@
 
 @section('content')
 
-<article class="content item-editor-page">
+<article class="content item-editor-page post-editor-page">
     <div class="title-block">
         <h3 class="title">
             Edit Post <span class="sparkline bar" data-type="bar"></span>

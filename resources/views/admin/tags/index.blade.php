@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <h3 class="title">
-                        Categories
+                        Tags
 
                     </h3>
 
@@ -26,10 +26,10 @@
         <div class="col-sm-5">
             <div class="categories-create">
                 <div>
-                    <h6 class="title-sm">Add New Category</h6>
+                    <h6 class="title-sm">Add New Tags</h6>
                 </div>
 
-                {!! Form::open(['method'=>'POST', 'action'=>'AdminCategoriesController@store', 'name'=>'item', 'class'=>'form-horizontal', 'id'=>'add-category-form']) !!}
+                {!! Form::open(['method'=>'POST', 'action'=>'AdminTagsController@store', 'name'=>'item', 'class'=>'form-horizontal', 'id'=>'add-category-form']) !!}
 
                 <div class="card card-block">
                     <div class="form-group row{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -56,7 +56,7 @@
 
                     <div class="form-group row">
                         <div class="col-sm-9 col-sm-offset-3">
-                            {!! Form::submit('Add new category', ['class'=>'btn btn-primary btn-sm']) !!}
+                            {!! Form::submit('Add new tag', ['class'=>'btn btn-primary btn-sm']) !!}
                         </div>
                     </div>
                 </div>
@@ -116,59 +116,59 @@
                             <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
                         </div>
                     </li>
-                    @if(isset($categories))
-                    @foreach($categories as $category)
+                    @if(isset($tags))
+                    @foreach($tags as $tag)
 
                     <li class="item">
                         <div class="item-row">
                             <div class="item-col fixed item-col-check"> <label class="item-check" id="select-all-items">
-                                <input type="checkbox" class="checkbox" name="checkboxUsersArray[]" value="{{ $category->id }}">
+                                <input type="checkbox" class="checkbox" name="checkboxUsersArray[]" value="{{ $tag->id }}">
                                 <span></span>
                                 </label>
                             </div>
 
                             <div class="item-col item-col-sales">
                                 <div class="item-heading">Name</div>
-                                <div> <a href="">{{ $category->name }} </a></div>
+                                <div> <a href="">{{ $tag->name }} </a></div>
                             </div>
                             <div class="item-col item-col-stats no-overflow">
                                 <div class="item-heading">Description</div>
                                 <div class="categories-tags">
-                                    {{ $category->description }}
+                                    {{ $tag->description }}
 
                                 </div>
                             </div>
                             <div class="item-col item-col-category no-overflow">
                                 <div class="item-heading">Count</div>
                                 <div class="categories-tags">
-                                    <a href="">{{ count($category->posts) }}
+                                    <a href="">{{ count($tag->posts) }}
+                                        </div>
                                 </div>
-                            </div>
-                            <div class="item-col fixed item-col-actions-dropdown">
-                                <div class="item-actions-dropdown">
-                                    <a class="item-actions-toggle-btn"> <span class="inactive">
-                                        <i class="fa fa-cog"></i>
-                                        </span> <span class="active">
-                                        <i class="fa fa-chevron-circle-right"></i>
-                                        </span> </a>
-                                    <div class="item-actions-block">
-                                        <ul class="item-actions-list">
+                                <div class="item-col fixed item-col-actions-dropdown">
+                                    <div class="item-actions-dropdown">
+                                        <a class="item-actions-toggle-btn"> <span class="inactive">
+                                            <i class="fa fa-cog"></i>
+                                            </span> <span class="active">
+                                            <i class="fa fa-chevron-circle-right"></i>
+                                            </span> </a>
+                                        <div class="item-actions-block">
+                                            <ul class="item-actions-list">
 
-                                            <li>
-                                                <a class="remove remove-item" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o " data-item-id="{{ $category->id }}"></i> </a>
-                                            </li>
+                                                <li>
+                                                    <a class="remove remove-item" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o " data-item-id="{{ $tag->id }}"></i> </a>
+                                                </li>
 
-                                            <li>
-                                                <a class="edit" href="{{route('admin.categories.edit', $category->id) }}"> <i class="fa fa-pencil"></i> </a>
-                                            </li>
-                                        </ul>
+                                                <li>
+                                                    <a class="edit" href="{{route('admin.tags.edit', $tag->id) }}"> <i class="fa fa-pencil"></i> </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                    @endforeach
-                    @endif
+                            </li>
+                        @endforeach
+                        @endif
                 </ul>
             </div>
 

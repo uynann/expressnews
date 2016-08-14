@@ -129,7 +129,7 @@ class AdminPostsController extends Controller
         $categories = Category::whereNotIn('id', [5])->orderBy('id', 'desc')->get();
         $tags = Tag::orderBy('id', 'desc')->get();
         $photos = Photo::orderBy('id', 'desc')->get();
-        return view('admin.posts.edit', compact('categories', 'tags', 'photos', 'post', 'categoriesid'));
+        return view('admin.posts.edit', compact('categories', 'tags', 'photos', 'post'));
     }
 
     /**
@@ -145,8 +145,14 @@ class AdminPostsController extends Controller
         $input = $request->all();
         $post->update($input);
 
-        $post->categories()->sync($input['categories']);
-        $post->tags()->sync($input['tags'], true);
+        if (isset($input['categories'])) {
+            $post->categories()->sync($input['categories']);
+        }
+
+        if (isset($input['tags'])) {
+            $post->tags()->sync($input['tags'], true);
+        }
+
 
         if ($input['status'] == 'publish') {
             return redirect('/admin/posts/' . $id. '/edit')->with('status', 'Post updated!');

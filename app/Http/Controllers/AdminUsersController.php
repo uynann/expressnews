@@ -21,7 +21,7 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        $users = User::whereNotIn('id', [14])->get();
         return view('admin.users.index', compact('users'));
     }
 
@@ -115,9 +115,11 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
-        if ($id != 1) {
-//            $user = User::findOrFail($id);
-//            unlink(public_path() . '/' . $user->photo->file_path); // Delete Image from directory
+        if ($id != 1 || $id !=14) {
+            $user = User::findOrFail($id);
+
+            // Asign Unknown user to posts, that are related to this deleted user
+
             User::findOrFail($id)->delete();
             return redirect('/admin/users')->with('status', 'User deleted!');
         } else {

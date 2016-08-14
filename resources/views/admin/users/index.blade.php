@@ -118,7 +118,7 @@
                                 <div class="item-actions-block">
                                     <ul class="item-actions-list">
 
-                                       @if ($user->id != 1)
+                                       @if (($user->id != 1) && ($user->id != 14))
                                         <li>
                                             <a class="remove remove-item" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o " data-item-id="{{ $user->id }}"></i> </a>
                                         </li>

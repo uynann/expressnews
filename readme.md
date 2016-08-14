@@ -114,6 +114,10 @@ public function rules()
 25. Add status and deleted_at column to posts table and implement softDelete to posts table
 26. Add froala editor to create post page
 
+27. Add Edit page and delete functionality to post and handled the route
+
+27. Add Categories and Tags page and handle route for crud
+
 
 
 

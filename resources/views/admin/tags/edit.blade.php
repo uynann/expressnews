@@ -5,14 +5,14 @@
 <article class="content item-editor-page post-editor-page">
     <div class="title-block">
         <h3 class="title">
-            Edit Category <span class="sparkline bar" data-type="bar"></span>
+            Edit Tag <span class="sparkline bar" data-type="bar"></span>
         </h3>
         @if(session('status'))
-        <div class="status update-status">{{ session('status') }} <a href="{{route('admin.categories.index')}}">Back to Categories</a><span><i class="fa fa-times" aria-hidden="true"></i></span></div>
+        <div class="status update-status">{{ session('status') }} <a href="{{route('admin.tags.index')}}">Back to Tags</a><span><i class="fa fa-times" aria-hidden="true"></i></span></div>
         @endif
     </div>
 
-    {!! Form::model($category, ['method'=>'PATCH', 'action'=>['AdminCategoriesController@update', $category->id], 'name'=>'item']) !!}
+    {!! Form::model($tag, ['method'=>'PATCH', 'action'=>['AdminTagsController@update', $tag->id], 'name'=>'item']) !!}
 
     <div class="card card-block">
         <div class="form-group row{{ $errors->has('name') ? ' has-error' : '' }}">

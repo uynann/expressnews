@@ -15,7 +15,7 @@ class Tag extends Model
     }
 
 
-    public function setNameAttribute($value)
+    public function getNameAttribute($value)
     {
         return strtolower($value);
     }
