@@ -1498,3 +1498,33 @@ $(function() {
         $('.post-status-show strong').css('textTransform', 'capitalize')
     });
 });
+
+/***********************************************
+*       Medias Window
+***********************************************/
+$(function () {
+    $(".window-show-media").click(function(){
+        $(this).fadeOut("fast");
+    }).children().click(function(e) {
+        return false;
+    });
+
+    $('.close-window').click(function() {
+        $('.window-show-media').fadeOut('fast');
+    });
+
+
+    $('.image-wrapper-for-medias-page').click(function() {
+        $(this).siblings().fadeIn('fast');
+    });
+
+    $('span#btn-addnew-media').click(function() {
+        alert('works!');
+    });
+
+
+
+
+
+});
+

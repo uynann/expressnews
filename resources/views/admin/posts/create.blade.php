@@ -1,5 +1,11 @@
 @extends('layouts.admin')
 
+@section('styles')
+<!-- Froala Editor style -->
+<link rel="stylesheet" href="{{asset('css/froala.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+@endsection
+
 @section('content')
 
 <article class="content item-editor-page post-create-page">
@@ -106,5 +112,40 @@
 
 </article>
 
+
+@endsection
+
+@section('scripts')
+<!-- Froala JS file -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+
+<script type="text/javascript" src="{{ asset('js/froala/froala_editor.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/align.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/char_counter.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/code_beautifier.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/code_view.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/color.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/draggable.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/emoticons.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/entities.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/file.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/font_size.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/font_family.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/fullscreen.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/image.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/image_manager.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/line_breaker.min.js') }}" ></script>
+{{--        <script type="text/javascript" src="{{ asset('js/froala/inline_style.min.js') }}" ></script>--}}
+<script type="text/javascript" src="{{ asset('js/froala/link.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/lists.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/paragraph_format.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/paragraph_style.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/quick_insert.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/quote.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/table.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/save.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/url.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/froala/video.min.js') }}" ></script>
 
 @endsection

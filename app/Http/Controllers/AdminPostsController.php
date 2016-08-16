@@ -184,9 +184,4 @@ class AdminPostsController extends Controller
         }
     }
 
-
-    public function upload(Request $request)
-    {
-
-    }
 }

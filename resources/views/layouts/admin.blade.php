@@ -13,11 +13,10 @@
         <!-- Place favicon.ico in the root directory -->
         <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
         <link rel="stylesheet" href="{{asset('css/app-default.css')}}">
-        <link rel="stylesheet" href="{{asset('css/styles.css')}}">
 
-        <!-- Froala Editor style -->
-        <link rel="stylesheet" href="{{asset('css/froala.css')}}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+        @yield('styles')
+
+        <link rel="stylesheet" href="{{asset('css/styles.css')}}">
 
         <!-- Theme initialization -->
         <script>
@@ -143,6 +142,18 @@ else
 
                                 <li>
                                     <a href="{{ route('admin.tags.index') }}"> <i class="fa fa-tags" aria-hidden="true"></i> Tags</a>
+                                </li>
+
+                                <li>
+                                    <a href=""> <i class="fa fa-user"></i> Media <i class="fa arrow"></i> </a>
+                                    <ul>
+                                        <li> <a href="{{route('admin.medias.index')}}">
+                                            Media Library
+                                            </a> </li>
+                                        <li> <a href="{{route('admin.medias.create')}}">
+                                            Add New
+                                            </a> </li>
+                                    </ul>
                                 </li>
 
                                 <li>
@@ -347,7 +358,7 @@ else
                                     <div class="tab-pane fade active in" id="upload" role="tabpanel">
                                         <div class="upload-container">
                                             <div id="dropzone">
-                                                <form action="{{ url('admin/upload') }}" class="dropzone needsclick dz-clickable" id="demo-upload">
+                                                <form action="{{ url('admin/medias') }}" class="dropzone needsclick dz-clickable" id="demo-upload">
                                                     <div class="dz-message-block">
                                                         <div class="dz-message needsclick"> Drop files here or click to upload. </div>
                                                     </div>
@@ -425,41 +436,10 @@ else
 
         <script src="{{asset('js/dropzone.js')}}"></script>
 
-        <!-- Froala JS file -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
-
-        <script type="text/javascript" src="{{ asset('js/froala/froala_editor.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/align.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/char_counter.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/code_beautifier.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/code_view.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/color.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/draggable.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/emoticons.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/entities.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/file.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/font_size.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/font_family.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/fullscreen.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/image.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/image_manager.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/line_breaker.min.js') }}" ></script>
-{{--        <script type="text/javascript" src="{{ asset('js/froala/inline_style.min.js') }}" ></script>--}}
-        <script type="text/javascript" src="{{ asset('js/froala/link.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/lists.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/paragraph_format.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/paragraph_style.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/quick_insert.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/quote.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/table.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/save.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/url.min.js') }}" ></script>
-        <script type="text/javascript" src="{{ asset('js/froala/video.min.js') }}" ></script>
-
+        @yield('scripts')
 
         <script src="{{ asset('js/app.js') }}"></script>
-        @yield('footer')
+
 
     </body>
 
