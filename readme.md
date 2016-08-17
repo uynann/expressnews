@@ -112,9 +112,9 @@ public function rules()
 
 27. Add Edit page and delete functionality to post and handled the route
 
-27. Add Categories and Tags page and handle route for crud
+28. Add Categories and Tags page and handle route for crud
 
-
+29. Add Medais Page and handle route
 
 
 

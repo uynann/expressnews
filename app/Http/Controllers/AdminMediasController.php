@@ -15,7 +15,7 @@ class AdminMediasController extends Controller
     }
 
     public function create() {
-
+        return view('admin.medias.create');
     }
 
     public function store(Request $request)

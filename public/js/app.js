@@ -1516,10 +1516,19 @@ $(function () {
         $(this).siblings().fadeIn('fast');
     });
 
-    $('#btn-addnew-media').click(function() {
-
-    });
-
 
 });
 
+
+/***********************************************
+*       Upload Picture Form
+***********************************************/
+$(function() {
+    $('#btn-addnew-media').click(function() {
+        $('.medias-list-page .upload-container').fadeToggle('fast');
+    });
+
+    $('.close-uploadform').click(function() {
+        $('.medias-list-page .upload-container').fadeOut('fast');
+    });
+});

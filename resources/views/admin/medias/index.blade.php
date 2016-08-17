@@ -40,21 +40,22 @@
 
     </div>
 
+    <div class="card">
+        <div class="upload-container">
+            <div id="dropzone">
+                <form action="{{ url('admin/medias') }}" class="dropzone needsclick dz-clickable" id="demo-upload">
+                    <div class="dz-message-block">
+                        <div class="dz-message needsclick"> Drop files here or click to upload. </div>
+                    </div>
 
-{{--
-    <div class="upload-container">
-        <div id="dropzone">
-            <form action="{{ url('admin/upload') }}" class="dropzone needsclick dz-clickable" id="demo-upload">
-                <div class="dz-message-block">
-                    <div class="dz-message needsclick"> Drop files here or click to upload. </div>
-                </div>
+                    {{ csrf_field() }}
 
-                {{ csrf_field() }}
+                </form>
+            </div>
 
-            </form>
+            <span class="close-uploadform"><i class="fa fa-times"></i></span>
         </div>
     </div>
---}}
 
 
     <div class="card items medias-list">
