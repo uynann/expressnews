@@ -116,7 +116,7 @@ public function rules()
 
 29. Add Medais Page and handle route
 
-
+29. Modify Post author, if author is deleted. Detach tag and category from post, if tag and category are deleted.
 
 
 

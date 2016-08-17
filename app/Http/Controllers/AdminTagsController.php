@@ -89,6 +89,11 @@ class AdminTagsController extends Controller
      */
     public function destroy($id)
     {
+        // Detach tag from posts, that are related to this deleted tag
+        foreach(Tag::findOrFail($id)->posts as $post) {
+            $post->tags()->detach($id);
+        }
+
         Tag::findOrFail($id)->delete();
         return redirect('/admin/tags')->with('status', 'Tag deleted!');
     }

@@ -21,7 +21,6 @@ class AdminPostsController extends Controller
      */
     public function index()
     {
-        //
         $posts = Post::all();
         return view('admin.posts.index', compact('posts'));
     }
@@ -90,7 +89,7 @@ class AdminPostsController extends Controller
 
             // add to pivot table
             if (isset($input['categories'])) {
-                $post->categories()->attach(5);
+                $post->categories()->attach($input['categories']);
             } else {
                 $post->categories()->attach(5);
             }
@@ -98,7 +97,6 @@ class AdminPostsController extends Controller
             if (isset($input['tags'])) {
                 $post->tags()->attach($input['tags']);
             }
-
 
             return redirect('/admin/posts/create')->with('status', 'Post saved!');
         }
@@ -146,7 +144,9 @@ class AdminPostsController extends Controller
         $post->update($input);
 
         if (isset($input['categories'])) {
-            $post->categories()->sync($input['categories']);
+            $post->categories()->sync($input['categories'], true);
+        } else {
+            $post->categories()->sync([5], true);
         }
 
         if (isset($input['tags'])) {
@@ -175,7 +175,6 @@ class AdminPostsController extends Controller
 //            We don't it, because we used softDelete, so we still have related categories and tags if we restore post
 //            $post->categories()->detach();
 //            $post->tags()->detach();
-
             $post->delete();
 
             return redirect('/admin/posts')->with('status', 'Post deleted!');

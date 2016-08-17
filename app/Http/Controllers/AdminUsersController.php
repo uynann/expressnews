@@ -10,6 +10,7 @@ use App\Role;
 use App\Http\Requests\UsersRequest;
 use App\Http\Requests\UsersEditRequest;
 use App\Photo;
+use App\Post;
 
 class AdminUsersController extends Controller
 {
@@ -119,8 +120,9 @@ class AdminUsersController extends Controller
             $user = User::findOrFail($id);
 
             // Asign Unknown user to posts, that are related to this deleted user
+            Post::where('user_id', '=', $id)->update(['user_id' => 14]);
 
-            User::findOrFail($id)->delete();
+            $user->delete();
             return redirect('/admin/users')->with('status', 'User deleted!');
         } else {
             return redirect('/admin/users')->with('status', 'This user cannot be deleted!');

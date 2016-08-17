@@ -14,9 +14,7 @@
         <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
         <link rel="stylesheet" href="{{asset('css/app-default.css')}}">
 
-        @yield('styles')
 
-        <link rel="stylesheet" href="{{asset('css/styles.css')}}">
 
         <!-- Theme initialization -->
         <script>
@@ -26,12 +24,17 @@ var themeName = themeSettings.themeName || '';
 if (themeName)
 {
     document.write('<link rel="stylesheet" id="theme-style" href="css/app-' + themeName + '.css">');
+
 }
 else
 {
-    document.write('<link rel="stylesheet" id="theme-style" href="css/app.css">');
+    document.write('<link rel="stylesheet" id="theme-style" href="{{ asset('css/app-default.css') }}">');
 }
         </script>
+
+        @yield('styles')
+
+        <link rel="stylesheet" href="{{asset('css/styles.css')}}">
     </head>
 
     <body>
@@ -395,24 +398,21 @@ else
                                     {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id], 'class' => 'delete-item-form']) !!}
                                         {!! Form::submit('Yes', ['class'=>'btn btn-primary']) !!}
                                     {!! Form::close() !!}
-                                @endif
 
-                                @if(isset($post))
+                                @elseif(isset($post))
                                     {!! Form::open(['method'=>'DELETE', 'action'=>['AdminPostsController@destroy', $post->id], 'class' => 'delete-item-form']) !!}
                                         {!! Form::submit('Yes', ['class'=>'btn btn-primary']) !!}
                                     {!! Form::close() !!}
-                                @endif
 
-                                @if(isset($category))
+                                @elseif(isset($category))
                                     {!! Form::open(['method'=>'DELETE', 'action'=>['AdminCategoriesController@destroy', $category->id], 'class' => 'delete-item-form']) !!}
                                         {!! Form::submit('Yes', ['class'=>'btn btn-primary']) !!}
                                     {!! Form::close() !!}
-                                @endif
 
-                                @if(isset($tag))
-                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminTagsController@destroy', $tag->id], 'class' => 'delete-item-form']) !!}
-                                {!! Form::submit('Yes', ['class'=>'btn btn-primary']) !!}
-                                {!! Form::close() !!}
+                                @elseif(isset($tag))
+                                    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminTagsController@destroy', $tag->id], 'class' => 'delete-item-form']) !!}
+                                        {!! Form::submit('Yes', ['class'=>'btn btn-primary']) !!}
+                                    {!! Form::close() !!}
                                 @endif
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                             </div>

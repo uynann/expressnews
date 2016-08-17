@@ -90,6 +90,16 @@ class AdminCategoriesController extends Controller
      */
     public function destroy($id)
     {
+
+        // Detach category from posts, that are related to this deleted category
+        foreach(Category::findOrFail($id)->posts as $post) {
+            if ($post->categories->count() > 1) {
+                $post->categories()->detach($id);
+            } else {
+                $post->categories()->sync([5], true);
+            }
+        }
+
         Category::findOrFail($id)->delete();
         return redirect('/admin/categories')->with('status', 'Category deleted!');
     }
