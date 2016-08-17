@@ -40,6 +40,7 @@
 
     </div>
 
+
 {{--
     <div class="upload-container">
         <div id="dropzone">
@@ -54,6 +55,7 @@
         </div>
     </div>
 --}}
+
 
     <div class="card items medias-list">
         <div class="medias-content">

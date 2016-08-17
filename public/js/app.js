@@ -1452,9 +1452,7 @@ $(function() {
 /***********************************************
 *        Initialize the post editor
 ***********************************************/
-$(function() {
-    $('textarea#post-editor').froalaEditor();
-});
+
 
 
 /***********************************************
@@ -1480,20 +1478,20 @@ $(function() {
 ***********************************************/
 $(function() {
     $('.edit-post-status').click(function() {
-        $('.post-status-change').show();
-        $('.edit-post-status').hide()
+        $('.post-status-change').fadeIn('fast');
+        $('.edit-post-status').fadeOut('fast')
     });
 
     $('.cancel-post-status-change').click(function() {
-        $('.post-status-change').hide();
-        $('.edit-post-status').show();
+        $('.post-status-change').fadeOut('fast');
+        $('.edit-post-status').fadeIn('fast');
     });
 
     $('.ok-post-status-change').click(function() {
         var status_selected = $('.post-status-change select').val();
         $('#status-holder').val(status_selected);
-        $('.post-status-change').hide();
-        $('.edit-post-status').show();
+        $('.post-status-change').fadeOut('fast');
+        $('.edit-post-status').fadeIn('fast');
         $('.post-status-show strong').text(status_selected);
         $('.post-status-show strong').css('textTransform', 'capitalize')
     });
@@ -1518,12 +1516,9 @@ $(function () {
         $(this).siblings().fadeIn('fast');
     });
 
-    $('span#btn-addnew-media').click(function() {
-        alert('works!');
+    $('#btn-addnew-media').click(function() {
+
     });
-
-
-
 
 
 });
