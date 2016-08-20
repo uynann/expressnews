@@ -12,6 +12,9 @@
 
         <!-- Place favicon.ico in the root directory -->
         <link rel="stylesheet" href="{{asset('css/admin/vendor.css')}}">
+
+        @yield('styles')
+
         <link rel="stylesheet" href="{{asset('css/admin/app-default.css')}}">
 
 
@@ -439,6 +442,7 @@ else
         @yield('scripts')
 
         <script src="{{ asset('js/admin/app.js') }}"></script>
+
 
 
     </body>
