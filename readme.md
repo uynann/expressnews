@@ -118,6 +118,6 @@ public function rules()
 
 29. Modify Post author, if author is deleted. Detach tag and category from post, if tag and category are deleted.
 
-
+30. Modify app.blade.php layout for frontend. Modify HomeController for homepage. Add ComposerServiceProvider.
 
 

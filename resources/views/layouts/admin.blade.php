@@ -11,8 +11,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 
         <!-- Place favicon.ico in the root directory -->
-        <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
-        <link rel="stylesheet" href="{{asset('css/app-default.css')}}">
+        <link rel="stylesheet" href="{{asset('css/admin/vendor.css')}}">
+        <link rel="stylesheet" href="{{asset('css/admin/app-default.css')}}">
 
 
 
@@ -34,7 +34,7 @@ else
 
         @yield('styles')
 
-        <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+        <link rel="stylesheet" href="{{asset('css/admin/styles.css')}}">
     </head>
 
     <body>
@@ -432,13 +432,13 @@ else
                 <div class="color-secondary"></div>
             </div>
         </div>
-        <script src="{{asset('js/vendor.js')}}"></script>
+        <script src="{{asset('js/admin/vendor.js')}}"></script>
 
-        <script src="{{asset('js/dropzone.js')}}"></script>
+        <script src="{{asset('js/admin/dropzone.js')}}"></script>
 
         @yield('scripts')
 
-        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/admin/app.js') }}"></script>
 
 
     </body>
