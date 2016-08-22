@@ -100,10 +100,8 @@
                     <div class="item-col item-col-stats no-overflow">
                         <div class="item-heading">Categories</div>
                         <div class="categories-tags">
-                        @if (count($post->categories))
-                            @foreach($post->categories as $category)
-                                <a href=""> {{ $category->name }} </a> &nbsp;
-                            @endforeach
+                        @if (isset($post->category))
+                            <a href=""> {{ $post->category->name }} </a> &nbsp;
                         @endif
 
                         </div>

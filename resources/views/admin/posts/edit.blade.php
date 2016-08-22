@@ -94,13 +94,13 @@
                         {!! Form::label('categories', 'Select Categories:', ['class'=>'form-control-label']) !!}
                         @foreach($categories as $category)
                             <span>
-                           @if($post->categories->contains($category->id))
-                                <input type="checkbox" name="categories[]" value="{{ $category->id }}" checked>&nbsp; {{ $category->name }}
+                           @if($post->category->id === $category->id)
+                                <input type="radio" name="category_id" value="{{ $category->id }}" checked>&nbsp; {{ $category->name }}
                             @else
-                                <input type="checkbox" name="categories[]" value="{{ $category->id }}">&nbsp; {{ $category->name }}
+                                <input type="radio" name="category_id" value="{{ $category->id }}">&nbsp; {{ $category->name }}
                             @endif
                             </span>
-                            @endforeach
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@ class Post extends Model
 
 
     protected $fillable = [
-        'title', 'body', 'user_id', 'photo_id', 'status',
+        'title', 'body', 'user_id', 'photo_id', 'status', 'category_id',
     ];
 
     public function user() {
@@ -30,8 +30,8 @@ class Post extends Model
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
     }
 
-    public function categories() {
-        return $this->belongsToMany('App\Category');
+    public function category() {
+        return $this->belongsTo('App\Category');
     }
 
     public function tags() {

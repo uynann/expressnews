@@ -89,7 +89,7 @@
                            {!! Form::label('categories', 'Select Categories:', ['class'=>'form-control-label']) !!}
                            @foreach($categories as $category)
                            <span>
-                               <input type="checkbox" name="categories[]" value="{{ $category->id }}">&nbsp; {{ $category->name }}
+                               <input type="radio" name="category_id" value="{{ $category->id }}">&nbsp; {{ $category->name }}
                            </span>
                            @endforeach
                        </div>

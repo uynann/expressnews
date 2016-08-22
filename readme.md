@@ -122,3 +122,5 @@ public function rules()
 
 31. Add home.blade.php, show.blade and category.blade.php. add home route. Homepage working partly. Add show route.
 
+32. Drop category-posts table. Change categories and posts relation from many-to-many to one-to-many.
+

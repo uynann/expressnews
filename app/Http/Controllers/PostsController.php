@@ -46,10 +46,18 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($category, $id ,$title)
+    public function show($category, $id_title)
     {
+        $id = current(explode("-", $id_title));
+
         $post = Post::findOrFail($id);
-        return view('show', compact('post'));
+
+        if (preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->category->name))) == $category) {
+            return view('show', compact('post'));
+        } else {
+            return view('errors.404');
+        }
+
     }
 
     /**
@@ -61,6 +69,7 @@ class PostsController extends Controller
     public function edit($id)
     {
         //
+
     }
 
     /**

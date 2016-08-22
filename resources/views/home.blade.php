@@ -19,7 +19,10 @@
                                     <a href="single.html"><img src="@if(isset($post->photo)) {{ asset($post->photo->file_path) }} @endif" alt="" /></a>
                                 </div>
                                 <div class="c-text">
-                                    <a class="power" href="{{ route('show', ['category'=>$category->name, 'id'=>$post->id, 'title'=>$post->title]) }}">{{ $post->title }}</a>
+
+                                    <a class="power" href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}">{{ $post->title }}</a>
+
+
                                     <p class="date">On Feb 25, 2015</p>
                                     <div class="clearfix"></div>
                                 </div>
@@ -28,7 +31,10 @@
                         @else
                             <div class="s-grid-small">
                                 <div class="sc-text">
-                                    <a class="power" href="{{ route('show', ['category'=>$category->name, 'id'=>$post->id, 'title'=>$post->title]) }}">{{ $post->title }}</a>
+
+                                    <a class="power" href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}">{{ $post->title }}</a>
+
+
                                     <p class="date">On Mar 21, 2015</p>
                                     <div class="clearfix"></div>
                                 </div>

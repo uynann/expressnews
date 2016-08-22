@@ -35,7 +35,6 @@ class AdminPostsController extends Controller
         $categories = Category::whereNotIn('id', [5])->orderBy('id', 'desc')->get();
         $tags = Tag::orderBy('id', 'desc')->get();
         $photos = Photo::orderBy('id', 'desc')->get();
-//        $next_tag_record_id = Tag::lastInsertId(null);
         return view('admin.posts.create', compact('categories', 'tags', 'photos'));
     }
 
@@ -62,15 +61,16 @@ class AdminPostsController extends Controller
             $post->body = $input['body'];
             $post->status = $input['status'];
 
+            if (isset($input['category_id'])) {
+                $post->category_id = $input['category_id'];
+            } else {
+                $post->category_id = 5;
+            }
+
+
             $post->save();
 
             // add to pivot table
-            if (isset($input['categories'])) {
-                $post->categories()->attach($input['categories']);
-            } else {
-                $post->categories()->attach(5);
-            }
-
             if (isset($input['tags'])) {
                 $post->tags()->attach($input['tags']);
             }
@@ -85,21 +85,22 @@ class AdminPostsController extends Controller
             $post->body = $input['body'];
             $post->status = $input['status'];
 
+            if (isset($input['category_id'])) {
+                $post->category_id = $input['category_id'];
+            } else {
+                $post->category_id = 5;
+            }
+
             $post->save();
 
             // add to pivot table
-            if (isset($input['categories'])) {
-                $post->categories()->attach($input['categories']);
-            } else {
-                $post->categories()->attach(5);
-            }
-
             if (isset($input['tags'])) {
                 $post->tags()->attach($input['tags']);
             }
 
             return redirect('/admin/posts/create')->with('status', 'Post saved!');
         }
+
 
     }
 
@@ -143,12 +144,6 @@ class AdminPostsController extends Controller
         $input = $request->all();
         $post->update($input);
 
-        if (isset($input['categories'])) {
-            $post->categories()->sync($input['categories'], true);
-        } else {
-            $post->categories()->sync([5], true);
-        }
-
         if (isset($input['tags'])) {
             $post->tags()->sync($input['tags'], true);
         } else {
@@ -174,8 +169,7 @@ class AdminPostsController extends Controller
         $post = Post::findOrFail($id);
 
         if ($id != 1) {
-//            We don't it, because we used softDelete, so we still have related categories and tags if we restore post
-//            $post->categories()->detach();
+//            We don't delete it, because we used softDelete, so we still have related categories and tags if we restore post
 //            $post->tags()->detach();
             $post->delete();
 
