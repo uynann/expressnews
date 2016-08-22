@@ -3585,3 +3585,36 @@ address a:hover {
 .has-dropdown ul li a:hover {
     color: #282828;
 }
+
+.sc-text {
+    width: 100%;
+}
+
+
+a.power {
+    margin-top: 0;
+    font-size: 1.2em;
+}
+
+@media screen and (max-width: 991px) {
+    .first_half {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .secound_half {
+        width: 100%;
+        float: Left;
+    }
+}
+
+.c-sports-main {
+    height: 142px;
+}
+
+.s-grid-small {
+    height: 75.25px;
+    margin-top: 10px;
+}

@@ -22,7 +22,7 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
-        $users = User::whereNotIn('id', [14])->get();
+        $users = User::whereNotIn('id', [14])->orderBy('id', 'desc')->get();
         return view('admin.users.index', compact('users'));
     }
 

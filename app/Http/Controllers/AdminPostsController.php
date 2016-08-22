@@ -21,7 +21,7 @@ class AdminPostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->get();;
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -151,6 +151,8 @@ class AdminPostsController extends Controller
 
         if (isset($input['tags'])) {
             $post->tags()->sync($input['tags'], true);
+        } else {
+            $post->tags()->detach();
         }
 
 

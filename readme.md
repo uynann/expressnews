@@ -120,4 +120,5 @@ public function rules()
 
 30. Modify app.blade.php layout for frontend. Modify HomeController for homepage. Add ComposerServiceProvider.
 
+31. Add home.blade.php, show.blade and category.blade.php. add home route. Homepage working partly. Add show route.
 

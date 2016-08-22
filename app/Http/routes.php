@@ -13,9 +13,6 @@
 
 Route::auth();
 
-Route::get('/', 'HomeController@index');
-
-
 Route::group(['middleware' => 'admin'], function() {
 
     Route::get('/admin', function() {
@@ -35,7 +32,9 @@ Route::group(['middleware' => 'admin'], function() {
 });
 
 
+Route::get('/', 'HomeController@index');
 
+Route::get('{category}/{id}/{title}', ['as' => 'show', 'uses' => 'PostsController@show']);
 
 
 
