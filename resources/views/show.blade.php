@@ -69,7 +69,11 @@
 
             <div class="date-time">
                 <p class="date">Published time: {{ $post->created_at }}</p>
-                <p class="date">Edited time: {{ $post->updated_at }}</p>
+                @if( $post->created_at == $post->updated_at)
+
+                @else
+                    <p class="date">Edited time: {{ $post->updated_at }}</p>
+                @endif
             </div>
 
             <div class="last-article">

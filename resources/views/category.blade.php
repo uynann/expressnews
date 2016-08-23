@@ -2,7 +2,7 @@
 
 @section('content')
 
-<ol class="breadcrumb">
+<ol class="breadcrumb category-page">
     <li><a href="{{ url('/') }}">Home</a></li>
     <li class="active">{{ isset($category) ? $category->name : '' }}</li>
 </ol>
@@ -17,16 +17,16 @@
             @foreach($posts as $post)
             <div class="article">
                 <div class="article-left">
-                    <a href="single.html"><img src="{{ isset($post->photo) ? asset($post->photo->file_path) : '' }}"></a>
+                    <a href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}"><img src="{{ isset($post->photo) ? asset($post->photo->file_path) : '' }}"></a>
                 </div>
                 <div class="article-right">
                     <div class="article-title">
-                        <p>On Feb 25, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>104 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>52</a></p>
-                        <a class="title" href="single.html"> {{ $post->title }}</a>
+                        <p>On {{ $post->created_at }} <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>104 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>52</a></p>
+                        <a class="title" href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}"> {{ $post->title }}</a>
                     </div>
                     <div class="article-text">
-                        <p>The standard chunk of Lorem Ipsum used since the 1500s. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" exact original.....</p>
-                        <a href="single.html"><img src="{{ asset('assets/more.png') }}" alt="" /></a>
+                        <p>{!! html_entity_decode(str_limit($post->body, 160)) !!}</p>
+                        <a href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}"><img src="{{ asset('assets/more.png') }}" alt="" /></a>
                         <div class="clearfix"></div>
                     </div>
                 </div>

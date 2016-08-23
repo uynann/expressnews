@@ -3704,3 +3704,16 @@ a.power {
 .content-left.category-page {
     width: 100%;
 }
+
+.breadcrumb.category-page {
+    margin-bottom: 15px;
+}
+
+.category-page .article {
+    margin-top: 35px;
+    padding-bottom: 25px;
+}
+
+.category-page .article .title {
+    font-size: 1.6em;
+}
