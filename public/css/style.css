@@ -3722,3 +3722,96 @@ a.power {
 ul.categories {
     margin-bottom: 5px;
 }
+
+/* --------------------------------------------------------------------------
+4. Login And Signup Page
+---------------------------------------------------------------------------*/
+.login-section {
+    margin-top: 60px;
+}
+
+.login-section .text {
+    padding: 10px;
+    width: 100%;
+    font-size: 1em;
+    border: 1px solid #999;
+    color: #999;
+    background: none;
+    float: left;
+    outline: none;
+}
+
+.btn-submit {
+    color: #fff;
+    font-size: 1.1em;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    background: #84754e;
+    display: inline-block;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.btn-submit:hover {
+    background: #131313;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.login-section .power {
+    font-size: 1.06em;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.login-section .form-group {
+    margin-bottom: 20px;
+}
+
+.login-section .has-error label {
+    color: #c19e9e;
+}
+
+.login-section .has-error input {
+    border-color: #c19e9e;
+}
+
+.login-section .has-error .help-block {
+    font-weight: normal;
+    font-size: 1em;
+    color: #c19e9e;
+    margin-bottom: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+5. Contact Page
+---------------------------------------------------------------------------*/
+.contact-section .to .text {
+    padding: 10px;
+    width: 100%;
+    font-size: 1em;
+    margin: 10px 0;
+    border: 1px solid #999;
+    color: #999;
+    background: none;
+    float: left;
+    outline: none;
+}
+
+.text textarea {
+    width: 100%;
+}
+
+
+
+

@@ -125,3 +125,5 @@ public function rules()
 32. Drop category-posts table. Change categories and posts relation from many-to-many to one-to-many.
 
 33. Post Show page and post category page working partly. Add pagination functionality to post admin page. Modify pagination generated html in Illuminate\Pagination. Add pagination functionality to post category page.
+
+34. Added About, Contact and Privacy Policy page. Handled get routes.

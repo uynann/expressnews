@@ -5,9 +5,9 @@
             <div class="top-menu">
                 <ul>
                     <li><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="{{ url('/about') }}">About Us</a></li>
+                    <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
+                    <li><a href="{{ url('/contact') }}">Contact Us</a></li>
                 </ul>
             </div>
             <div class="top-menu top-menu-right">

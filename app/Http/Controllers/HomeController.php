@@ -31,14 +31,28 @@ class HomeController extends Controller
 
     public function category($category_name) {
         $categories = Category::all();
+
         foreach ($categories as $category_obj) {
             if (preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category_obj->name))) == $category_name) {
                 $category = $category_obj;
             }
         }
 
+
         $posts = $category->posts()->orderBy('id', 'desc')->simplePaginate(8);
 
         return view('category', compact('category', 'posts'));
+    }
+
+    public function about() {
+        return view('about');
+    }
+
+    public function contact() {
+        return view('contact');
+    }
+
+    public function privacyPolicy() {
+        return view('privacy-policy');
     }
 }

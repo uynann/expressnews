@@ -27,12 +27,12 @@ class Post extends Model
 
     public function getCreatedAtAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('M d, Y h:i A');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('M d, Y');
     }
 
     public function getUpdatedAtAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('M d, Y h:i A');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('M d, Y');
     }
 
     public function category() {

@@ -34,11 +34,19 @@ Route::group(['middleware' => 'admin'], function() {
 
 Route::get('/', 'HomeController@index');
 
+Route::get('expressnews-login', 'Auth\AuthController@showExpressNewsLoginForm');
+
+Route::get('about', 'HomeController@about');
+Route::get('privacy-policy', 'HomeController@privacyPolicy');
+Route::get('contact', 'HomeController@contact');
+
+
 Route::get('{category}/{id_title}', ['as' => 'show', 'uses' => 'PostsController@show']);
 
 Route::get('{category_name}', ['as' => 'category', 'uses' => 'HomeController@category']);
 
-//Route::get('about', 'HomeController@about');
+
+
 
 
 
