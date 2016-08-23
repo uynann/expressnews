@@ -3691,7 +3691,8 @@ a.power {
 }
 
 .related-posts {
-    margin: 3em 0;
+    margin-top: 25px;
+    margin-bottom: 30px;
 }
 
 .share_grid h3 {
@@ -3716,4 +3717,8 @@ a.power {
 
 .category-page .article .title {
     font-size: 1.6em;
+}
+
+ul.categories {
+    margin-bottom: 5px;
 }

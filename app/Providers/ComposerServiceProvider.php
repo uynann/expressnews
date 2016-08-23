@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Category;
+use App\Tag;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,10 @@ class ComposerServiceProvider extends ServiceProvider
     {
         view()->composer(['partials.header', 'partials.footer'], function($view) {
             $view->with('categories', Category::whereNotIn('id', [5])->get());
+        });
+
+        view()->composer(['partials.tag'], function($view) {
+            $view->with('tags', Tag::all());
         });
     }
 

@@ -81,6 +81,15 @@
 
                 <div class="paragraphs">
                     {!! html_entity_decode($post->body) !!}
+
+                    @if(count($post->tags) > 0)
+                    <ul class="categories tags">
+                        @foreach($post->tags as $tag)
+                        <li><a href="#">{{ $tag->name }}</a></li>
+                        @endforeach
+                    </ul>
+                    @endif
+
                 </div>
 
 
