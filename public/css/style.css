@@ -1483,7 +1483,7 @@ ul.categories li a:hover {
 .share_grid ul li a i {
     width: 35px;
     height: 35px;
-    background: url('../images/img-sprite.png') no-repeat 0px 0px;
+    background: url('/assets/img-sprite.png') no-repeat 0px 0px;
     display: inline-block;
     float:left;
 }
@@ -3555,6 +3555,11 @@ address a:hover {
 
 
 /*-----------------------------------------------------*/
+/* ADDITIONAL STYLES */
+
+/* --------------------------------------------------------------------------
+1. Home Page
+---------------------------------------------------------------------------*/
 
 .top-menu-right {
     float: right;
@@ -3617,4 +3622,85 @@ a.power {
 .s-grid-small {
     height: 75.25px;
     margin-top: 10px;
+}
+
+.title-head-link {
+    display: inline-block;
+}
+
+.title-head-link h3.title-head {
+    color: #84754E;
+    -webkit-transition: 0.5s all;
+    transition: 0.5s all;
+}
+
+.title-head-link:hover,
+.title-head-link:active {
+    text-decoration: none;
+}
+
+.title-head-link:hover h3,
+.title-head-link:active h3 {
+    color: #bdab7d;
+
+}
+
+/* --------------------------------------------------------------------------
+2. Show Page
+---------------------------------------------------------------------------*/
+.views {
+    width: 54%;
+}
+
+.featured-image {
+    max-width: 100%;
+}
+
+.paragraphs img {
+    max-width: 100%;
+}
+
+.paragraphs iframe {
+    max-width: 100%;
+}
+
+.blog-posts h3.post {
+    line-height: 1.4em;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.date-time p.date {
+    color: #B5B3B3;
+    font-style: italic;
+}
+
+.paragraphs {
+    margin-top: 15px;
+}
+
+.paragraphs p {
+    margin-bottom: 15px;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.breadcrumb {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.related-posts {
+    margin: 3em 0;
+}
+
+.share_grid h3 {
+    padding-top: 5px;
+}
+
+/* --------------------------------------------------------------------------
+3. Category Page
+---------------------------------------------------------------------------*/
+.content-left.category-page {
+    width: 100%;
 }

@@ -4,7 +4,7 @@
         <div class="wrap clearfix">
             <div class="top-menu">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{{ url('/') }}">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
@@ -34,7 +34,7 @@
     </div>
     <div class="header-bottom">
         <div class="logo text-center">
-            <a href="index.html"><img src="{{ asset('assets/logo.jpg') }}" alt="" /></a>
+            <a href="{{ url('/') }}"><img src="{{ asset('assets/logo.jpg') }}" alt="" /></a>
         </div>
         <div class="navigation">
             <nav class="navbar navbar-default" role="navigation">
@@ -54,7 +54,7 @@
                         <ul class="nav navbar-nav">
                             @if(isset($categories))
                                 @foreach($categories as $category)
-                                    <li><a href="index.html">{{ $category->name }}</a></li>
+                            <li><a href="{{ route('category', preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name)))) }}">{{ $category->name }}</a></li>
                                 @endforeach
                             @endif
                             <div class="clearfix"></div>

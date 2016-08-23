@@ -9,7 +9,7 @@
             <div class="col-md-6">
                 <div class="cricket">
                     <header>
-                        <h3 class="title-head">{{ $category->name }}</h3>
+                        <a href="{{ route('category', preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name)))) }}" class="title-head-link"><h3 class="title-head">{{ $category->name }}</h3></a>
                     </header>
 
                     @foreach($category->posts->take(-4)->sortByDesc('id') as $post)
@@ -23,7 +23,7 @@
                                     <a class="power" href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}">{{ $post->title }}</a>
 
 
-                                    <p class="date">On Feb 25, 2015</p>
+                                    <p class="date">On {{ $post->created_at }}</p>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="clearfix"></div>
@@ -35,7 +35,7 @@
                                     <a class="power" href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}">{{ $post->title }}</a>
 
 
-                                    <p class="date">On Mar 21, 2015</p>
+                                    <p class="date">On {{ $post->created_at }}</p>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="clearfix"></div>

@@ -1532,3 +1532,4 @@ $(function() {
         $('.medias-list-page .upload-container').fadeOut('fast');
     });
 });
+

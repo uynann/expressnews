@@ -36,7 +36,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('{category}/{id_title}', ['as' => 'show', 'uses' => 'PostsController@show']);
 
-
+Route::get('{category_name}', ['as' => 'category', 'uses' => 'HomeController@category']);
 
 
 
