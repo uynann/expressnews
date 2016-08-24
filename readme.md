@@ -127,3 +127,5 @@ public function rules()
 33. Post Show page and post category page working partly. Add pagination functionality to post admin page. Modify pagination generated html in Illuminate\Pagination. Add pagination functionality to post category page.
 
 34. Added About, Contact and Privacy Policy page. Handled get routes.
+
+35. Created models and migrations for comments and replies. Added comments and replies pages in admin and handled routes. Handle edit comments replies route using ajax.

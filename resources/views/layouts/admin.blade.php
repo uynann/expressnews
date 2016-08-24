@@ -151,11 +151,19 @@ else
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('admin.tags.index') }}"> <i class="fa fa-comments-o" aria-hidden="true"></i> Comments</a>
+                                    <a href="{{ route('admin.comments.index') }}"> <i class="fa fa-comments-o" aria-hidden="true"></i> Comments <i class="fa arrow"></i></a>
+                                    <ul>
+                                        <li> <a href="{{route('admin.comments.index')}}">
+                                            All Comments
+                                            </a> </li>
+                                        <li> <a href="{{route('admin.comment.replies.index')}}">
+                                            Replies
+                                            </a> </li>
+                                    </ul>
                                 </li>
 
                                 <li>
-                                    <a href=""> <i class="fa fa-user"></i> Media <i class="fa arrow"></i> </a>
+                                    <a href=""> <i class="fa fa-camera" aria-hidden="true"></i> Media <i class="fa arrow"></i> </a>
                                     <ul>
                                         <li> <a href="{{route('admin.medias.index')}}">
                                             Media Library

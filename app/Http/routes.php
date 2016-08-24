@@ -28,6 +28,10 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('/admin/medias/create', ['as'=>'admin.medias.create', 'uses'=>'AdminMediasController@create']);
     Route::post('admin/medias', 'AdminMediasController@store');
 
+    Route::resource('admin/comments', 'AdminCommentsController');
+    Route::resource('admin/comment/replies', 'AdminCommentRepliesController');
+
+
     // handle uploading images from froala editor
 });
 

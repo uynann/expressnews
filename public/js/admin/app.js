@@ -1533,3 +1533,45 @@ $(function() {
     });
 });
 
+/***********************************************
+*       Edit Comment
+***********************************************/
+$(function() {
+    $('.btn-edit-comment').click(function() {
+        var comment_id = $(this).attr('data-edit-comment-id');
+        $('.edit-comment-section').hide();
+        $('.edit-comment-section').siblings('.comment-text').fadeIn('fast');
+
+        $('#edit-comment-section-' + comment_id).fadeIn('fast');
+        $('#edit-comment-section-' + comment_id).siblings('.comment-text').hide();
+    });
+
+    $('.btn-cancel-comment').click(function() {
+        $('.edit-comment-section').hide();
+        $('.edit-comment-section').siblings('.comment-text').fadeIn('fast');
+    });
+
+    $('.btn-save-comment').click(function(e) {
+
+        e.preventDefault();
+        var url = $(this).attr("data-link");
+        var comment_text = $(this).siblings('textarea').val();
+//        alert(url);
+
+        var parent = $(this).parents('.edit-comment-section');
+
+        $.ajax({
+            type: "PUT",
+            url: url,
+            data: { '_token': $('input[name="_token"]').val(), comment: comment_text },
+            dataType: 'json',
+            success: function (data) {
+//                console.log(data);
+                parent.siblings('.comment-text').text(comment_text);
+                $('.edit-comment-section').hide();
+                $('.edit-comment-section').siblings('.comment-text').fadeIn('fast');
+            }
+        });
+
+    });
+});
