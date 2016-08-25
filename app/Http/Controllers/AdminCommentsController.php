@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Comment;
 use App\CommentReply;
+use App\Http\Requests\CommentsRequest;
 
 class AdminCommentsController extends Controller
 {
@@ -37,7 +38,7 @@ class AdminCommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentsRequest $request)
     {
         //
     }
@@ -71,7 +72,7 @@ class AdminCommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CommentsRequest $request, $id)
     {
 
         $input = $request->all();
