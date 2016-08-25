@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CommentReply extends Model
 {
     protected $fillable = [
-        'comment_id', 'user_id', 'is_active', 'reply',
+        'comment_id', 'user_id', 'is_active', 'reply', 'post_id',
     ];
 
     public function comment() {
@@ -16,5 +16,9 @@ class CommentReply extends Model
 
     public function user() {
         return $this->belongsTo('App\User');
+    }
+
+    public function post() {
+        return $this->belongsTo('App\Post');
     }
 }
