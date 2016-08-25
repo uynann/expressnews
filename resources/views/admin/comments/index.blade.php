@@ -65,12 +65,13 @@
             @if(isset($comments))
             @foreach($comments as $comment)
 
-            <li class="item">
+            <li class="item {{ 'comment-number-' . $comment->id }}">
                 <div class="item-row">
                     <div class="item-col fixed item-col-check"> <label class="item-check" id="select-all-items">
                         <input type="checkbox" class="checkbox" name="checkboxUsersArray[]" value="{{ $comment->id }}">
                         <span></span>
-                        </label> </div>
+                        </label>
+                    </div>
                     <div class="item-col fixed pull-left item-col-title">
                         <div class="item-heading">Author</div>
                         <div>
@@ -120,7 +121,12 @@
 
                                     @if ($comment->id != 1)
                                     <li>
-                                        <a class="remove remove-item" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o " data-item-id="{{ $comment->id }}"></i> </a>
+
+                                       <form method="POST">
+                                           {{ csrf_field() }}
+                                           <a class="remove remove-item remove-comment" data-link="{{ url('admin/comments/' .$comment->id) }}" data-id="{{ $comment->id }}"> <i class="fa fa-trash-o"></i> </a>
+                                       </form>
+
                                     </li>
                                     @endif
 
@@ -137,8 +143,11 @@
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </li>
+
             @endforeach
             @endif
         </ul>

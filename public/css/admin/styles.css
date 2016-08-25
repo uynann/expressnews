@@ -498,3 +498,7 @@ ul.image-row li.image-wrapper-holder:nth-child(7n) {
 .btn-edit-comment {
     cursor: pointer;
 }
+
+.remove-comment {
+    cursor: pointer;
+}

@@ -79,7 +79,7 @@ class AdminCommentRepliesController extends Controller
 
         $response = array(
             'status' => 'success',
-            'msg'    => 'Setting created successfully',
+            'msg'    => 'Reply updated',
         );
 
         return \Response::json($response);
@@ -93,6 +93,13 @@ class AdminCommentRepliesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        CommentReply::findOrFail($id)->delete();
+
+        $response = array(
+            'status' => 'success',
+            'msg'    => 'Reply deleted',
+        );
+
+        return \Response::json($response);
     }
 }

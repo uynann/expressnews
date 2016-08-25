@@ -1534,7 +1534,7 @@ $(function() {
 });
 
 /***********************************************
-*       Edit Comment
+*       Edit Comments
 ***********************************************/
 $(function() {
     $('.btn-edit-comment').click(function() {
@@ -1575,3 +1575,31 @@ $(function() {
 
     });
 });
+
+
+/***********************************************
+*       Delete Comments
+***********************************************/
+$(function() {
+    $('.remove-comment').click(function() {
+        var url = $(this).attr("data-link");
+//        alert(url);
+        var comment_id = $(this).attr("data-id");
+
+        $.ajax({
+            type: "DELETE",
+            url: url,
+            data: { '_token': $('input[name="_token"]').val()},
+            success: function (data) {
+//                  console.log(data);
+                $('.comment-number-' + comment_id).fadeOut('fast');
+            }
+        });
+    });
+});
+
+
+
+
+
+

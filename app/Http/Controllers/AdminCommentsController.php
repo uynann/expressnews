@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Comment;
+use App\CommentReply;
 
 class AdminCommentsController extends Controller
 {
@@ -79,7 +80,7 @@ class AdminCommentsController extends Controller
 
         $response = array(
             'status' => 'success',
-            'msg'    => 'Setting created successfully',
+            'msg'    => 'Comment edited',
         );
 
         return \Response::json($response);
@@ -93,6 +94,15 @@ class AdminCommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        CommentReply::where('comment_id', '=', $id)->delete();
+        Comment::findOrFail($id)->delete();
+
+        $response = array(
+            'status' => 'success',
+            'msg'    => 'Comment deleted',
+        );
+
+        return \Response::json($response);
     }
 }

@@ -128,4 +128,8 @@ public function rules()
 
 34. Added About, Contact and Privacy Policy page. Handled get routes.
 
-35. Created models and migrations for comments and replies. Added comments and replies pages in admin and handled routes. Handle edit comments replies route using ajax.
+35. Created models and migrations for comments and replies. Added comments and replies pages in admin and handled routes. Used ajax to call to update routes.
+
+36. Used ajax to call to destroy routes of comments and replies.
+
+

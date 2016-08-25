@@ -11,6 +11,7 @@ use App\Tag;
 use App\Photo;
 use App\Http\Requests\PostsCreateRequest;
 use Auth;
+use App\Comment;
 
 class AdminPostsController extends Controller
 {
@@ -171,6 +172,7 @@ class AdminPostsController extends Controller
         if ($id != 1) {
 //            We don't delete it, because we used softDelete, so we still have related categories and tags if we restore post
 //            $post->tags()->detach();
+            Comment::where('post_id', '=', $id)->delete();
             $post->delete();
 
             return redirect('/admin/posts')->with('status', 'Post deleted!');
