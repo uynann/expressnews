@@ -10,7 +10,7 @@ use App\Photo;
 class AdminMediasController extends Controller
 {
     public function index() {
-        $photos = Photo::orderBy('id', 'desc')->get();
+        $photos = Photo::orderBy('id', 'desc')->paginate(28);;
         return view('admin.medias.index', compact('photos'));
     }
 

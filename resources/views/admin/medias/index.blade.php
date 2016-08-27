@@ -107,6 +107,12 @@
         </div>
     </div>
 
+    <nav class="text-xs-right">
+
+        @if(isset($photos)) {{ $photos->links() }} @endif
+
+    </nav>
+
 </article>
 
 @endsection

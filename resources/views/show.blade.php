@@ -159,8 +159,17 @@
                             </ul>
                             <p>{{ $comment->comment }}</p>
                             <ul>
-                                <li><a href="single.html">Reply</a></li>
+                                <li><a class="reply-btn">Reply</a></li>
                             </ul>
+
+                            <div class="reply-form" data-test="test">
+                                <form method="POST" id="comment-form" data-link="{{ url('comments') }}">
+                                    {{ csrf_field() }}
+                                    <textarea class="comment-text" name="comment" placeholder="Add a comment..."></textarea>
+                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                    <input type="submit" value="Submit Comment" id="btn-submit-comment">
+                                </form>
+                            </div>
 
                             @foreach($comment->replies as $reply)
 
@@ -181,10 +190,19 @@
                                     <p>{{ $reply->reply }}</p>
 
                                     <ul>
-                                        <li><a href="single.html">Reply</a></li>
+                                        <li><a class="reply-btn">Reply</a></li>
                                     </ul>
                                 </div>
                                 <div class="clearfix"> </div>
+
+                                <div class="reply-form">
+                                    <form method="POST" id="comment-form" data-link="{{ url('comments') }}">
+                                        {{ csrf_field() }}
+                                        <textarea class="comment-text" name="comment" placeholder="Add a comment..."></textarea>
+                                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                        <input type="submit" value="Submit Comment" id="btn-submit-comment">
+                                    </form>
+                                </div>
                             </div>
 
                             @endforeach

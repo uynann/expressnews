@@ -306,6 +306,7 @@ ul.image-row li .image-wrapper.selected span {
 .medias-content ul.image-row.row {
     margin-right: 0;
     margin-left: 0;
+    margin-bottom: 0;
 }
 
 ul.image-row li .image-wrapper-for-medias-page {

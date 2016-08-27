@@ -1,4 +1,22 @@
 /***********************************************
+*       Show Reply Form
+***********************************************/
+$(function() {
+
+    $('.reply-btn').click(function() {
+
+        $('.reply-form').hide();
+        $(this).closest('.response-info').find('.reply-form:first').fadeToggle('fast');
+    });
+});
+
+
+
+
+
+
+
+/***********************************************
 *       Submit Comments and Replies
 ***********************************************/
 $(function() {

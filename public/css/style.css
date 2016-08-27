@@ -3775,6 +3775,56 @@ h5.comment-author {
 }
 
 
+.reply-btn {
+    cursor: pointer;
+}
+
+.reply-form {
+    margin-top: 10px;
+    display: none;
+}
+
+.reply-form textarea {
+    background: none;
+    color: #999;
+    border: 1px solid #BDBBBB;
+    width: 100%;
+    display: block;
+    height: 90px;
+    outline: none;
+    font-size: 13px;
+    font-weight: 300;
+    resize: none;
+    padding: 13px 15px;
+}
+
+.reply-form input[type="submit"]:hover {
+    color: #fff;
+    background: #000;
+    outline: none;
+    transition: .5s all;
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    -o-transition: .5s all;
+    -ms-transition: .5s all;
+}
+.reply-form input[type="submit"] {
+    background: #84754e;
+    border: 1px solid #f4f4f4;
+    padding: .8em 0;
+    width: 100%;
+    margin-top: .5em;
+    font-size: 15px;
+    color: #fff;
+    letter-spacing: 0.5px;
+    outline: none;
+    transition: .5s all;
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    -o-transition: .5s all;
+    -ms-transition: .5s all;
+}
+
 
 /* --------------------------------------------------------------------------
 3. Category Page
