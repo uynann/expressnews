@@ -49,7 +49,13 @@ Route::get('{category}/{id_title}', ['as' => 'show', 'uses' => 'PostsController@
 
 Route::get('{category_name}', ['as' => 'category', 'uses' => 'HomeController@category']);
 
+Route::resource('comments', 'CommentsController');
 
+Route::group(['middleware' => 'auth'], function() {
+
+    Route::resource('comments', 'CommentsController');
+
+});
 
 
 

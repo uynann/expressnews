@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Post;
+use App\Http\Requests\CommentsRequest;
+use Auth;
 use App\Comment;
+use App\Post;
 
-class PostsController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,9 +38,26 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentsRequest $request)
     {
+         $input = $request->all();
 
+         $comment = new Comment();
+         $comment->user_id = Auth::user()->id;
+         $comment->post_id = $input['post_id'];
+         $comment->comment = $input['comment'];
+
+         $response = array(
+          'status' => 'success',
+          'msg'    => 'Comment submitted',
+          'comment'=> $comment->comment,
+          'user'   => Auth::user()->firstname,
+          'user_img' => isset(Auth::user()->photo) ? asset(Auth::user()->photo->file_path) : 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg',
+         );
+
+         $comment->save();
+
+         return \Response::json($response);
     }
 
     /**
@@ -47,18 +66,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($category, $id_title)
+    public function show($id)
     {
-        $id = current(explode("-", $id_title));
-
-        $post = Post::findOrFail($id);
-
-        if (preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->category->name))) == $category) {
-            return view('show', compact('post'));
-        } else {
-            return view('errors.404');
-        }
-
+        //
     }
 
     /**
@@ -70,7 +80,6 @@ class PostsController extends Controller
     public function edit($id)
     {
         //
-
     }
 
     /**

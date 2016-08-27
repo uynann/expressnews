@@ -24,7 +24,7 @@ class CommentsRequest extends Request
     public function rules()
     {
         return [
-            'comment' => 'required|max:255',
+            'comment' => 'required|max:500',
         ];
     }
 }

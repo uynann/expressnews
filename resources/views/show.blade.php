@@ -125,6 +125,82 @@
                 </div>
 
                 <!--//related-posts-->
+
+
+                <div class="response">
+                    <h4 class="response-title">Responses</h4>
+
+                    <div class="coment-form">
+                        <form method="POST" id="comment-form" data-link="{{ url('comments') }}">
+                            {{ csrf_field() }}
+                            <textarea class="comment-text" name="comment" placeholder="Add a comment..."></textarea>
+                            <input type="hidden" name="post_id" value="{{ $post->id }}">
+                            <input type="submit" value="Submit Comment" id="btn-submit-comment">
+                        </form>
+                    </div>
+
+                    <div class="comments-list">
+
+                    @foreach($post->comments->sortByDesc('id') as $comment)
+
+                    <div class="media response-info">
+                        <div class="media-left response-text-left">
+                            <a href="#">
+
+                                <div class="media-object img" style="background-image: url({{ isset($comment->user->photo->file_path) ? asset($comment->user->photo->file_path) : 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }})"></div>
+                            </a>
+                            <h5 class="comment-author"></h5>
+                        </div>
+
+                        <div class="media-body response-text-right">
+                            <ul>
+                                <li><h5><a href="#">{{ $comment->user->firstname }}</a></h5></li>
+                                <li>Sep 21, 2015</li>
+                            </ul>
+                            <p>{{ $comment->comment }}</p>
+                            <ul>
+                                <li><a href="single.html">Reply</a></li>
+                            </ul>
+
+                            @foreach($comment->replies as $reply)
+
+                            <div class="media response-info response-info-reply">
+                                <div class="media-left response-text-left">
+                                    <a href="#">
+
+                                        <div class="media-object img" style="background-image: url({{ isset($reply->user->photo->file_path) ? asset($reply->user->photo->file_path) : 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }})"></div>
+                                    </a>
+                                    <h5 class="comment-author"></h5>
+                                </div>
+                                <div class="media-body response-text-right">
+                                    <ul>
+                                        <li><h5><a href="#">{{ $comment->user->firstname }}</a></h5></li>
+                                        <li>Sep 21, 2015</li>
+                                    </ul>
+
+                                    <p>{{ $reply->reply }}</p>
+
+                                    <ul>
+                                        <li><a href="single.html">Reply</a></li>
+                                    </ul>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+
+                            @endforeach
+
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+
+                    @endforeach
+
+                    </div>
+
+
+
+                </div>
+
             </div>
         </div>
     </div>

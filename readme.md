@@ -132,4 +132,4 @@ public function rules()
 
 36. Used ajax to call to destroy routes of comments and replies.
 
-
+37. Added comment system to posts.

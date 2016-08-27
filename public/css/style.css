@@ -3699,6 +3699,83 @@ a.power {
     padding-top: 5px;
 }
 
+.comments-list {
+    margin-top: 30px;
+}
+
+.coment-form {
+    margin-top: 30px;
+}
+
+textarea.comment-text {
+    height: 90px;
+}
+
+h5.comment-author {
+    width: 50px;
+}
+
+.media-body.response-text-right a {
+    color: #000;
+    font-size: 1em;
+    display: block;
+    margin-top: 6px;
+}
+
+.response-text-right h5 a:hover {
+    text-decoration: none;
+    color: #FDD580;
+    transition: .5s all;
+}
+
+.response-text-right p {
+    margin-bottom: 0;
+}
+
+.response-info-reply {
+    margin-top: 10px;
+}
+
+.media-object.img {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    line-height: 40px;
+    border-radius: 4px;
+    background-color: #8b9cb1;
+    color: #ffffff;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    vertical-align: middle;
+}
+
+.response-info-reply .media-object.img {
+    width: 40px;
+    height: 40px;
+}
+
+.response-text-right ul {
+    text-align: left;
+}
+
+.media-body.response-text-right ul li a {
+    margin-left: 0;
+}
+
+.media-body.response-text-right ul:first-child li a {
+    color: #000;
+}
+
+.response-text-right ul:first-child li a:hover {
+    text-decoration: none;
+    color: #FDD580;
+    transition: .5s all;
+}
+
+
+
 /* --------------------------------------------------------------------------
 3. Category Page
 ---------------------------------------------------------------------------*/
@@ -3811,7 +3888,6 @@ ul.categories {
 .text textarea {
     width: 100%;
 }
-
 
 
 

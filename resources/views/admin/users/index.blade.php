@@ -9,7 +9,7 @@
                 <div class="col-md-6">
                     <h3 class="title">
                         Users
-                        <a href="{{route('admin.users.create')}}" class="btn btn-primary btn-sm rounded-s">
+                        <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-sm rounded-s">
                             Add New
                         </a><div class="action dropdown">
                         <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

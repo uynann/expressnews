@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Post;
-use App\Comment;
 
-class PostsController extends Controller
+class RepliesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,7 +36,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -47,18 +45,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($category, $id_title)
+    public function show($id)
     {
-        $id = current(explode("-", $id_title));
-
-        $post = Post::findOrFail($id);
-
-        if (preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->category->name))) == $category) {
-            return view('show', compact('post'));
-        } else {
-            return view('errors.404');
-        }
-
+        //
     }
 
     /**
@@ -70,7 +59,6 @@ class PostsController extends Controller
     public function edit($id)
     {
         //
-
     }
 
     /**
