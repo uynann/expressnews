@@ -19,7 +19,7 @@
                     @else
                     <li class="has-dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->firstname }} <span class="caret"></span>
+                            {{ Auth::user()->username }} <span class="caret"></span>
                         </a>
 
                         <ul>

@@ -106,7 +106,7 @@ else
                             <li class="profile dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                     <div class="img" style="background-image: url({{ isset(Auth::user()->photo->file_path) ? asset(Auth::user()->photo->file_path) : 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }})"> </div> <span class="name">
-                                    {{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}
+                                    {{ Auth::user()->username }}
                                     </span> </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <a class="dropdown-item" href="{{route('admin.users.edit', Auth::user()->id) }}"> <i class="fa fa-user icon"></i> Profile </a>

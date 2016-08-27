@@ -77,7 +77,7 @@
                         <div>
                             <a href="item-editor.html">
                                 <h4 class="item-title">
-                                    {{$comment->user->firstname}}
+                                    {{ $comment->user->username }}
                                 </h4>  </a>
                         </div>
                     </div>

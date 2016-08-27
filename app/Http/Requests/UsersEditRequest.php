@@ -28,8 +28,9 @@ class UsersEditRequest extends Request
         $user = User::find($this->users);
         return [
             //
-            'firstname' => 'required|max:255',
-            'lastname' => 'required|max:255',
+            'firstname' => 'max:255',
+            'lastname' => 'max:255',
+            'username' => 'required|max:255|unique:users,username,' . $user->id,
             'email' => 'required|email|max:255|unique:users,email,' .$user->id,
             'password' => 'min:6|confirmed',
         ];

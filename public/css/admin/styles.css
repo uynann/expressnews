@@ -464,7 +464,7 @@ ul.image-row li.image-wrapper-holder:nth-child(7n) {
 .items-list-page.comments-list-page .item-list .item-col.item-col-title {
     text-align: left;
     -ms-flex-positive: 2;
-    flex-grow: 2;
+    flex-grow: 3;
     -ms-flex-negative: 2;
 }
 

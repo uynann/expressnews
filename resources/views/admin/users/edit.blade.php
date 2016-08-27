@@ -52,6 +52,19 @@
             </div>
         </div>
 
+        <div class="form-group row{{ $errors->has('username') ? ' has-error' : '' }}">
+            {!! Form::label('username', 'Username:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
+            <div class="col-sm-10">
+                {!! Form::text('username', null, ['class'=>'form-control boxed']) !!}
+
+                @if ($errors->has('username'))
+                <span class="help-block">
+                    <small>{{ $errors->first('username') }}</small>
+                </span>
+                @endif
+            </div>
+        </div>
+
         <div class="form-group row{{ $errors->has('email') ? ' has-error' : '' }}">
             {!! Form::label('email', 'Email:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
             <div class="col-sm-10">

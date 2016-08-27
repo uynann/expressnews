@@ -154,7 +154,7 @@
 
                         <div class="media-body response-text-right">
                             <ul>
-                                <li><h5><a href="#">{{ $comment->user->firstname }}</a></h5></li>
+                                <li><h5><a href="#">{{ $comment->user->username }}</a></h5></li>
                                 <li>Sep 21, 2015</li>
                             </ul>
                             <p>{{ $comment->comment }}</p>
@@ -183,7 +183,7 @@
                                 </div>
                                 <div class="media-body response-text-right">
                                     <ul>
-                                        <li><h5><a href="#">{{ $comment->user->firstname }}</a></h5></li>
+                                        <li><h5><a href="#">{{ $comment->user->username }}</a></h5></li>
                                         <li>Sep 21, 2015</li>
                                     </ul>
 

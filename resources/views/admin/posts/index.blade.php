@@ -90,11 +90,7 @@
                     <div class="item-col item-col-sales">
                         <div class="item-heading">Author</div>
                         <div> <a href="">
-                        @if($post->user_id == 14)
-                            {{$post->user->firstname}}
-                        @else
-                            {{$post->user->firstname . ' ' . $post->user->lastname}}
-                        @endif
+                            {{ $post->user->username }}
                          </a></div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
