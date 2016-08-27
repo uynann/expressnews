@@ -54,6 +54,7 @@ Route::resource('comments', 'CommentsController');
 Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('comments', 'CommentsController');
+    Route::resource('comment/replies', 'RepliesController');
 
 });
 

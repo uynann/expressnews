@@ -163,12 +163,15 @@
                             </ul>
 
                             <div class="reply-form" data-test="test">
-                                <form method="POST" id="comment-form" data-link="{{ url('comments') }}">
+                                <form method="POST" data-link="{{ url('comment/replies') }}">
                                     {{ csrf_field() }}
-                                    <textarea class="comment-text" name="comment" placeholder="Add a comment..."></textarea>
+                                    <textarea class="comment-text comment-text-reply" name="comment" autofocus></textarea>
                                     <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                    <input type="submit" value="Submit Comment" id="btn-submit-comment">
+                                    <input type="hidden" name="to_user" value="{{ $comment->user->id }}">
+                                    <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                    <input type="submit" value="Submit Comment" class="btn-submit-reply">
                                 </form>
+                                <span class="response-to">{{  '@' . $comment->user->username }}</span>
                             </div>
 
                             @foreach($comment->replies as $reply)
@@ -183,7 +186,8 @@
                                 </div>
                                 <div class="media-body response-text-right">
                                     <ul>
-                                        <li><h5><a href="#">{{ $comment->user->username }}</a></h5></li>
+                                        <li><h5><a href="#">{{ $reply->user->username }}</a></h5></li>
+                                        <li class="response-user"><svg class="icon" viewBox="0 0 14 11"><path d="M7 0v3.675a11.411 11.411 0 0 1-2.135-.244 10.511 10.511 0 0 1-1.983-.635 5.92 5.92 0 0 1-1.715-1.13A4.975 4.975 0 0 1 0 .012c.047 1.075.206 2.045.479 2.912A7.68 7.68 0 0 0 1.686 5.28c.533.704 1.248 1.266 2.147 1.685.898.42 1.954.66 3.167.726V11l7-5.53L7 0" fill-rule="evenodd"></path></svg>{{ $reply->userReply->username }}</li>
                                         <li>Sep 21, 2015</li>
                                     </ul>
 
@@ -196,12 +200,15 @@
                                 <div class="clearfix"> </div>
 
                                 <div class="reply-form">
-                                    <form method="POST" id="comment-form" data-link="{{ url('comments') }}">
+                                    <form method="POST" data-link="{{ url('comment/replies') }}">
                                         {{ csrf_field() }}
-                                        <textarea class="comment-text" name="comment" placeholder="Add a comment..."></textarea>
+                                        <textarea class="comment-text comment-text-reply" name="comment" autofocus></textarea>
                                         <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                        <input type="submit" value="Submit Comment" id="btn-submit-comment">
+                                        <input type="hidden" name="to_user" value="{{ $reply->user->id }}">
+                                        <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                        <input type="submit" value="Submit Comment" class="btn-submit-reply">
                                     </form>
+                                    <span class="response-to">{{  '@' . $comment->user->username }}</span>
                                 </div>
                             </div>
 

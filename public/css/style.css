@@ -3786,6 +3786,15 @@ h5.comment-author {
 .reply-form {
     margin-top: 10px;
     display: none;
+    position: relative;
+}
+
+.response-to {
+    position: absolute;
+    color: #cecece;
+    top: 13px;
+    left: 15px;
+    cursor: pointer;
 }
 
 .reply-form textarea {
@@ -3827,6 +3836,20 @@ h5.comment-author {
     -moz-transition: .5s all;
     -o-transition: .5s all;
     -ms-transition: .5s all;
+}
+
+.response-user .icon {
+    margin: 0 5px;
+    -webkit-transform: scaleX(-1) rotate(180deg);
+    -ms-transform: scaleX(-1) rotate(180deg);
+    transform: scaleX(-1) rotate(180deg);
+    fill: #c3c5c7;
+    height: 8px;
+    width: 10px;
+}
+
+.response-info-reply .media-body.response-text-right ul li:first-child {
+    margin-right: 0;
 }
 
 
