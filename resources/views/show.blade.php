@@ -159,19 +159,16 @@
                             </ul>
                             <p>{{ $comment->comment }}</p>
                             <ul>
-                                <li><a class="reply-btn">Reply</a></li>
+                                <li><a class="reply-btn reply-to-comment">Reply
+                                    <input type="hidden" class="data-link" value="{{ url('comment/replies') }}">
+                                    <input type="hidden" class="post-id" value="{{ $post->id }}">
+                                    <input type="hidden" class="to-user" value="{{ $comment->user->id }}">
+                                    <input type="hidden" class="comment-id" value="{{ $comment->id }}">
+                                </a></li>
                             </ul>
 
                             <div class="reply-form" data-test="test">
-                                <form method="POST" data-link="{{ url('comment/replies') }}">
-                                    {{ csrf_field() }}
-                                    <textarea class="comment-text comment-text-reply" name="comment" autofocus></textarea>
-                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                    <input type="hidden" name="to_user" value="{{ $comment->user->id }}">
-                                    <input type="hidden" name="comment_id" value="{{ $comment->id }}">
-                                    <input type="submit" value="Submit Comment" class="btn-submit-reply">
-                                </form>
-                                <span class="response-to">{{  '@' . $comment->user->username }}</span>
+{{--                                <span class="response-to">{{  '@' . $comment->user->username }}</span>--}}
                             </div>
 
                             @foreach($comment->replies as $reply)
@@ -194,21 +191,18 @@
                                     <p>{{ $reply->reply }}</p>
 
                                     <ul>
-                                        <li><a class="reply-btn">Reply</a></li>
+                                        <li><a class="reply-btn">Reply
+                                            <input type="hidden" class="data-link" value="{{ url('comment/replies') }}">
+                                            <input type="hidden" class="post-id" value="{{ $post->id }}">
+                                            <input type="hidden" class="to-user" value="{{ $reply->user->id }}">
+                                            <input type="hidden" class="comment-id" value="{{ $comment->id }}">
+                                        </a></li>
                                     </ul>
                                 </div>
                                 <div class="clearfix"> </div>
 
                                 <div class="reply-form">
-                                    <form method="POST" data-link="{{ url('comment/replies') }}">
-                                        {{ csrf_field() }}
-                                        <textarea class="comment-text comment-text-reply" name="comment" autofocus></textarea>
-                                        <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                        <input type="hidden" name="to_user" value="{{ $reply->user->id }}">
-                                        <input type="hidden" name="comment_id" value="{{ $comment->id }}">
-                                        <input type="submit" value="Submit Comment" class="btn-submit-reply">
-                                    </form>
-                                    <span class="response-to">{{  '@' . $comment->user->username }}</span>
+{{--                                    <span class="response-to">{{  '@' . $comment->user->username }}</span>--}}
                                 </div>
                             </div>
 

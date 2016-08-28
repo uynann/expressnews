@@ -3784,9 +3784,12 @@ h5.comment-author {
 }
 
 .reply-form {
-    margin-top: 10px;
-    display: none;
     position: relative;
+    display: none;
+}
+
+.reply-form > form {
+    padding-top: 10px;
 }
 
 .response-to {

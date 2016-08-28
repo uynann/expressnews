@@ -87,7 +87,7 @@
 
                         <form class="edit-comment-section" id="{{ 'edit-comment-section-' . $reply->id }}" method="POST">
                             {{ csrf_field() }}
-                            <textarea name="comment" class="comment-text form-control boxed edit-comment-text">{{ $reply->reply }}</textarea>
+                            <textarea name="reply" class="comment-text form-control boxed edit-comment-text">{{ $reply->reply }}</textarea>
                             <button class="btn btn-primary btn-sm btn-save-comment" data-link="{{ url('admin/comment/replies/' . $reply->id) }}" type="submit">Save</button>
                             <span class="btn btn-danger btn-sm btn-cancel-comment">Cancel</span>
                         </form>

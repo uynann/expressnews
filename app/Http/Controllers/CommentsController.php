@@ -51,7 +51,7 @@ class CommentsController extends Controller
           'status' => 'success',
           'msg'    => 'Comment submitted',
           'comment'=> $comment->comment,
-          'user'   => Auth::user()->firstname,
+          'user'   => Auth::user()->username,
           'user_img' => isset(Auth::user()->photo) ? asset(Auth::user()->photo->file_path) : 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg',
          );
 

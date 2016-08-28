@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class RepliesRequest extends Request
+class CreateRepliesRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class RepliesRequest extends Request
     public function rules()
     {
         return [
-            'comment' => 'required|max:500',
+            'reply' => 'required|max:500',
         ];
     }
 }
