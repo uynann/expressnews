@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Category;
 use App\Http\Requests\CategoriesRequest;
+use App\Http\Requests\CategoriesEditRequest;
 
 class AdminCategoriesController extends Controller
 {
@@ -74,7 +75,7 @@ class AdminCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoriesRequest $request, $id)
+    public function update(CategoriesEditRequest $request, $id)
     {
         $input = $request->all();
         $category = Category::findOrFail($id);

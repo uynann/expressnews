@@ -3715,6 +3715,10 @@ textarea.comment-text {
     height: 90px;
 }
 
+textarea.comment-text.comment-text-reply {
+    height: 60px;
+}
+
 h5.comment-author {
     width: 50px;
 }

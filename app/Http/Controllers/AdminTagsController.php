@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Tag;
 use App\Http\Requests\TagsRequest;
+use App\Http\Requests\TagsEditRequest;
 
 class AdminTagsController extends Controller
 {
@@ -74,7 +75,7 @@ class AdminTagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TagsRequest $request, $id)
+    public function update(TagsEditRequest $request, $id)
     {
         $input = $request->all();
         Tag::findOrFail($id)->update($input);

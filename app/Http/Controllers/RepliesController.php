@@ -54,7 +54,7 @@ class RepliesController extends Controller
             'status' => 'success',
             'msg'    => 'Comment submitted',
             'reply'=> $reply->reply,
-            'user'   => Auth::user()->firstname,
+            'user'   => Auth::user()->username,
             'to_user' => $reply->userReply->username,
             'user_img' => isset(Auth::user()->photo) ? asset(Auth::user()->photo->file_path) : 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg',
             'post_id' => $reply->post_id,

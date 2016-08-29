@@ -155,7 +155,7 @@
                         <div class="media-body response-text-right">
                             <ul>
                                 <li><h5><a href="#">{{ $comment->user->username }}</a></h5></li>
-                                <li>Sep 21, 2015</li>
+                                <li>{{ $comment->created_at->diffForhumans() }}</li>
                             </ul>
                             <p>{{ $comment->comment }}</p>
                             <ul>
@@ -185,7 +185,7 @@
                                     <ul>
                                         <li><h5><a href="#">{{ $reply->user->username }}</a></h5></li>
                                         <li class="response-user"><svg class="icon" viewBox="0 0 14 11"><path d="M7 0v3.675a11.411 11.411 0 0 1-2.135-.244 10.511 10.511 0 0 1-1.983-.635 5.92 5.92 0 0 1-1.715-1.13A4.975 4.975 0 0 1 0 .012c.047 1.075.206 2.045.479 2.912A7.68 7.68 0 0 0 1.686 5.28c.533.704 1.248 1.266 2.147 1.685.898.42 1.954.66 3.167.726V11l7-5.53L7 0" fill-rule="evenodd"></path></svg>{{ $reply->userReply->username }}</li>
-                                        <li>Sep 21, 2015</li>
+                                        <li>{{ $reply->created_at->diffForhumans() }}</li>
                                     </ul>
 
                                     <p>{{ $reply->reply }}</p>
