@@ -86,7 +86,7 @@
                         <div class="item-col fixed pull-left item-col-title">
                             <div class="item-heading">Username</div>
                             <div>
-                                <a href="item-editor.html" class="">
+                                <a href="{{ route('admin.users.edit', $user->id) }}" class="">
                                     <h4 class="item-title">
                                         {{$user->username}}
                                     </h4> </a>
@@ -106,7 +106,7 @@
                         </div>
                         <div class="item-col item-col-author">
                             <div class="item-heading">Posts</div>
-                            <div class="no-overflow"> <a href="">{{ count($user->posts) }} </a></div>
+                            <div class="no-overflow"> <a href="{{ route('admin.posts.index') }}">{{ count($user->posts) }} </a></div>
                         </div>
                         <div class="item-col fixed item-col-actions-dropdown">
                             <div class="item-actions-dropdown">

@@ -140,6 +140,21 @@ ul.image-row li .image-wrapper.selected span {
 /* --------------------------------------------------------------------------
 2. Admin - Posts Page
 ---------------------------------------------------------------------------*/
+.items-list-page.posts-list-page {
+    position: relative;
+}
+
+.items-list-page.posts-list-page .action {
+    position: absolute;
+    top: 105px;
+    left: 200px;
+}
+
+.items-list-page.posts-list-page .action .dropdown-menu a,
+.items-list-page.posts-list-page .action .dropdown-menu button {
+    padding: 5px 15px;
+}
+
 
 .posts-list-page .item-list .item-col.item-col-title {
     -ms-flex-positive: 11;
@@ -251,6 +266,10 @@ ul.image-row li .image-wrapper.selected span {
 .post-status .post-status-change .cancel-post-status-change:active,
 .post-status .post-status-show .edit-post-status:active {
     color: #85ce36;
+}
+
+.items-list-page .title-block .action .dropdown-menu button {
+    padding: 10px 15px;
 }
 
 

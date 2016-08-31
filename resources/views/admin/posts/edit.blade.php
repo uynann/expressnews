@@ -27,7 +27,11 @@
 <article class="content item-editor-page post-editor-page">
     <div class="title-block">
         <h3 class="title">
-            Edit Post <span class="sparkline bar" data-type="bar"></span>
+            Edit Post
+            <a href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}" class="btn btn-primary btn-sm rounded-s">
+                View Post
+            </a>
+            <span class="sparkline bar" data-type="bar"></span>
         </h3>
         @if(session('status'))
         <div class="status update-status">{{ session('status') }} <a href="{{route('admin.posts.index')}}">Back to Posts</a><span><i class="fa fa-times" aria-hidden="true"></i></span></div>

@@ -2,7 +2,12 @@
 
 @section('content')
 
+
+
 <article class="content items-list-page posts-list-page">
+
+
+
     <div class="title-search-block">
         <div class="title-block">
             <div class="row">
@@ -11,15 +16,7 @@
                         Posts
                         <a href="{{route('admin.posts.create')}}" class="btn btn-primary btn-sm rounded-s">
                             Add New
-                        </a><div class="action dropdown">
-                        <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More actions...
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o icon"></i>Mark as a draft</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#confirm-modal"><i class="fa fa-close icon"></i>Delete</a>
-                        </div>
-                        </div>
+                        </a>
                     </h3>
 
                 </div>
@@ -39,6 +36,11 @@
         </div>
 
     </div>
+
+    <form action="/admin/posts/bulkactions" method="post" id="bulk-action-form">
+
+        {{ csrf_field() }}
+
     <div class="card items">
         <ul class="item-list striped">
             <li class="item item-list-header hidden-sm-down">
@@ -66,19 +68,21 @@
                     <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
                 </div>
             </li>
+
+
             @if(isset($posts))
             @foreach($posts as $post)
 
             <li class="item">
                 <div class="item-row">
                     <div class="item-col fixed item-col-check"> <label class="item-check" id="select-all-items">
-                        <input type="checkbox" class="checkbox" name="checkboxUsersArray[]" value="{{ $post->id }}">
+                        <input type="checkbox" class="checkbox" name="checkboxPostsArray[]" value="{{ $post->id }}">
                         <span></span>
                         </label> </div>
                     <div class="item-col fixed pull-left item-col-title">
                         <div class="item-heading">Title</div>
                         <div>
-                            <a href="item-editor.html">
+                            <a href="{{ route('admin.posts.edit', $post->id) }}">
                                 <h4 class="item-title">
                                     {{$post->title}}
                                 </h4>  </a>
@@ -89,7 +93,7 @@
                     </div>
                     <div class="item-col item-col-sales">
                         <div class="item-heading">Author</div>
-                        <div> <a href="">
+                        <div> <a href="{{ route('admin.users.edit', $post->user->id) }}">
                             {{ $post->user->username }}
                          </a></div>
                     </div>
@@ -97,7 +101,7 @@
                         <div class="item-heading">Categories</div>
                         <div class="categories-tags">
                         @if (isset($post->category))
-                            <a href=""> {{ $post->category->name }} </a> &nbsp;
+                            <a href="{{ url('admin/posts?category=' . str_slug($post->category->name)) }}"> {{ $post->category->name }} </a> &nbsp;
                         @endif
 
                         </div>
@@ -107,7 +111,7 @@
                         <div class="categories-tags">
                         @if (count($post->tags))
                             @foreach($post->tags as $tag)
-                                <a href=""> {{ $tag->name }} </a> &nbsp;
+                            <a href="{{ url('admin/posts?tag=' . str_slug($tag->name)) }}"> {{ $tag->name }} </a> &nbsp;
                             @endforeach
                         @endif
                         </div>
@@ -133,7 +137,7 @@
                                     @endif
 
                                     <li>
-                                        <a class="edit" href="{{route('admin.posts.edit', $post->id) }}"> <i class="fa fa-pencil"></i> </a>
+                                        <a class="edit" href="{{ route('admin.posts.edit', $post->id) }}"> <i class="fa fa-pencil"></i> </a>
                                     </li>
                                 </ul>
                             </div>
@@ -143,17 +147,53 @@
             </li>
             @endforeach
             @endif
+
+
         </ul>
+    </div>
+
+    <div class="action dropdown">
+        <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            More actions...
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <button type="submit" class="dropdown-item" name="markDraft"><i class="fa fa-pencil-square-o icon"></i> Mark as a draft</button>
+            <button type="submit" class="dropdown-item" name="publish"><i class="fa fa-share-square-o icon"></i> Publish</button>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target=".comfirm-bulk-delete" id="bulk-delete"><i class="fa fa-close icon"></i> Move to Trash</a>
+        </div>
+    </div>
+
+    </form>
+
+    <div class="modal fade comfirm-bulk-delete">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title"><i class="fa fa-warning"></i> Alert</h4> </div>
+                <div class="modal-body">
+                    <p>Are you sure want to do this?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="comfirm-bulk-delete">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
 
     <nav class="text-xs-right">
 
         {{ $posts->links() }}
 
-
     </nav>
 
 
 </article>
+
+
 
 @endsection

@@ -1114,7 +1114,7 @@ $(function() {
             .siblings()
             .find(':checkbox')
             .prop('checked', $this.checked)
-            .val($this.checked)
+//            .val($this.checked)
             .change();
     });
 
@@ -1599,7 +1599,18 @@ $(function() {
 });
 
 
+/***********************************************
+*       Confirm Bulk Delete
+***********************************************/
+$(function() {
 
+    $('#bulk-delete').click(function() {
+        $('#comfirm-bulk-delete').click(function() {
+            $('#bulk-action-form').submit();
+        });
+    });
+
+});
 
 
 

@@ -21,9 +21,37 @@ class AdminPostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        $category_name = $request->input('category'); // Get the get veriable category
+        $tag_name = $request->input('tag'); // Get the get veriable tag
+
+        if ($category_name != null) {
+            foreach ($categories as $category_obj) {
+                if (str_slug($category_obj->name) == $category_name) {
+                    $category = $category_obj;
+                }
+            }
+
+            $posts = Post::where('category_id', '=', $category->id)->orderBy('id', 'desc')->paginate(10);
+        } elseif ($tag_name != null) {
+            foreach ($tags as $tag_obj) {
+                if (str_slug($tag_obj->name) == $tag_name) {
+                    $tag = $tag_obj;
+                }
+            }
+
+            $posts = Post::whereHas('tags', function ($query) use ($tag) {
+                $query->where('name', '=', $tag->name);
+            })->paginate(10);
+
+        } else {
+            $posts = Post::orderBy('id', 'desc')->paginate(10);
+        }
+
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -181,6 +209,56 @@ class AdminPostsController extends Controller
         } else {
             return redirect('/admin/users')->with('status', 'This post cannot be deleted!');
         }
+    }
+
+
+    public function bulkActions(Request $request)
+    {
+        $input = $request->all();
+
+        if(isset($input['checkboxPostsArray'])) {
+
+            $post_count = count($input['checkboxPostsArray']);
+
+            if (isset($input['markDraft'])) {
+                Post::whereIn('id', $input['checkboxPostsArray'])->update(['status' => 'draft']);
+
+                if ($post_count == 1) {
+                    $status = $post_count . ' post saved!';
+                } else {
+                    $status = $post_count . ' posts saved!';
+                }
+
+            } elseif (isset($input['publish'])) {
+                Post::whereIn('id', $input['checkboxPostsArray'])->update(['status' => 'publish']);
+
+                if ($post_count == 1) {
+                    $status = $post_count . ' post published!';
+                } else {
+                    $status = $post_count . ' posts published!';
+                }
+
+            } else {
+                foreach($input['checkboxPostsArray'] as $id) {
+                    Comment::where('post_id', '=', $id)->delete();
+                    CommentReply::where('post_id', '=', $id)->delete();
+                }
+
+                Post::whereIn('id', $input['checkboxPostsArray'])->delete();
+
+                if ($post_count == 1) {
+                    $status = $post_count . ' post deleted!';
+                } else {
+                    $status = $post_count . ' posts deleted!';
+                }
+            }
+
+            return redirect('/admin/posts')->with('status', $status);
+
+        } else {
+            return redirect('/admin/posts');
+        }
+
     }
 
 }

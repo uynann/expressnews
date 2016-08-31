@@ -20,7 +20,12 @@ Route::group(['middleware' => 'admin'], function() {
     });
 
     Route::resource('admin/users', 'AdminUsersController');
+
     Route::resource('admin/posts', 'AdminPostsController');
+    Route::post('admin/posts/bulkactions', 'AdminPostsController@bulkActions');
+
+
+
     Route::resource('admin/categories', 'AdminCategoriesController');
     Route::resource('admin/tags', 'AdminTagsController');
 
@@ -30,7 +35,6 @@ Route::group(['middleware' => 'admin'], function() {
 
     Route::resource('admin/comments', 'AdminCommentsController');
     Route::resource('admin/comment/replies', 'AdminCommentRepliesController');
-
 
     // handle uploading images from froala editor
 });
