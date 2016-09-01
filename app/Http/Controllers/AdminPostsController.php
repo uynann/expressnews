@@ -35,17 +35,28 @@ class AdminPostsController extends Controller
         $search = $request->input('search');
         $status = $request->input('status');
 
-        if ($category_name != null) {
-            foreach ($categories as $category_obj) {
-                if (str_slug($category_obj->name) == $category_name) {
+        if ($category_name != null)
+        {
+            foreach ($categories as $category_obj)
+            {
+                if (str_slug($category_obj->name) == $category_name)
+                {
                     $category = $category_obj;
                 }
             }
 
             $posts = Post::where('category_id', '=', $category->id)->orderBy('id', 'desc')->paginate(10);
-        } elseif ($tag_name != null) {
-            foreach ($tags as $tag_obj) {
-                if (str_slug($tag_obj->name) == $tag_name) {
+            $param = 'category';
+            $param_val = $category_name;
+
+        }
+
+        elseif ($tag_name != null)
+        {
+            foreach ($tags as $tag_obj)
+            {
+                if (str_slug($tag_obj->name) == $tag_name)
+                {
                     $tag = $tag_obj;
                 }
             }
@@ -54,19 +65,28 @@ class AdminPostsController extends Controller
                 $query->where('name', '=', $tag->name);
             })->paginate(10);
 
-        } elseif ($search != null) {
-            $posts = Post::SearchByKeyword($search)->orderBy('id', 'desc')->paginate(10);
-        } elseif ($status != null) {
+            $param = 'tag';
+            $param_val = $tag_name;
 
-            switch($status) {
+        }
+
+        elseif ($search != null)
+        {
+            $posts = Post::SearchByKeyword($search)->orderBy('id', 'desc')->paginate(10);
+            $param = 'search';
+            $param_val = $search;
+        }
+
+        elseif ($status != null)
+        {
+
+            switch($status)
+            {
                 case 'published':
                     $posts = Post::where('status', '=', 'publish')->orderBy('id', 'desc')->paginate(10);
                     break;
                 case 'draft':
                     $posts = Post::where('status', '=', 'draft')->orderBy('id', 'desc')->paginate(10);
-                    break;
-                case 'all':
-                    $posts = Post::orderBy('id', 'desc')->paginate(10);
                     break;
                 case 'trash':
                     $posts = Post::onlyTrashed()->orderBy('id', 'desc')->paginate(10);
@@ -75,14 +95,18 @@ class AdminPostsController extends Controller
                     break;
 
             }
+            $param = 'status';
+            $param_val = $status;
 
         }
 
         else {
             $posts = Post::orderBy('id', 'desc')->paginate(10);
+            $param = null;
+            $param_val = null;
         }
 
-        return view('admin.posts.index', compact('posts', 'categories', 'post_all', 'post_published', 'post_draft', 'post_trash'));
+        return view('admin.posts.index', compact('posts', 'categories', 'post_all', 'post_published', 'post_draft', 'post_trash', 'param', 'param_val'));
     }
 
     /**

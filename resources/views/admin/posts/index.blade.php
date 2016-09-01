@@ -36,7 +36,7 @@
                     </h3>
 
                     <div class="statistics">
-                        <span><a href="{{ url('admin/posts?status=all') }}">All</a> ({{ count($post_all) }})</span>
+                        <span><a href="{{ url('admin/posts') }}">All</a> ({{ count($post_all) }})</span>
                         <span><a href="{{ url('admin/posts?status=published') }}">Published</a> ({{ count($post_published) }})</span>
                         <span><a href="{{ url('admin/posts?status=draft') }}">Draft</a> ({{ count($post_draft) }})</span>
                         <span><a href="{{ url('admin/posts?status=trash') }}">Trash</a> ({{ count($post_trash) }})</span>
@@ -222,7 +222,9 @@
 
     <nav class="text-xs-right">
 
-        {{ $posts->links() }}
+{{--        {{ $posts->links() }}--}}
+
+        {!! $posts->appends([$param => $param_val])->render() !!}
 
     </nav>
 
