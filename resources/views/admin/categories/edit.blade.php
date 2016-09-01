@@ -25,6 +25,10 @@
                     <small>{{ $errors->first('name') }}</small>
                 </span>
                 @endif
+
+                <span class="help-block" style="display: block; color: #4f5f6f">
+                    <em>The name is how it appears on your site.</em>
+                </span>
             </div>
         </div>
 
@@ -32,6 +36,9 @@
             {!! Form::label('description', 'Description:', ['class'=>'col-sm-2 form-control-label form-controll-label-sm text-xs-right']) !!}
             <div class="col-sm-10">
                 {!! Form::textarea('description', null, ['class'=>'form-control boxed', 'rows'=>'5']) !!}
+                <span class="help-block" style="display: block; color: #4f5f6f">
+                    <em>The description is optional.</em>
+                </span>
             </div>
         </div>
 

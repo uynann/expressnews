@@ -44,7 +44,7 @@
                             @endif
 
                             <span class="help-block" style="display: block; color: #4f5f6f">
-                                <small>The name is how it appears on your site.</small>
+                                <small><em>The name is how it appears on your site.</em></small>
                             </span>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                         <div class="col-sm-9">
                             {!! Form::textarea('description', null, ['class'=>'form-control boxed', 'rows'=>'5']) !!}
                             <span class="help-block" style="display: block; color: #4f5f6f">
-                                <small>The description is optional.</small>
+                                <small><em>The description is optional.</em></small>
                             </span>
                         </div>
                     </div>
