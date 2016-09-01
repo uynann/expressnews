@@ -46,4 +46,15 @@ class Post extends Model
     public function comments() {
         return $this->hasMany('App\Comment');
     }
+
+    public function scopeSearchByKeyword($query, $keyword)
+    {
+        if ($keyword!='') {
+            $query->where(function ($query) use ($keyword) {
+                $query->where("title", "LIKE","%$keyword%")
+                    ->orWhere("status", "LIKE", "%$keyword%");
+            });
+        }
+        return $query;
+    }
 }

@@ -25,9 +25,15 @@ class AdminPostsController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
+        $post_all = Post::all();
+        $post_published = Post::where('status', '=', 'publish')->get();
+        $post_draft = Post::where('status', '=', 'draft')->get();
+        $post_trash = Post::onlyTrashed()->get();
 
         $category_name = $request->input('category'); // Get the get veriable category
         $tag_name = $request->input('tag'); // Get the get veriable tag
+        $search = $request->input('search');
+        $status = $request->input('status');
 
         if ($category_name != null) {
             foreach ($categories as $category_obj) {
@@ -48,11 +54,35 @@ class AdminPostsController extends Controller
                 $query->where('name', '=', $tag->name);
             })->paginate(10);
 
-        } else {
+        } elseif ($search != null) {
+            $posts = Post::SearchByKeyword($search)->orderBy('id', 'desc')->paginate(10);
+        } elseif ($status != null) {
+
+            switch($status) {
+                case 'published':
+                    $posts = Post::where('status', '=', 'publish')->orderBy('id', 'desc')->paginate(10);
+                    break;
+                case 'draft':
+                    $posts = Post::where('status', '=', 'draft')->orderBy('id', 'desc')->paginate(10);
+                    break;
+                case 'all':
+                    $posts = Post::orderBy('id', 'desc')->paginate(10);
+                    break;
+                case 'trash':
+                    $posts = Post::onlyTrashed()->orderBy('id', 'desc')->paginate(10);
+                    break;
+                default:
+                    break;
+
+            }
+
+        }
+
+        else {
             $posts = Post::orderBy('id', 'desc')->paginate(10);
         }
 
-        return view('admin.posts.index', compact('posts'));
+        return view('admin.posts.index', compact('posts', 'categories', 'post_all', 'post_published', 'post_draft', 'post_trash'));
     }
 
     /**

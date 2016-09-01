@@ -17,7 +17,30 @@
                         <a href="{{route('admin.posts.create')}}" class="btn btn-primary btn-sm rounded-s">
                             Add New
                         </a>
+
+                        <div class="action filter-action dropdown">
+                            <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Choose category...
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <a class="dropdown-item" href="{{ url('admin/posts') }}">All categories</a>
+
+                                @if(isset($categories))
+                                @foreach($categories as $category)
+                                <a class="dropdown-item" href="{{ url('admin/posts?category=' . str_slug($category->name)) }}">{{ $category->name }}</a>
+
+                                @endforeach
+                                @endif
+                            </div>
+                        </div>
                     </h3>
+
+                    <div class="statistics">
+                        <span><a href="{{ url('admin/posts?status=all') }}">All</a> ({{ count($post_all) }})</span>
+                        <span><a href="{{ url('admin/posts?status=published') }}">Published</a> ({{ count($post_published) }})</span>
+                        <span><a href="{{ url('admin/posts?status=draft') }}">Draft</a> ({{ count($post_draft) }})</span>
+                        <span><a href="{{ url('admin/posts?status=trash') }}">Trash</a> ({{ count($post_trash) }})</span>
+                    </div>
 
                 </div>
             </div>
@@ -27,11 +50,14 @@
         </div>
         <div class="items-search">
             <form class="form-inline">
-                <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..."> <span class="input-group-btn">
-                    <button class="btn btn-secondary rounded-s" type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
-                    </span> </div>
+                <div class="input-group">
+                   <input type="text" class="form-control boxed rounded-s" placeholder="Search for..." name="search">
+                   <span class="input-group-btn">
+                        <button class="btn btn-secondary rounded-s" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
             </form>
         </div>
 
@@ -145,14 +171,23 @@
                     </div>
                 </div>
             </li>
+
+
+
             @endforeach
+
+            @if (count($posts) == 0)
+                <p class="not-found">No post found!</p>
             @endif
 
+            @endif
 
         </ul>
+
+
     </div>
 
-    <div class="action dropdown">
+        <div class="action bulk-action dropdown">
         <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             More actions...
         </button>
