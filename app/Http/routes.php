@@ -24,13 +24,13 @@ Route::group(['middleware' => 'admin'], function() {
     Route::resource('admin/posts', 'AdminPostsController');
     Route::post('admin/posts/bulkactions', 'AdminPostsController@bulkActions');
 
-
-
     Route::resource('admin/categories', 'AdminCategoriesController');
+    Route::post('admin/cateogries/bulkactions', 'AdminCategoriesController@bulkActions');
 
 
     Route::resource('admin/tags', 'AdminTagsController');
     Route::post('admin/tags/add', 'AdminTagsController@storeFromAjax');
+    Route::post('admin/tags/bulkactions', 'AdminTagsController@bulkActions');
 
 
     Route::get('/admin/medias', ['as'=>'admin.medias.index', 'uses'=>'AdminMediasController@index']);

@@ -75,7 +75,7 @@
                     <div class="item-col fixed pull-left item-col-title">
                         <div class="item-heading">Author</div>
                         <div>
-                            <a href="item-editor.html">
+                            <a href="{{ route('admin.users.edit', $comment->user->id) }}">
                                 <h4 class="item-title">
                                     {{ $comment->user->username }}
                                 </h4>  </a>
@@ -97,7 +97,7 @@
                         <div class="item-heading">In Response To</div>
                         <div class="categories-tags">
                             @if (isset($comment->post))
-                            <a href="">{{ $comment->post->title }}</a>
+                            <a href="{{ route('admin.posts.edit', $comment->post->id) }}">{{ $comment->post->title }}</a>
                             @endif
 
                         </div>

@@ -1,3 +1,8 @@
+.note-on-page span {
+    display: block;
+    font-size: 0.9em;
+}
+
 /* --------------------------------------------------------------------------
 1. Admin - Users Page
 ---------------------------------------------------------------------------*/
@@ -150,13 +155,17 @@ ul.image-row li .image-wrapper.selected span {
     left: 200px;
 }
 
-.items-list-page.posts-list-page .action .dropdown-menu a,
-.items-list-page.posts-list-page .action .dropdown-menu button {
+.action.bulk-action .dropdown-menu a,
+.action.bulk-action .dropdown-menu button {
     padding: 5px 15px;
 }
 
 .filter-action {
     margin-left: 152px;
+}
+
+.action.filter-action .dropdown-menu a {
+    padding: 5px 15px;
 }
 
 .not-found {
@@ -329,6 +338,20 @@ ul.image-row li .image-wrapper.selected span {
     -ms-flex-positive: 11;
     flex-grow: 11;
     -ms-flex-negative: 11;
+}
+
+.items-list-page.categories-list-create-page > .row > .col-sm-7 {
+    position: relative;
+}
+
+.items-list-page.categories-list-create-page .action.bulk-action {
+    position: absolute;
+    top: 0;
+    left: 15px;
+}
+
+.items-list-page.categories-list-create-page .statistics {
+    margin-left: 155px;
 }
 
 

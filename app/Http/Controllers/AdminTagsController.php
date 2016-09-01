@@ -16,10 +16,25 @@ class AdminTagsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tags = Tag::orderBy('id', 'desc')->get();
-        return view('admin.tags.index', compact('tags'));
+        $tag_all = Tag::all();
+
+        $search = $request->input('search');
+
+        if ($search != null)
+        {
+            $tags = Tag::SearchByKeyword($search)->orderBy('id', 'desc')->paginate(10);
+            $param = 'search';
+            $param_val = $search;
+        } else
+        {
+            $tags = Tag::orderBy('id', 'desc')->paginate(10);
+            $param = null;
+            $param_val = null;
+        }
+
+        return view('admin.tags.index', compact('tags', 'tag_all' ,'param', 'param_val'));
     }
 
     /**
@@ -113,6 +128,39 @@ class AdminTagsController extends Controller
         );
 
         return \Response::json($response);
+    }
+
+
+    public function bulkActions(Request $request)
+    {
+        $input = $request->all();
+
+        if(isset($input['checkboxTagsArray']))
+        {
+            $tag_count = count($input['checkboxTagsArray']);
+
+            // Detach tag from posts, that are related to this deleted tag
+            foreach($input['checkboxTagsArray'] as $id) {
+                foreach(Tag::findOrFail($id)->posts as $post) {
+                    $post->tags()->detach($id);
+                }
+            }
+
+
+            Tag::whereIn('id', $input['checkboxTagsArray'])->delete();
+
+            if ($tag_count == 1) {
+                $status = $tag_count . ' tag deleted!';
+            } else {
+                $status = $tag_count . ' tags deleted!';
+            }
+
+            return redirect('/admin/tags')->with('status', $status);
+        }
+        else
+        {
+            return redirect('/admin/tags');
+        }
     }
 
 }

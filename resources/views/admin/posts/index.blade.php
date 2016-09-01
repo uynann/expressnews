@@ -187,7 +187,7 @@
 
     </div>
 
-        <div class="action bulk-action dropdown">
+    <div class="action bulk-action dropdown">
         <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             More actions...
         </button>
@@ -200,25 +200,6 @@
 
     </form>
 
-    <div class="modal fade comfirm-bulk-delete">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title"><i class="fa fa-warning"></i> Alert</h4> </div>
-                <div class="modal-body">
-                    <p>Are you sure want to do this?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="comfirm-bulk-delete">Yes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
 
     <nav class="text-xs-right">
 
@@ -227,6 +208,11 @@
         {!! $posts->appends([$param => $param_val])->render() !!}
 
     </nav>
+
+    <div class="note-on-page">
+        <span><strong><em>Note:</em></strong></span>
+        <span><em>Deleting a post does not delete it permanently. Instead post is moved to trash.</em></span>
+    </div>
 
 
 </article>

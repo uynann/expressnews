@@ -42,6 +42,10 @@
                                 <small>{{ $errors->first('name') }}</small>
                             </span>
                             @endif
+
+                            <span class="help-block" style="display: block; color: #4f5f6f">
+                                <small>The name is how it appears on your site.</small>
+                            </span>
                         </div>
                     </div>
 
@@ -49,6 +53,9 @@
                         {!! Form::label('description', 'Description:', ['class'=>'col-sm-3 form-control-label form-controll-label-sm text-xs-right']) !!}
                         <div class="col-sm-9">
                             {!! Form::textarea('description', null, ['class'=>'form-control boxed', 'rows'=>'5']) !!}
+                            <span class="help-block" style="display: block; color: #4f5f6f">
+                                <small>The description is optional.</small>
+                            </span>
                         </div>
                     </div>
 
@@ -69,22 +76,21 @@
         <div class="col-sm-7">
             <div class="row categories-list">
                 <div class="col-sm-6">
-                    <div class="action dropdown">
-                        <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More actions...
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o icon"></i>Mark as a draft</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#confirm-modal"><i class="fa fa-close icon"></i>Delete</a>
-                        </div>
+                    <div class="statistics">
+                        @if( count($categories) == 1)
+                            <span>{{ count($categories) }} item</span>
+                        @elseif (count($categories) > 1)
+                            <span>{{ count($categories) }} items</span>
+                        @endif
+
                     </div>
                 </div>
 
                 <div class="col-sm-6">
                     <div class="items-search">
                         <form class="form-inline">
-                            <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..."> <span class="input-group-btn">
-                                <button class="btn btn-secondary rounded-s" type="button">
+                            <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..." name="search"> <span class="input-group-btn">
+                                <button class="btn btn-secondary rounded-s" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
                                 </span> </div>
@@ -94,6 +100,9 @@
 
             </div>
 
+
+            <form action="/admin/cateogries/bulkactions" method="post" id="bulk-action-form">
+                {{ csrf_field() }}
 
             <div class="card items">
                 <ul class="item-list striped">
@@ -122,14 +131,14 @@
                     <li class="item">
                         <div class="item-row">
                             <div class="item-col fixed item-col-check"> <label class="item-check" id="select-all-items">
-                                <input type="checkbox" class="checkbox" name="checkboxUsersArray[]" value="{{ $category->id }}">
+                                <input type="checkbox" class="checkbox" name="checkboxCategoriesArray[]" value="{{ $category->id }}">
                                 <span></span>
                                 </label>
                             </div>
 
                             <div class="item-col item-col-sales">
                                 <div class="item-heading">Name</div>
-                                <div> <a href="">{{ $category->name }} </a></div>
+                                <div> <a href="{{route('admin.categories.edit', $category->id) }}">{{ $category->name }} </a></div>
                             </div>
                             <div class="item-col item-col-stats no-overflow">
                                 <div class="item-heading">Description</div>
@@ -141,7 +150,7 @@
                             <div class="item-col item-col-category no-overflow">
                                 <div class="item-heading">Count</div>
                                 <div class="categories-tags">
-                                    <a href="">{{ count($category->posts) }}
+                                    <a href="{{ url('admin/posts?category=' . str_slug($category->name)) }}">{{ count($category->posts) }}
                                 </div>
                             </div>
                             <div class="item-col fixed item-col-actions-dropdown">
@@ -168,36 +177,36 @@
                         </div>
                     </li>
                     @endforeach
+
+                        @if (count($categories) == 0)
+                        <p class="not-found">No category found!</p>
+                        @endif
+
                     @endif
                 </ul>
             </div>
 
+                <div class="action bulk-action dropdown">
+                    <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        More actions...
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target=".comfirm-bulk-delete" id="bulk-delete"><i class="fa fa-close icon"></i> Delete</a>
+                    </div>
+                </div>
+
+
+            </form>
+
 
             <nav class="text-xs-right">
-                <ul class="pagination">
-                    <li class="page-item"> <a class="page-link" href="">
-                        Prev
-                        </a> </li>
-                    <li class="page-item active"> <a class="page-link" href="">
-                        1
-                        </a> </li>
-                    <li class="page-item"> <a class="page-link" href="">
-                        2
-                        </a> </li>
-                    <li class="page-item"> <a class="page-link" href="">
-                        3
-                        </a> </li>
-                    <li class="page-item"> <a class="page-link" href="">
-                        4
-                        </a> </li>
-                    <li class="page-item"> <a class="page-link" href="">
-                        5
-                        </a> </li>
-                    <li class="page-item"> <a class="page-link" href="">
-                        Next
-                        </a> </li>
-                </ul>
+
             </nav>
+
+            <div class="note-on-page">
+                <span><strong><em>Note:</em></strong></span>
+                <span><em>Deleting a category does not delete the posts in that category. Instead, posts that were assigned to the deleted category are set to the category Uncategorized.</em></span>
+            </div>
         </div>
     </div>
 

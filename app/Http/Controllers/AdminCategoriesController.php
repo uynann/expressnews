@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Category;
+use App\Post;
 use App\Http\Requests\CategoriesRequest;
 use App\Http\Requests\CategoriesEditRequest;
 
@@ -16,9 +17,19 @@ class AdminCategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::whereNotIn('id', [5])->orderBy('id', 'desc')->get();
+        $search = $request->input('search');
+
+        if ($search != null)
+        {
+            $categories = Category::SearchByKeyword($search)->whereNotIn('id', [5])->orderBy('id', 'desc')->get();
+        }
+        else
+        {
+            $categories = Category::whereNotIn('id', [5])->orderBy('id', 'desc')->get();
+        }
+
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -93,15 +104,40 @@ class AdminCategoriesController extends Controller
     {
 
         // Detach category from posts, that are related to this deleted category
-        foreach(Category::findOrFail($id)->posts as $post) {
-            if ($post->categories->count() > 1) {
-                $post->categories()->detach($id);
-            } else {
-                $post->categories()->sync([5], true);
-            }
-        }
+
+        Post::where('category_id', '=', $id)->update(['category_id' => 5]);
 
         Category::findOrFail($id)->delete();
         return redirect('/admin/categories')->with('status', 'Category deleted!');
+    }
+
+
+    public function bulkActions(Request $request)
+    {
+        $input = $request->all();
+
+        if(isset($input['checkboxCategoriesArray']))
+        {
+            $category_count = count($input['checkboxCategoriesArray']);
+
+            foreach($input['checkboxCategoriesArray'] as $id) {
+                Post::where('category_id', '=', $id)->update(['category_id' => 5]);
+            }
+
+            Category::whereIn('id', $input['checkboxCategoriesArray'])->delete();
+
+            if ($category_count == 1) {
+                $status = $category_count . ' category deleted!';
+            } else {
+                $status = $category_count . ' categories deleted!';
+            }
+
+            return redirect('/admin/categories')->with('status', $status);
+        }
+        else
+        {
+            return redirect('/admin/categories');
+        }
+
     }
 }

@@ -49,6 +49,9 @@
                         {!! Form::label('description', 'Description:', ['class'=>'col-sm-3 form-control-label form-controll-label-sm text-xs-right']) !!}
                         <div class="col-sm-9">
                             {!! Form::textarea('description', null, ['class'=>'form-control boxed', 'rows'=>'5']) !!}
+                            <span class="help-block" style="display: block; color: #4f5f6f">
+                                <small>The description is optional.</small>
+                            </span>
                         </div>
                     </div>
 
@@ -69,22 +72,22 @@
         <div class="col-sm-7">
             <div class="row categories-list">
                 <div class="col-sm-6">
-                    <div class="action dropdown">
-                        <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More actions...
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o icon"></i>Mark as a draft</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#confirm-modal"><i class="fa fa-close icon"></i>Delete</a>
-                        </div>
+                    <div class="statistics">
+                        @if( count($tag_all) == 1)
+                            <span>{{ count($tag_all) }} item</span>
+                        @elseif (count($tag_all) > 1)
+                            <span>{{ count($tag_all) }} items</span>
+                        @endif
+
                     </div>
+
                 </div>
 
                 <div class="col-sm-6">
                     <div class="items-search">
                         <form class="form-inline">
-                            <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..."> <span class="input-group-btn">
-                                <button class="btn btn-secondary rounded-s" type="button">
+                            <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..." name="search"> <span class="input-group-btn">
+                                <button class="btn btn-secondary rounded-s" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
                                 </span> </div>
@@ -93,6 +96,10 @@
                 </div>
 
             </div>
+
+
+            <form action="/admin/tags/bulkactions" method="post" id="bulk-action-form">
+                {{ csrf_field() }}
 
 
             <div class="card items">
@@ -122,14 +129,14 @@
                     <li class="item">
                         <div class="item-row">
                             <div class="item-col fixed item-col-check"> <label class="item-check" id="select-all-items">
-                                <input type="checkbox" class="checkbox" name="checkboxUsersArray[]" value="{{ $tag->id }}">
+                                <input type="checkbox" class="checkbox" name="checkboxTagsArray[]" value="{{ $tag->id }}">
                                 <span></span>
                                 </label>
                             </div>
 
                             <div class="item-col item-col-sales">
                                 <div class="item-heading">Name</div>
-                                <div> <a href="">{{ $tag->name }} </a></div>
+                                <div> <a href="{{route('admin.tags.edit', $tag->id) }}">{{ $tag->name }} </a></div>
                             </div>
                             <div class="item-col item-col-stats no-overflow">
                                 <div class="item-heading">Description</div>
@@ -141,7 +148,7 @@
                             <div class="item-col item-col-category no-overflow">
                                 <div class="item-heading">Count</div>
                                 <div class="categories-tags">
-                                    <a href="">{{ count($tag->posts) }}
+                                    <a href="{{ url('admin/posts?tag=' . str_slug($tag->name)) }}">{{ count($tag->posts) }}
                                         </div>
                                 </div>
                                 <div class="item-col fixed item-col-actions-dropdown">
@@ -173,30 +180,21 @@
             </div>
 
 
+                <div class="action bulk-action dropdown">
+                    <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        More actions...
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target=".comfirm-bulk-delete" id="bulk-delete"><i class="fa fa-close icon"></i> Delete</a>
+                    </div>
+                </div>
+
+
+            </form>
+
+
             <nav class="text-xs-right">
-                <ul class="pagination">
-                    <li class="page-item"> <a class="page-link" href="">
-                        Prev
-                        </a> </li>
-                    <li class="page-item active"> <a class="page-link" href="">
-                        1
-                        </a> </li>
-                    <li class="page-item"> <a class="page-link" href="">
-                        2
-                        </a> </li>
-                    <li class="page-item"> <a class="page-link" href="">
-                        3
-                        </a> </li>
-                    <li class="page-item"> <a class="page-link" href="">
-                        4
-                        </a> </li>
-                    <li class="page-item"> <a class="page-link" href="">
-                        5
-                        </a> </li>
-                    <li class="page-item"> <a class="page-link" href="">
-                        Next
-                        </a> </li>
-                </ul>
+                {!! $tags->appends([$param => $param_val])->render() !!}
             </nav>
         </div>
     </div>

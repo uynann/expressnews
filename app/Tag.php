@@ -19,4 +19,16 @@ class Tag extends Model
     {
         return strtolower($value);
     }
+
+
+    public function scopeSearchByKeyword($query, $keyword)
+    {
+        if ($keyword!='') {
+            $query->where(function ($query) use ($keyword) {
+                $query->where("name", "LIKE","%$keyword%")
+                    ->orWhere("description", "LIKE", "%$keyword%");
+            });
+        }
+        return $query;
+    }
 }

@@ -75,7 +75,7 @@
                     <div class="item-col fixed pull-left item-col-title">
                         <div class="item-heading">Author</div>
                         <div>
-                            <a href="item-editor.html">
+                            <a href="{{ route('admin.users.edit', $reply->user->id) }}">
                                 <h4 class="item-title">
                                     {{$reply->user->username}}
                                 </h4>  </a>
