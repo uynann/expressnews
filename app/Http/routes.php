@@ -27,7 +27,11 @@ Route::group(['middleware' => 'admin'], function() {
 
 
     Route::resource('admin/categories', 'AdminCategoriesController');
+
+
     Route::resource('admin/tags', 'AdminTagsController');
+    Route::post('admin/tags/add', 'AdminTagsController@storeFromAjax');
+
 
     Route::get('/admin/medias', ['as'=>'admin.medias.index', 'uses'=>'AdminMediasController@index']);
     Route::get('/admin/medias/create', ['as'=>'admin.medias.create', 'uses'=>'AdminMediasController@create']);

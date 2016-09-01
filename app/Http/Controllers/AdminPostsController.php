@@ -159,7 +159,7 @@ class AdminPostsController extends Controller
                 $post->tags()->attach($input['tags']);
             }
 
-            return redirect('/admin/posts/create')->with('status', 'Post published!');
+            return redirect('/admin/posts/' . $post->id. '/edit')->with('status', 'Post published!');
         } else {
             $input['status'] = 'draft';
 
@@ -182,7 +182,7 @@ class AdminPostsController extends Controller
                 $post->tags()->attach($input['tags']);
             }
 
-            return redirect('/admin/posts/create')->with('status', 'Post saved!');
+            return redirect('/admin/posts/' . $post->id. '/edit')->with('status', 'Post saved!');
         }
 
 

@@ -83,13 +83,14 @@
                         </div>
 
                         <div class="add-tag row">
+                            {{ csrf_field() }}
                             <div class="col-xs-9">
-                                <input type="text" class="form-control form-control-sm boxed" data-next-tag-record-id="10">
+                                <input type="text" class="form-control form-control-sm boxed" id="add-tag-name">
                             </div>
                             <div class="col-xs-3">
-                                <span class="btn btn-primary btn-sm btn-add-tag">Add</span>
+                                <span class="btn btn-primary btn-sm btn-add-tag" id="btn-add-tag">Add</span>
                             </div>
-                            <em>Separate tags with commas</em>
+{{--                                <em>Separate tags with commas</em>--}}
                         </div>
 
                     </div>

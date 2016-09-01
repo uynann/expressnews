@@ -1460,15 +1460,17 @@ $(function() {
 ***********************************************/
 $(function() {
 
-    $('.used-tags span').click(function() {
-        $('.selected-tags').append('<span class="selected-tag"><i class="fa fa-times-circle" aria-hidden="true"></i> ' + $(this).attr('data-tag-name') + ' <input type="hidden" name="tags[]" value="' + $(this).attr('data-tag-id') + '"></span>');
-    });
+//    $('.used-tags span').click(function() {
+//        $('.selected-tags').append('<span class="selected-tag"><i class="fa fa-times-circle" aria-hidden="true"></i> ' + $(this).attr('data-tag-name') + ' <input type="hidden" name="tags[]" value="' + $(this).attr('data-tag-id') + '"></span>');
+//    });
 
     $('.selected-tags').on('click', '.selected-tag i', function () {
         $(this).parent().remove();
     });
 
-    /* When click on btn-add-tag */
+    $('.used-tags').on('click', 'span', function() {
+        $('.selected-tags').append('<span class="selected-tag"><i class="fa fa-times-circle" aria-hidden="true"></i> ' + $(this).attr('data-tag-name') + ' <input type="hidden" name="tags[]" value="' + $(this).attr('data-tag-id') + '"></span>');
+    });
 
 });
 
@@ -1611,6 +1613,31 @@ $(function() {
     });
 
 });
+
+
+/***********************************************
+*       Add tag in post edit and create page
+***********************************************/
+$(function() {
+
+    $('#btn-add-tag').click(function() {
+        var url = '/admin/tags/add';
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: { '_token': $('input[name="_token"]').val(), 'name' : $('#add-tag-name').val()},
+            success: function (data) {
+//                console.log(data);
+                var tag = '<span data-tag-id="' + data.id + '" data-tag-name="' + data.name + '"> ' + data.name + ' </span> &nbsp;'
+                $('#add-tag-name').val('');
+                $('.used-tags').prepend(tag).hide().fadeIn('fast');
+            }
+        });
+    });
+
+});
+
 
 
 

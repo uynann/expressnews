@@ -98,4 +98,21 @@ class AdminTagsController extends Controller
         Tag::findOrFail($id)->delete();
         return redirect('/admin/tags')->with('status', 'Tag deleted!');
     }
+
+    public function storeFromAjax(TagsRequest $request)
+    {
+        $input = $request->all();
+        $tag = new Tag();
+        $tag->name = $input['name'];
+        $tag->save();
+        $response = array(
+            'status' => 'success',
+            'msg'    => 'Comment submitted',
+            'name'   => $tag->name,
+            'id'     => $tag->id,
+        );
+
+        return \Response::json($response);
+    }
+
 }
