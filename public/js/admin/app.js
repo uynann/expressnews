@@ -1608,6 +1608,7 @@ $(function() {
 
     $('#bulk-delete').click(function() {
         $('#comfirm-bulk-delete').click(function() {
+            $('#bulk-action-form').append('<input type="hidden" name="delete">');
             $('#bulk-action-form').submit();
         });
     });

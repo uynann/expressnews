@@ -19,10 +19,14 @@ Route::group(['middleware' => 'admin'], function() {
         return view('admin.index');
     });
 
+
     Route::resource('admin/users', 'AdminUsersController');
+    Route::post('admin/users/bulkactions', 'AdminUsersController@bulkActions');
+
 
     Route::resource('admin/posts', 'AdminPostsController');
     Route::post('admin/posts/bulkactions', 'AdminPostsController@bulkActions');
+
 
     Route::resource('admin/categories', 'AdminCategoriesController');
     Route::post('admin/cateogries/bulkactions', 'AdminCategoriesController@bulkActions');

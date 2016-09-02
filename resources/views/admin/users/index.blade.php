@@ -11,16 +11,33 @@
                         Users
                         <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-sm rounded-s">
                             Add New
-                        </a><div class="action dropdown">
-                        <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More actions...
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o icon"></i>Mark as a draft</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#confirm-modal"><i class="fa fa-close icon"></i>Delete</a>
+                        </a>
+
+                        <div class="action filter-action dropdown">
+                            <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Choose role...
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <a class="dropdown-item" href="{{ url('admin/users') }}">All roles</a>
+
+                                @if(isset($roles))
+                                @foreach($roles as $role)
+                                <a class="dropdown-item" href="{{ url('admin/users?role=' . str_slug($role->name)) }}">{{ $role->name }}</a>
+
+                                @endforeach
+                                @endif
+                            </div>
                         </div>
-                        </div>
+
                     </h3>
+
+                    <div class="statistics">
+                        <span><a href="{{ url('admin/users') }}">All</a> ({{ count($user_all) }})</span>
+                        <span><a href="{{ url('admin/users?role=administrator') }}">Administrator</a> ({{ count($user_admin) }})</span>
+                        <span><a href="{{ url('admin/users?role=author') }}">Author</a> ({{ count($user_author) }})</span>
+                        <span><a href="{{ url('admin/users?role=subscriber') }}">Subscriber</a> ({{ count($user_subs) }})</span>
+
+                    </div>
 
                 </div>
             </div>
@@ -30,8 +47,8 @@
         </div>
         <div class="items-search">
             <form class="form-inline">
-                <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..."> <span class="input-group-btn">
-                    <button class="btn btn-secondary rounded-s" type="button">
+                <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..." name="search"> <span class="input-group-btn">
+                    <button class="btn btn-secondary rounded-s" type="submit">
                         <i class="fa fa-search"></i>
                     </button>
                     </span> </div>
@@ -39,6 +56,13 @@
         </div>
 
     </div>
+
+
+
+    <form action="/admin/users/bulkactions" method="post" id="bulk-action-form">
+
+        {{ csrf_field() }}
+
     <div class="card items">
         <ul class="item-list striped">
             <li class="item item-list-header hidden-sm-down">
@@ -102,7 +126,7 @@
                         </div>
                         <div class="item-col item-col-category no-overflow">
                             <div class="item-heading">Role</div>
-                            <div class="no-overflow"> {{$user->role->name}} </div>
+                            <div class="no-overflow"> <a href="{{ url('admin/users?role=' . str_slug($user->role->name)) }}">{{$user->role->name}} </a></div>
                         </div>
                         <div class="item-col item-col-author">
                             <div class="item-heading">Posts</div>
@@ -134,35 +158,45 @@
                     </div>
                 </li>
             @endforeach
+
+            @if (count($users) == 0)
+            <p class="not-found">No user found!</p>
+            @endif
+
             @endif
         </ul>
     </div>
 
+
+    <div class="action bulk-action dropdown">
+        <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            More actions...
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+           @foreach($roles as $role)
+                <button type="submit" class="dropdown-item" name="{{ $role->name }}"><i class="fa fa-pencil-square-o icon"></i> Make {{ $role->name }}</button>
+           @endforeach
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target=".comfirm-bulk-delete" id="bulk-delete"><i class="fa fa-close icon"></i> Delete</a>
+
+        </div>
+    </div>
+
+
+    </form>
+
+
+
     <nav class="text-xs-right">
-        <ul class="pagination">
-            <li class="page-item"> <a class="page-link" href="">
-                Prev
-                </a> </li>
-            <li class="page-item active"> <a class="page-link" href="">
-                1
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                2
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                3
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                4
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                5
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                Next
-                </a> </li>
-        </ul>
+        {!! $users->appends([$param => $param_val])->render() !!}
     </nav>
+
+    <div class="note-on-page">
+        <span><strong><em>Note:</em></strong></span>
+        <span><em>Deleting a user does not delete the his or her posts. Instead, posts that were belonged to the deleted user are set to the user Unknown.</em></span>
+    </div>
+
+
 </article>
 
 @endsection

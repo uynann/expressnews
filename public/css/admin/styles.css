@@ -145,10 +145,13 @@ ul.image-row li .image-wrapper.selected span {
 /* --------------------------------------------------------------------------
 2. Admin - Posts Page
 ---------------------------------------------------------------------------*/
+
+.items-list-page.users-list-page,
 .items-list-page.posts-list-page {
     position: relative;
 }
 
+.items-list-page.users-list-page .action.bulk-action,
 .items-list-page.posts-list-page .action.bulk-action {
     position: absolute;
     top: 105px;

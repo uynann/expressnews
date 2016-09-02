@@ -51,4 +51,18 @@ class User extends Authenticatable
     public function replies() {
         return $this->hasMany('App\CommentReply');
     }
+
+
+    public function scopeSearchByKeyword($query, $keyword)
+    {
+        if ($keyword!='') {
+            $query->where(function ($query) use ($keyword) {
+                $query->where("username", "LIKE","%$keyword%")
+                    ->orWhere("firstname", "LIKE", "%$keyword%")
+                    ->orWhere("lastname", "LIKE", "%$keyword%")
+                    ->orWhere("email", "LIKE", "%$keyword%");
+            });
+        }
+        return $query;
+    }
 }
