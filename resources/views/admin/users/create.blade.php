@@ -17,8 +17,8 @@
 
     <div class="card card-block">
         <div class="form-group row{{ $errors->has('firstname') ? ' has-error' : '' }}">
-            {!! Form::label('firstname', 'Firstname:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
-            <div class="col-sm-10">
+            {!! Form::label('firstname', 'Firstname:', ['class'=>'col-sm-3 form-control-label text-xs-right']) !!}
+            <div class="col-sm-8">
                 {!! Form::text('firstname', null, ['class'=>'form-control boxed']) !!}
 
                 @if ($errors->has('firstname'))
@@ -30,8 +30,8 @@
         </div>
 
         <div class="form-group row{{ $errors->has('lastname') ? ' has-error' : '' }}">
-            {!! Form::label('lastname', 'Lastname:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
-            <div class="col-sm-10">
+            {!! Form::label('lastname', 'Lastname:', ['class'=>'col-sm-3 form-control-label text-xs-right']) !!}
+            <div class="col-sm-8">
                 {!! Form::text('lastname', null, ['class'=>'form-control boxed']) !!}
 
                 @if ($errors->has('lastname'))
@@ -43,8 +43,8 @@
         </div>
 
         <div class="form-group row{{ $errors->has('username') ? ' has-error' : '' }}">
-            {!! Form::label('username', 'Username:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
-            <div class="col-sm-10">
+            {!! Form::label('username', '* Username:', ['class'=>'col-sm-3 form-control-label text-xs-right']) !!}
+            <div class="col-sm-8">
                 {!! Form::text('username', null, ['class'=>'form-control boxed']) !!}
 
                 @if ($errors->has('username'))
@@ -56,8 +56,8 @@
         </div>
 
         <div class="form-group row{{ $errors->has('email') ? ' has-error' : '' }}">
-            {!! Form::label('email', 'Email:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
-            <div class="col-sm-10">
+            {!! Form::label('email', '* Email:', ['class'=>'col-sm-3 form-control-label text-xs-right']) !!}
+            <div class="col-sm-8">
                 {!! Form::email('email', null, ['class'=>'form-control boxed']) !!}
 
                 @if ($errors->has('email'))
@@ -69,8 +69,8 @@
         </div>
 
         <div class="form-group row{{ $errors->has('password') ? ' has-error' : '' }}">
-            {!! Form::label('password', 'Password:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
-            <div class="col-sm-10">
+            {!! Form::label('password', '* Password:', ['class'=>'col-sm-3 form-control-label text-xs-right']) !!}
+            <div class="col-sm-8">
                 {!! Form::password('password', ['class'=>'form-control boxed']) !!}
 
                 @if ($errors->has('password'))
@@ -82,8 +82,8 @@
         </div>
 
         <div class="form-group row{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-            {!! Form::label('password_confirmation', 'Confirm Password:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
-            <div class="col-sm-10">
+            {!! Form::label('password_confirmation', '* Confirm Password:', ['class'=>'col-sm-3 form-control-label text-xs-right']) !!}
+            <div class="col-sm-8">
                 {!! Form::password('password_confirmation', ['class'=>'form-control boxed']) !!}
 
                 @if ($errors->has('password_confirmation'))
@@ -95,15 +95,15 @@
         </div>
 
         <div class="form-group row">
-            {!! Form::label('role', 'Role:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
-            <div class="col-sm-10">
+            {!! Form::label('role', 'Role:', ['class'=>'col-sm-3 form-control-label text-xs-right']) !!}
+            <div class="col-sm-8">
                 {!! Form::select('role_id', ['' => 'Select Role'] + $roles, 'selected', ['class' => 'c-select form-control boxed']) !!}
             </div>
         </div>
 
         <div class="form-group row">
-           <label class="col-sm-2 form-control-label text-xs-right">Picture:</label>
-            <div class="col-sm-10">
+           <label class="col-sm-3 form-control-label text-xs-right">Picture:</label>
+            <div class="col-sm-8">
                 <div class="images-container">
                     <div class="image-container" id="image-container">
                         <div class="controls">
@@ -122,13 +122,18 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-10 col-sm-offset-2">
+            <div class="col-sm-8 col-sm-offset-3">
                 {!! Form::submit('Add New User', ['class'=>'btn btn-primary']) !!}
             </div>
         </div>
 
     </div>
     {!! Form::close() !!}
+
+    <div class="note-on-page">
+        <span><strong><em>Note:</em></strong></span>
+        <span><em>Fields marked with * are required.</em></span>
+    </div>
 
 </article>
 

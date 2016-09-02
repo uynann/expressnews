@@ -42,7 +42,7 @@
 
     <div class="card card-block">
         <div class="form-group row{{ $errors->has('title') ? ' has-error' : '' }}">
-            {!! Form::label('title', 'Title:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
+            {!! Form::label('title', '* Title:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
             <div class="col-sm-10">
                 {!! Form::text('title', null, ['class'=>'form-control boxed']) !!}
 
@@ -152,6 +152,12 @@
         </div>
     </div>
     {!! Form::close() !!}
+
+
+    <div class="note-on-page">
+        <span><strong><em>Note:</em></strong></span>
+        <span><em>Fields marked with * are required.</em></span>
+    </div>
 
 </article>
 
