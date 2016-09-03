@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use App\Tag;
 
 class TagsEditRequest extends Request
 {
@@ -23,8 +24,11 @@ class TagsEditRequest extends Request
      */
     public function rules()
     {
+        $tag = Tag::find($this->tags);
+
         return [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:tags,name,' . $tag->id,
+            'slug'  => 'required|max:255|unique:tags,slug,' . $tag->id,
         ];
     }
 }

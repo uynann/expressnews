@@ -10,6 +10,7 @@ use App\Category;
 use App\Tag;
 use App\Photo;
 use App\Http\Requests\PostsCreateRequest;
+use App\Http\Requests\PostsEditRequest;
 use Auth;
 use App\Comment;
 use App\CommentReply;
@@ -39,7 +40,7 @@ class AdminPostsController extends Controller
         {
             foreach ($categories as $category_obj)
             {
-                if (str_slug($category_obj->name) == $category_name)
+                if ($category_obj->slug == $category_name)
                 {
                     $category = $category_obj;
                 }
@@ -55,7 +56,7 @@ class AdminPostsController extends Controller
         {
             foreach ($tags as $tag_obj)
             {
-                if (str_slug($tag_obj->name) == $tag_name)
+                if ($tag_obj->slug == $tag_name)
                 {
                     $tag = $tag_obj;
                 }
@@ -136,21 +137,23 @@ class AdminPostsController extends Controller
 
         $input['user_id'] = $user->id;
 
+        $post->title = $input['title'];
+        $post->user_id = $input['user_id'];
+        $post->photo_id = $input['photo_id'];
+        $post->body = $input['body'];
+
+        if (isset($input['category_id'])) {
+            $post->category_id = $input['category_id'];
+        } else {
+            $post->category_id = 5;
+        }
+
+        $post->slug = preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)));
+
+
         if (isset($input['publish'])) {
             $input['status'] = 'publish';
-
-            $post->title = $input['title'];
-            $post->user_id = $input['user_id'];
-            $post->photo_id = $input['photo_id'];
-            $post->body = $input['body'];
             $post->status = $input['status'];
-
-            if (isset($input['category_id'])) {
-                $post->category_id = $input['category_id'];
-            } else {
-                $post->category_id = 5;
-            }
-
 
             $post->save();
 
@@ -162,18 +165,7 @@ class AdminPostsController extends Controller
             return redirect('/admin/posts/' . $post->id. '/edit')->with('status', 'Post published!');
         } else {
             $input['status'] = 'draft';
-
-            $post->title = $input['title'];
-            $post->user_id = $input['user_id'];
-            $post->photo_id = $input['photo_id'];
-            $post->body = $input['body'];
             $post->status = $input['status'];
-
-            if (isset($input['category_id'])) {
-                $post->category_id = $input['category_id'];
-            } else {
-                $post->category_id = 5;
-            }
 
             $post->save();
 
@@ -184,7 +176,6 @@ class AdminPostsController extends Controller
 
             return redirect('/admin/posts/' . $post->id. '/edit')->with('status', 'Post saved!');
         }
-
 
     }
 
@@ -222,7 +213,7 @@ class AdminPostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostsCreateRequest $request, $id)
+    public function update(PostsEditRequest $request, $id)
     {
         $post = Post::findOrFail($id);
         $input = $request->all();

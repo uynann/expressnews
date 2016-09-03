@@ -54,7 +54,7 @@
                         <ul class="nav navbar-nav">
                             @if(isset($categories))
                                 @foreach($categories as $category)
-                            <li><a href="{{ route('category', preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name)))) }}">{{ $category->name }}</a></li>
+                            <li><a href="{{ route('category', $category->slug) }}">{{ $category->name }}</a></li>
                                 @endforeach
                             @endif
                             <div class="clearfix"></div>

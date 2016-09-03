@@ -301,6 +301,41 @@ ul.image-row li .image-wrapper.selected span {
     padding: 10px 15px;
 }
 
+.permalink-show {
+    margin-top: 4px;
+}
+
+.permalink-form input {
+    display: inline-block;
+    width: 80%;
+}
+
+.slug-edit-form {
+    width: 70%;
+    display: none;
+}
+
+.slug-edit-form .btn {
+    margin-bottom: 2px;
+}
+
+.edit-post-slug {
+    cursor: pointer;
+    margin-left: 5px;
+    text-decoration: underline;
+}
+
+.cancel-post-slug-change {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.cancel-post-slug-change:hover,
+.cancel-post-slug-change:active,
+.edit-post-slug:hover,
+.edit-post-slug:active {
+    color: #70b02b;
+}
 
 /* --------------------------------------------------------------------------
 3. Admin - Categories and Tags Page

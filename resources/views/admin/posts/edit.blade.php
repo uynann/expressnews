@@ -28,7 +28,7 @@
     <div class="title-block">
         <h3 class="title">
             Edit Post
-            <a href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}" class="btn btn-primary btn-sm rounded-s">
+            <a href="{{ route('show', ['category'=> $post->category->slug, 'id_title'=>$post->id . '-' . $post->slug]) }}" class="btn btn-primary btn-sm rounded-s">
                 View Post
             </a>
             <span class="sparkline bar" data-type="bar"></span>
@@ -49,6 +49,27 @@
                 @if ($errors->has('title'))
                 <span class="help-block">
                     <small>{{ $errors->first('title') }}</small>
+                </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="form-group permalink-form row{{ $errors->has('slug') ? ' has-error' : '' }}">
+            {!! Form::label('slug', '* Permalink:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
+            <div class="col-sm-10">
+                <div class="permalink-show">
+                    <a href="{{ route('show', ['category'=> $post->category->slug, 'id_title'=>$post->id . '-' . $post->slug]) }}">{{ url($post->category->slug) }}/<span class="slug">{{ $post->slug }}</span></a>
+                    <div class="slug-edit-form">
+                        {!! Form::text('slug', null, ['class'=>'form-control form-control-sm boxed']) !!}
+                        <span class="btn btn-primary btn-sm ok-post-slug-change">OK</span> <span class="cancel-post-slug-change">Cancel</span>
+                    </div>
+                    <span class="edit-post-slug">Edit</span>
+                </div>
+
+
+                @if ($errors->has('slug'))
+                <span class="help-block">
+                    <small>{{ $errors->first('slug') }}</small>
                 </span>
                 @endif
             </div>

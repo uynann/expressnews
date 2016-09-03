@@ -16,16 +16,16 @@
         @foreach($posts as $post)
         <div class="article">
             <div class="article-left">
-                <a href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}"><img src="{{ isset($post->photo) ? asset($post->photo->file_path) : '' }}"></a>
+                <a href="{{ route('show', ['category'=> $category->slug, 'id_title'=>$post->id . '-' . $post->slug]) }}"><img src="{{ isset($post->photo) ? asset($post->photo->file_path) : '' }}"></a>
             </div>
             <div class="article-right">
                 <div class="article-title">
                     <p>On {{ $post->created_at }} <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>104 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>52</a></p>
-                    <a class="title" href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}"> {{ $post->title }}</a>
+                    <a class="title" href="{{ route('show', ['category'=> $category->slug, 'id_title'=>$post->id . '-' . $post->slug]) }}"> {{ $post->title }}</a>
                 </div>
                 <div class="article-text">
                     <p>{!! html_entity_decode(str_limit($post->body, 160)) !!}</p>
-                    <a href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}"><img src="{{ asset('assets/more.png') }}" alt="" /></a>
+                    <a href="{{ route('show', ['category'=> $category->slug, 'id_title'=>$post->id . '-' . $post->slug]) }}"><img src="{{ asset('assets/more.png') }}" alt="" /></a>
                     <div class="clearfix"></div>
                 </div>
             </div>

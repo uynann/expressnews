@@ -33,7 +33,7 @@ class HomeController extends Controller
         $categories = Category::all();
 
         foreach ($categories as $category_obj) {
-            if (preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category_obj->name))) == $category_name) {
+            if ($category_obj->slug == $category_name) {
                 $category = $category_obj;
             }
         }

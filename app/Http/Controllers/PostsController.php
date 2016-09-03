@@ -53,7 +53,7 @@ class PostsController extends Controller
 
         $post = Post::findOrFail($id);
 
-        if (preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->category->name))) == $category) {
+        if ($post->category->slug == $category) {
             return view('show', compact('post'));
         } else {
             return view('errors.404');

@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Category;
+use App\Post;
 
-class CategoriesEditRequest extends Request
+class PostsEditRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,11 @@ class CategoriesEditRequest extends Request
      */
     public function rules()
     {
-        $category = Category::find($this->categories);
+        $post = Post::find($this->posts);
 
         return [
-            'name' => 'required|max:255|unique:categories,name,' . $category->id,
-            'slug'  => 'required|max:255|unique:categories,slug,' . $category->id,
+            'title' => 'required|max:255|unique:posts,title,' . $post->id,
+            'slug'  => 'required|max:255|unique:posts,slug,' . $post->id,
         ];
     }
 }

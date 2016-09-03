@@ -1499,6 +1499,35 @@ $(function() {
     });
 });
 
+
+/***********************************************
+*        Edit Permalink
+***********************************************/
+$(function() {
+    $('.edit-post-slug').click(function() {
+        $('.slug').hide();
+        $(this).hide();
+        $('.slug-edit-form').fadeIn('fast').css('display', 'inline-block');
+    });
+
+    $('.cancel-post-slug-change').click(function() {
+        $('.slug-edit-form').hide();
+        $('.slug').fadeIn('fast');
+        $('.edit-post-slug').fadeIn('fast');
+    });
+
+    $('.ok-post-slug-change').click(function() {
+        var changed_slug = $('#slug').val();
+        $('.slug').text(changed_slug);
+
+        $('.slug-edit-form').hide();
+        $('.slug').fadeIn('fast');
+        $('.edit-post-slug').fadeIn('fast');
+    });
+});
+
+
+
 /***********************************************
 *       Medias Window
 ***********************************************/

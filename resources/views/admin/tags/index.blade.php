@@ -46,6 +46,17 @@
                     </div>
 
                     <div class="form-group row">
+                        {!! Form::label('slug', 'Slug:', ['class'=>'col-sm-3 form-control-label form-controll-label-sm text-xs-right']) !!}
+                        <div class="col-sm-9">
+                            {!! Form::text('slug', null, ['class'=>'form-control form-controll-sm boxed']) !!}
+
+                            <span class="help-block" style="display: block; color: #4f5f6f">
+                                <small><em>The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</em></small>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         {!! Form::label('description', 'Description:', ['class'=>'col-sm-3 form-control-label form-controll-label-sm text-xs-right']) !!}
                         <div class="col-sm-9">
                             {!! Form::textarea('description', null, ['class'=>'form-control boxed', 'rows'=>'5']) !!}

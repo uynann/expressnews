@@ -11,7 +11,7 @@
                 <ul class="cat">
                     @if(isset($categories))
                     @foreach($categories->slice(0, 5) as $category)
-                            <li><a href="index.html">{{ $category->name }}</a></li>
+                    <li><a href="{{ route('category', $category->slug) }}">{{ $category->name }}</a></li>
                         @endforeach
                     @endif
                 </ul>
@@ -20,7 +20,7 @@
                 <ul class="cat">
                     @if(isset($categories))
                     @foreach($categories->slice(5, 10) as $category)
-                    <li><a href="index.html">{{ $category->name }}</a></li>
+                    <li><a href="{{ route('category', $category->slug) }}">{{ $category->name }}</a></li>
                     @endforeach
                     @endif
                 </ul>

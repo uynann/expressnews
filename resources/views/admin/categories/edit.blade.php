@@ -26,8 +26,25 @@
                 </span>
                 @endif
 
-                <span class="help-block" style="display: block; color: #4f5f6f">
+                <span class="help-block" style="display: block; color: #4f5f6f; font-size: 0.9em;">
                     <em>The name is how it appears on your site.</em>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row{{ $errors->has('slug') ? ' has-error' : '' }}">
+            {!! Form::label('slut', '* Slug:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
+            <div class="col-sm-10">
+                {!! Form::text('slug', null, ['class'=>'form-control boxed']) !!}
+
+                @if ($errors->has('slug'))
+                <span class="help-block">
+                    <small>{{ $errors->first('slug') }}</small>
+                </span>
+                @endif
+
+                <span class="help-block" style="display: block; color: #4f5f6f; font-size: 0.9em;">
+                    <em>The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</em>
                 </span>
             </div>
         </div>
@@ -36,7 +53,7 @@
             {!! Form::label('description', 'Description:', ['class'=>'col-sm-2 form-control-label form-controll-label-sm text-xs-right']) !!}
             <div class="col-sm-10">
                 {!! Form::textarea('description', null, ['class'=>'form-control boxed', 'rows'=>'5']) !!}
-                <span class="help-block" style="display: block; color: #4f5f6f">
+                <span class="help-block" style="display: block; color: #4f5f6f; font-size: 0.9em;">
                     <em>The description is optional.</em>
                 </span>
             </div>

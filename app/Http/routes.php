@@ -19,6 +19,31 @@ Route::group(['middleware' => 'admin'], function() {
         return view('admin.index');
     });
 
+//    Route::get('edit-posts-slug', function() {
+//        $posts = Post::withTrashed()->get();
+//
+//        foreach($posts as $post) {
+//            $post->update(['slug' => preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title))) ]);
+//        }
+//    });
+
+//    Route::get('edit-categories-slug', function() {
+//        $categories = Category::all();
+//
+//        foreach($categories as $category) {
+//            $category->update(['slug' => preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name))) ]);
+//        }
+//    });
+
+//    Route::get('edit-tags-slug', function() {
+//        $tags = Tag::all();
+//
+//        foreach($tags as $tag) {
+//            $tag->update(['slug' => preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $tag->name))) ]);
+//        }
+//    });
+
+
 
     Route::resource('admin/users', 'AdminUsersController');
     Route::post('admin/users/bulkactions', 'AdminUsersController@bulkActions');
@@ -69,6 +94,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('comment/replies', 'RepliesController');
 
 });
+
 
 
 

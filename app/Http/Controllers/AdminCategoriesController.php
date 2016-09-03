@@ -52,6 +52,11 @@ class AdminCategoriesController extends Controller
     public function store(CategoriesRequest $request)
     {
         $input = $request->all();
+
+        if (trim($input['slug']) == '') {
+            $input['slug'] = preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $input['name'])));
+        }
+
         Category::create($input);
         return redirect('/admin/categories')->with('status', 'Category created!');
     }

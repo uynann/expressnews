@@ -56,6 +56,10 @@ class AdminTagsController extends Controller
     public function store(TagsRequest $request)
     {
         $input = $request->all();
+        if (trim($input['slug']) == '') {
+            $input['slug'] = preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $input['name'])));
+        }
+
         Tag::create($input);
         return redirect('/admin/tags')->with('status', 'Tag created!');
     }
@@ -119,6 +123,7 @@ class AdminTagsController extends Controller
         $input = $request->all();
         $tag = new Tag();
         $tag->name = $input['name'];
+        $tag->slug = preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $tag->name)));
         $tag->save();
         $response = array(
             'status' => 'success',

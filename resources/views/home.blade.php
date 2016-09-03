@@ -9,7 +9,7 @@
             <div class="col-md-6">
                 <div class="cricket">
                     <header>
-                        <a href="{{ route('category', preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name)))) }}" class="title-head-link"><h3 class="title-head">{{ $category->name }}</h3></a>
+                        <a href="{{ route('category', $category->slug) }}" class="title-head-link"><h3 class="title-head">{{ $category->name }}</h3></a>
                     </header>
 
                     @foreach($category->posts->take(-4)->sortByDesc('id') as $post)
@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="c-text">
 
-                                    <a class="power" href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}">{{ $post->title }}</a>
+                                    <a class="power" href="{{ route('show', ['category'=> $category->slug, 'id_title'=>$post->id . '-' . $post->slug]) }}">{{ $post->title }}</a>
 
 
                                     <p class="date">On {{ $post->created_at }}</p>
@@ -32,7 +32,7 @@
                             <div class="s-grid-small">
                                 <div class="sc-text">
 
-                                    <a class="power" href="{{ route('show', ['category'=>preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category->name))), 'id_title'=>$post->id . '-' . preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $post->title)))]) }}">{{ $post->title }}</a>
+                                    <a class="power" href="{{ route('show', ['category'=> $category->slug, 'id_title'=>$post->id . '-' . $post->slug]) }}">{{ $post->title }}</a>
 
 
                                     <p class="date">On {{ $post->created_at }}</p>

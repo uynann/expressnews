@@ -6,8 +6,6 @@
 
 <article class="content items-list-page posts-list-page">
 
-
-
     <div class="title-search-block">
         <div class="title-block">
             <div class="row">
@@ -27,7 +25,7 @@
 
                                 @if(isset($categories))
                                 @foreach($categories as $category)
-                                <a class="dropdown-item" href="{{ url('admin/posts?category=' . str_slug($category->name)) }}">{{ $category->name }}</a>
+                                <a class="dropdown-item" href="{{ url('admin/posts?category=' . $category->slug) }}">{{ $category->name }}</a>
 
                                 @endforeach
                                 @endif
@@ -127,7 +125,7 @@
                         <div class="item-heading">Categories</div>
                         <div class="categories-tags">
                         @if (isset($post->category))
-                            <a href="{{ url('admin/posts?category=' . str_slug($post->category->name)) }}"> {{ $post->category->name }} </a> &nbsp;
+                            <a href="{{ url('admin/posts?category=' . $post->category->slug) }}"> {{ $post->category->name }} </a> &nbsp;
                         @endif
 
                         </div>
@@ -137,7 +135,7 @@
                         <div class="categories-tags">
                         @if (count($post->tags))
                             @foreach($post->tags as $tag)
-                            <a href="{{ url('admin/posts?tag=' . str_slug($tag->name)) }}"> {{ $tag->name }} </a> &nbsp;
+                            <a href="{{ url('admin/posts?tag=' . $tag->slug) }}"> {{ $tag->name }} </a> &nbsp;
                             @endforeach
                         @endif
                         </div>
