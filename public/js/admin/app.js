@@ -1668,6 +1668,101 @@ $(function() {
 
 });
 
+/***********************************************
+*       ToolTips
+***********************************************/
+$(function() {
+
+    $('.remove').qtip({ // Grab some elements to apply the tooltip to
+        content: 'Delete this item',
+        position: {
+            my: 'top center',  // Position my top left...
+            at: 'bottom center', // at the bottom right of...
+        }
+    });
+
+    $('.edit').qtip({ // Grab some elements to apply the tooltip to
+        content: 'Edit this item',
+        position: {
+            my: 'top center',  // Position my top left...
+            at: 'bottom center', // at the bottom right of...
+        }
+    });
+
+    $('.approve').qtip({ // Grab some elements to apply the tooltip to
+        content: 'Approve this item',
+        position: {
+            my: 'top center',  // Position my top left...
+            at: 'bottom center', // at the bottom right of...
+        }
+    });
+
+    $('.unapprove').qtip({ // Grab some elements to apply the tooltip to
+        content: 'Unapprove this item',
+        position: {
+            my: 'top center',  // Position my top left...
+            at: 'bottom center', // at the bottom right of...
+        }
+    });
+
+    $('.unapproved-count').qtip({ // Grab some elements to apply the tooltip to
+        content: 'Unapproved comments',
+        position: {
+            my: 'top center',  // Position my top left...
+            at: 'bottom center', // at the bottom right of...
+        }
+    });
+
+});
+
+
+/***********************************************
+*       Approve and Unapprove Comments/Replies
+***********************************************/
+$(function() {
+
+    $('.approve-comment').click(function() {
+
+        var url = $(this).attr('data-action');
+        var this_btn = $(this);
+
+        $.ajax({
+            type: 'PUT',
+            url: url,
+            data: { '_token': $('input[name="_token"]').val(), '_method' :  $('input[name="_method"]').val() },
+            success: function (data) {
+//                console.log(data);
+
+                this_btn.closest('.item').removeClass('unapproved-item');
+                this_btn.closest('.item').addClass('approved-item');
+                this_btn.hide();
+                this_btn.siblings('.unapprove-comment').fadeIn('fast');
+            }
+        });
+    });
+
+
+    $('.unapprove-comment').click(function() {
+
+        var url = $(this).attr('data-action');
+        var this_btn = $(this);
+
+        $.ajax({
+            type: 'PUT',
+            url: url,
+            data: { '_token': $('input[name="_token"]').val(), '_method' :  $('input[name="_method"]').val() },
+            success: function (data) {
+//                console.log(data);
+
+                this_btn.closest('.item').addClass('unapproved-item');
+                this_btn.closest('.item').removeClass('approved-item');
+                this_btn.hide();
+                this_btn.siblings('.approve-comment').fadeIn('fast');
+            }
+        });
+    });
+
+});
 
 
 

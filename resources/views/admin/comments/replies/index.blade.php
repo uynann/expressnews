@@ -9,16 +9,14 @@
                 <div class="col-md-6">
                     <h3 class="title">
                         Comment Replies
-                        <div class="action dropdown">
-                            <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                More actions...
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o icon"></i>Mark as a draft</a>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#confirm-modal"><i class="fa fa-close icon"></i>Delete</a>
-                            </div>
-                        </div>
+
                     </h3>
+
+                    <div class="statistics">
+                        <span><a href="{{ url('admin/comment/replies') }}">All</a> ({{ count($reply_all) }})</span>
+                        <span><a href="{{ url('admin/comment/replies?status=approved') }}">Approved</a> ({{ count($reply_approved) }})</span>
+                        <span><a href="{{ url('admin/comment/replies?status=unapproved') }}">Unapproved</a> ({{ count($reply_unapproved) }})</span>
+                    </div>
 
                 </div>
             </div>
@@ -29,8 +27,8 @@
 
         <div class="items-search">
             <form class="form-inline">
-                <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..."> <span class="input-group-btn">
-                    <button class="btn btn-secondary rounded-s" type="button">
+                <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..." name="search"> <span class="input-group-btn">
+                    <button class="btn btn-secondary rounded-s" type="submit">
                         <i class="fa fa-search"></i>
                     </button>
                     </span> </div>
@@ -38,6 +36,16 @@
         </div>
 
     </div>
+
+
+
+    {{ method_field('PUT') }}
+
+    <form action="/admin/comment/replies/bulkactions" method="post" id="bulk-action-form">
+
+        {{ csrf_field() }}
+
+
     <div class="card items">
         <ul class="item-list striped">
             <li class="item item-list-header hidden-sm-down">
@@ -66,10 +74,10 @@
             @if(isset($replies))
             @foreach($replies as $reply)
 
-            <li class="item {{ 'comment-number-' . $reply->id }}">
+            <li class="item {{ 'comment-number-' . $reply->id }} {{ $reply->is_active == 0 ? 'unapproved-item' : '' }}">
                 <div class="item-row">
                     <div class="item-col fixed item-col-check"> <label class="item-check" id="select-all-items">
-                        <input type="checkbox" class="checkbox" name="checkboxUsersArray[]" value="{{ $reply->id }}">
+                        <input type="checkbox" class="checkbox" name="checkboxCommentRepliesArray[]" value="{{ $reply->id }}">
                         <span></span>
                         </label> </div>
                     <div class="item-col fixed pull-left item-col-title">
@@ -85,12 +93,11 @@
                         <div class="item-heading">Reply</div>
                         <div class="comment-text">{{ $reply->reply }}</div>
 
-                        <form class="edit-comment-section" id="{{ 'edit-comment-section-' . $reply->id }}" method="POST">
-                            {{ csrf_field() }}
-                            <textarea name="reply" class="comment-text form-control boxed edit-comment-text">{{ $reply->reply }}</textarea>
+                        <div class="edit-comment-section" id="{{ 'edit-comment-section-' . $reply->id }}" method="POST">
+                            <textarea class="comment-text form-control boxed edit-comment-text">{{ $reply->reply }}</textarea>
                             <button class="btn btn-primary btn-sm btn-save-comment" data-link="{{ url('admin/comment/replies/' . $reply->id) }}" type="submit">Save</button>
                             <span class="btn btn-danger btn-sm btn-cancel-comment">Cancel</span>
-                        </form>
+                        </div>
 
 
                     </div>
@@ -105,8 +112,8 @@
                     </div>
                     <div class="item-col item-col-category no-overflow">
                         <div class="item-heading">Submitted On</div>
-                        <div class="no-overflow">
-                            {{ $reply->created_at }}
+                        <div class="no-overflow item-date">
+                            {{ $reply->created_at->format('M d, Y - H:i:s') }}
                         </div>
                     </div>
 
@@ -122,15 +129,25 @@
 
                                     @if ($reply->id != 1)
                                     <li>
-                                        <form method="POST">
-                                            {{ csrf_field() }}
-                                            <a class="remove remove-item remove-comment" data-link="{{ url('admin/comment/replies/' .$reply->id) }}" data-id="{{ $reply->id }}"> <i class="fa fa-trash-o"></i> </a>
-                                        </form>
+
+                                        <a class="remove remove-item remove-comment" data-link="{{ url('admin/comment/replies/' .$reply->id) }}" data-id="{{ $reply->id }}"> <i class="fa fa-trash-o"></i> </a>
+
                                     </li>
                                     @endif
 
                                     <li>
                                         <a class="edit btn-edit-comment" data-edit-comment-id="{{ $reply->id }}"> <i class="fa fa-pencil"></i> </a>
+                                    </li>
+
+                                    <li>
+                                        @if($reply->is_active != 1)
+                                        <a class="edit unapprove unapprove-comment" data-action="{{ '/admin/comment/replies/unapprove/' . $reply->id }}" style="display : none"> <i class="fa fa-thumbs-down"></i> </a>
+                                        <a class="edit approve approve-comment" data-action="{{ '/admin/comment/replies/approve/' . $reply->id }}"> <i class="fa fa-thumbs-up"></i> </a>
+
+                                        @else
+                                        <a class="edit approve approve-comment" data-action="{{ '/admin/comment/replies/approve/' . $reply->id }}" style="display : none"> <i class="fa fa-thumbs-up"></i> </a>
+                                        <a class="edit unapprove unapprove-comment" data-action="{{ '/admin/comment/replies/unapprove/' . $reply->id }}"> <i class="fa fa-thumbs-down"></i> </a>
+                                        @endif
                                     </li>
                                 </ul>
                             </div>
@@ -145,9 +162,25 @@
         </ul>
     </div>
 
+
+    <div class="action bulk-action dropdown reply-bulk-action">
+        <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            More actions...
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <button type="submit" class="dropdown-item" name="approve"><i class="fa fa-thumbs-up icon"></i> Approve</button>
+            <button type="submit" class="dropdown-item" name="unapprove"><i class="fa fa-thumbs-down icon"></i> Unapprove</button>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target=".comfirm-bulk-delete" id="bulk-delete"><i class="fa fa-close icon"></i> Delete</a>
+        </div>
+    </div>
+
+    </form>
+
+
+
     <nav class="text-xs-right">
 
-        @if(isset($replies)) {{ $replies->links() }} @endif
+        {!! $replies->appends([$param => $param_val])->render() !!}
 
 
     </nav>

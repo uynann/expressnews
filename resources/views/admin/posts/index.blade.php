@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <article class="content items-list-page posts-list-page">
 
     <div class="title-search-block">
@@ -85,8 +83,11 @@
                     <div class="item-col item-col-header item-col-category">
                         <div class="no-overflow"> <span>Tags</span> </div>
                     </div>
+                    <div class="item-col item-col-header item-col-comment">
+                        <div class="no-overflow"> <span>Comments</span> </div>
+                    </div>
                     <div class="item-col item-col-header item-col-date">
-                        <div> <span>Published</span> </div>
+                        <div> <span>Date</span> </div>
                     </div>
 
                     <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
@@ -133,16 +134,38 @@
                     <div class="item-col item-col-category no-overflow">
                         <div class="item-heading">Tags</div>
                         <div class="categories-tags">
-                        @if (count($post->tags))
+                            @if (count($post->tags))
                             @foreach($post->tags as $tag)
                             <a href="{{ url('admin/posts?tag=' . $tag->slug) }}"> {{ $tag->name }} </a> &nbsp;
                             @endforeach
+                            @endif
+                        </div>
+                    </div>
+                    <div class="item-col item-col-comment no-overflow">
+                        <div class="item-heading">Comments</div>
+                        <div class="">
+                        @if (count($post->comments))
+                            <a href="{{ url('admin/comments?post=') . $post->id }}" class="comment-count">{{ count($post->comments) }}
+                                @if(count($post->commentsUnapproved))
+                                <span class="unapproved-count">{{ count($post->commentsUnapproved) }}</span>
+                                @endif
+                            </a>
+                        @else
+                            &mdash;
                         @endif
                         </div>
                     </div>
                     <div class="item-col item-col-date">
-                        <div class="item-heading">Published</div>
-                        <div class="no-overflow"> {{ $post->created_at }}</div>
+                        <div class="item-heading">Date</div>
+                        <div class="no-overflow item-date">
+
+                            @if($post->status == 'draft')
+                                Last Modified<br>
+                            @else
+                                Published<br>
+                            @endif
+                            {{ $post->created_at }}
+                        </div>
                     </div>
                     <div class="item-col fixed item-col-actions-dropdown">
                         <div class="item-actions-dropdown">
@@ -156,12 +179,12 @@
 
                                     @if ($post->id != 1)
                                     <li>
-                                        <a class="remove remove-item" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o " data-item-id="{{ $post->id }}"></i> </a>
+                                        <a class="remove remove-item romove-post" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o " data-item-id="{{ $post->id }}"></i> </a>
                                     </li>
                                     @endif
 
                                     <li>
-                                        <a class="edit" href="{{ route('admin.posts.edit', $post->id) }}"> <i class="fa fa-pencil"></i> </a>
+                                        <a class="edit edit-post" href="{{ route('admin.posts.edit', $post->id) }}"> <i class="fa fa-pencil"></i> </a>
                                     </li>
                                 </ul>
                             </div>

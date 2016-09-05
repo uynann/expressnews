@@ -66,8 +66,17 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('/admin/medias/create', ['as'=>'admin.medias.create', 'uses'=>'AdminMediasController@create']);
     Route::post('admin/medias', 'AdminMediasController@store');
 
+
     Route::resource('admin/comments', 'AdminCommentsController');
+    Route::put('admin/comments/approve/{id}', 'AdminCommentsController@approve');
+    Route::put('admin/comments/unapprove/{id}', 'AdminCommentsController@unapprove');
+    Route::post('admin/comments/bulkactions', 'AdminCommentsController@bulkActions');
+
+
     Route::resource('admin/comment/replies', 'AdminCommentRepliesController');
+    Route::put('admin/comment/replies/approve/{id}', 'AdminCommentRepliesController@approve');
+    Route::put('admin/comment/replies/unapprove/{id}', 'AdminCommentRepliesController@unapprove');
+    Route::post('admin/comment/replies/bulkactions', 'AdminCommentRepliesController@bulkActions');
 
     // handle uploading images from froala editor
 });

@@ -21,4 +21,18 @@ class Comment extends Model
     public function replies() {
         return $this->hasMany('App\CommentReply');
     }
+
+    public function repliesUnapproved() {
+        return $this->replies()->where('is_active', '=', 0);
+    }
+
+    public function scopeSearchByKeyword($query, $keyword)
+    {
+        if ($keyword!='') {
+            $query->where(function ($query) use ($keyword) {
+                $query->where("comment", "LIKE","%$keyword%");
+            });
+        }
+        return $query;
+    }
 }

@@ -9,16 +9,14 @@
                 <div class="col-md-6">
                     <h3 class="title">
                         Comments
-                        <div class="action dropdown">
-                        <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More actions...
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o icon"></i>Mark as a draft</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#confirm-modal"><i class="fa fa-close icon"></i>Delete</a>
-                        </div>
-                        </div>
+
                     </h3>
+
+                    <div class="statistics">
+                        <span><a href="{{ url('admin/comments') }}">All</a> ({{ count($comment_all) }})</span>
+                        <span><a href="{{ url('admin/comments?status=approved') }}">Approved</a> ({{ count($comment_approved) }})</span>
+                        <span><a href="{{ url('admin/comments?status=unapproved') }}">Unapproved</a> ({{ count($comment_unapproved) }})</span>
+                    </div>
 
                 </div>
             </div>
@@ -29,8 +27,8 @@
 
         <div class="items-search">
             <form class="form-inline">
-                <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..."> <span class="input-group-btn">
-                    <button class="btn btn-secondary rounded-s" type="button">
+                <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..." name="search"> <span class="input-group-btn">
+                    <button class="btn btn-secondary rounded-s" type="submit">
                         <i class="fa fa-search"></i>
                     </button>
                     </span> </div>
@@ -38,6 +36,16 @@
         </div>
 
     </div>
+
+
+
+    {{ method_field('PUT') }}
+
+    <form action="/admin/comments/bulkactions" method="post" id="bulk-action-form">
+
+        {{ csrf_field() }}
+
+
     <div class="card items">
         <ul class="item-list striped">
             <li class="item item-list-header hidden-sm-down">
@@ -55,6 +63,9 @@
                     <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>In Response To</span> </div>
                     </div>
+                    <div class="item-col item-col-header item-col-reply">
+                        <div class="no-overflow"> <span>Replies</span> </div>
+                    </div>
                     <div class="item-col item-col-header item-col-category">
                         <div class="no-overflow"> <span>Submitted On</span> </div>
                     </div>
@@ -65,10 +76,10 @@
             @if(isset($comments))
             @foreach($comments as $comment)
 
-            <li class="item {{ 'comment-number-' . $comment->id }}">
+            <li class="item {{ 'comment-number-' . $comment->id }} {{ $comment->is_active == 0 ? 'unapproved-item' : '' }}">
                 <div class="item-row">
                     <div class="item-col fixed item-col-check"> <label class="item-check" id="select-all-items">
-                        <input type="checkbox" class="checkbox" name="checkboxUsersArray[]" value="{{ $comment->id }}">
+                        <input type="checkbox" class="checkbox" name="checkboxCommentsArray[]" value="{{ $comment->id }}">
                         <span></span>
                         </label>
                     </div>
@@ -84,12 +95,11 @@
                     <div class="item-col item-col-sales">
                         <div class="item-heading">Comment</div>
                         <div class="comment-text">{{ $comment->comment }}</div>
-                        <form class="edit-comment-section" id="{{ 'edit-comment-section-' . $comment->id }}" method="POST">
-                            {{ csrf_field() }}
-                           <textarea name="comment" class="comment-text form-control boxed edit-comment-text">{{ $comment->comment }}</textarea>
+                        <div class="edit-comment-section" id="{{ 'edit-comment-section-' . $comment->id }}" method="POST">
+                           <textarea class="comment-text form-control boxed edit-comment-text">{{ $comment->comment }}</textarea>
                             <button class="btn btn-primary btn-sm btn-save-comment" data-link="{{ url('admin/comments/' . $comment->id) }}" type="submit">Save</button>
                            <span class="btn btn-danger btn-sm btn-cancel-comment">Cancel</span>
-                       </form>
+                       </div>
 
 
                     </div>
@@ -102,10 +112,24 @@
 
                         </div>
                     </div>
+                    <div class="item-col item-col-reply no-overflow">
+                        <div class="item-heading">Replies</div>
+                        <div class="no-overflow">
+                            @if (count($comment->replies))
+                            <a href="{{ url('admin/comment/replies?comment=') . $comment->id }}" class="comment-count">{{ count($comment->replies) }}
+                                    @if(count($comment->repliesUnapproved))
+                                    <span class="unapproved-count">{{ count($comment->repliesUnapproved) }}</span>
+                                    @endif
+                                </a>
+                            @else
+                                &mdash;
+                            @endif
+                        </div>
+                    </div>
                     <div class="item-col item-col-category no-overflow">
                         <div class="item-heading">Submitted On</div>
-                        <div class="no-overflow">
-                            {{ $comment->created_at }}
+                        <div class="no-overflow item-date">
+                            {{ $comment->created_at->format('M d, Y - H:i:s') }}
                         </div>
                     </div>
 
@@ -121,24 +145,26 @@
 
                                     @if ($comment->id != 1)
                                     <li>
-
-                                       <form method="POST">
-                                           {{ csrf_field() }}
-                                           <a class="remove remove-item remove-comment" data-link="{{ url('admin/comments/' .$comment->id) }}" data-id="{{ $comment->id }}"> <i class="fa fa-trash-o"></i> </a>
-                                       </form>
+                                       <a class="remove remove-item remove-comment" data-link="{{ url('admin/comments/' .$comment->id) }}" data-id="{{ $comment->id }}"> <i class="fa fa-trash-o"></i> </a>
 
                                     </li>
                                     @endif
 
                                     <li>
-                                        <a class="edit btn-edit-comment" data-edit-comment-id="{{ $comment->id }}"> <i class="fa fa-pencil"></i> </a>
+                                        <a class="edit btn-edit-comment edit-comment" data-edit-comment-id="{{ $comment->id }}"> <i class="fa fa-pencil"></i> </a>
                                     </li>
 
-{{--
                                     <li>
-                                        <a class="edit" href="{{route('admin.comments.edit', $comment->id) }}"> Unapprove </a>
+                                        @if($comment->is_active != 1)
+                                        <a class="edit unapprove unapprove-comment" data-action="{{ '/admin/comments/unapprove/' . $comment->id }}" style="display : none"> <i class="fa fa-thumbs-down"></i> </a>
+                                        <a class="edit approve approve-comment" data-action="{{ '/admin/comments/approve/' . $comment->id }}"> <i class="fa fa-thumbs-up"></i> </a>
+
+                                        @else
+                                        <a class="edit approve approve-comment" data-action="{{ '/admin/comments/approve/' . $comment->id }}" style="display : none"> <i class="fa fa-thumbs-up"></i> </a>
+                                        <a class="edit unapprove unapprove-comment" data-action="{{ '/admin/comments/unapprove/' . $comment->id }}"> <i class="fa fa-thumbs-down"></i> </a>
+                                        @endif
                                     </li>
---}}
+
                                 </ul>
                             </div>
                         </div>
@@ -153,9 +179,25 @@
         </ul>
     </div>
 
+    <div class="action bulk-action dropdown">
+        <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            More actions...
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <button type="submit" class="dropdown-item" name="approve"><i class="fa fa-thumbs-up icon"></i> Approve</button>
+            <button type="submit" class="dropdown-item" name="unapprove"><i class="fa fa-thumbs-down icon"></i> Unapprove</button>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target=".comfirm-bulk-delete" id="bulk-delete"><i class="fa fa-close icon"></i> Delete</a>
+        </div>
+    </div>
+
+
+    </form>
+
+
+
     <nav class="text-xs-right">
 
-        @if(isset($comments)) {{ $comments->links() }} @endif
+        {!! $comments->appends([$param => $param_val])->render() !!}
 
 
     </nav>

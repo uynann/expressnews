@@ -16,6 +16,7 @@
         @yield('styles')
 
         <link rel="stylesheet" href="{{asset('css/admin/app-default.css')}}">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css">
 
 
 
@@ -399,6 +400,7 @@ else
         <script src="{{asset('js/admin/vendor.js')}}"></script>
 
         <script src="{{asset('js/admin/dropzone.js')}}"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
 
         @yield('scripts')
 

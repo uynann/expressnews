@@ -25,4 +25,15 @@ class CommentReply extends Model
     public function userReply() {
         return $this->belongsTo('App\User', 'to_user');
     }
+
+
+    public function scopeSearchByKeyword($query, $keyword)
+    {
+        if ($keyword!='') {
+            $query->where(function ($query) use ($keyword) {
+                $query->where("reply", "LIKE","%$keyword%");
+            });
+        }
+        return $query;
+    }
 }

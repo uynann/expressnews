@@ -28,11 +28,12 @@ class Post extends Model
     public function getCreatedAtAttribute($date)
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('M d, Y');
+
     }
 
     public function getUpdatedAtAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('M d, Y');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('M d, Y - H:i:s');
     }
 
     public function category() {
@@ -45,6 +46,10 @@ class Post extends Model
 
     public function comments() {
         return $this->hasMany('App\Comment');
+    }
+
+    public function commentsUnapproved() {
+        return $this->comments()->where('is_active', '=', 0);
     }
 
     public function scopeSearchByKeyword($query, $keyword)

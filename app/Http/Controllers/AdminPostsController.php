@@ -27,6 +27,7 @@ class AdminPostsController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
         $post_all = Post::all();
+
         $post_published = Post::where('status', '=', 'publish')->get();
         $post_draft = Post::where('status', '=', 'draft')->get();
         $post_trash = Post::onlyTrashed()->get();
