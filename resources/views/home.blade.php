@@ -12,8 +12,8 @@
                         <a href="{{ route('category', $category->slug) }}" class="title-head-link"><h3 class="title-head">{{ $category->name }}</h3></a>
                     </header>
 
-                    @foreach($category->posts->take(-4)->sortByDesc('id') as $post)
-                        @if($category->posts->take(-4)->sortByDesc('id')->first() === $post)
+                    @foreach($category->postsPublished->take(-4)->sortByDesc('id') as $post)
+                        @if($category->postsPublished->take(-4)->sortByDesc('id')->first() === $post)
                             <div class="c-sports-main">
                                 <div class="c-image">
                                     <a href="single.html"><img src="@if(isset($post->photo)) {{ asset($post->photo->file_path) }} @endif" alt="" /></a>

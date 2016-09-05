@@ -26,6 +26,10 @@ class Comment extends Model
         return $this->replies()->where('is_active', '=', 0);
     }
 
+    public function repliesApproved() {
+        return $this->replies()->where('is_active', '=', 1);
+    }
+
     public function scopeSearchByKeyword($query, $keyword)
     {
         if ($keyword!='') {

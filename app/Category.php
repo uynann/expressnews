@@ -15,6 +15,10 @@ class Category extends Model
         return $this->hasMany('App\Post');
     }
 
+    public function postsPublished() {
+        return $this->posts()->where('status', '=', 'publish');
+    }
+
 //    public function setNameAttribute($value)
 //    {
 //        return ucfirst($value);

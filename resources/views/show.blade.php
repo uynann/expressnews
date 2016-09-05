@@ -141,7 +141,7 @@
 
                     <div class="comments-list">
 
-                    @foreach($post->comments->sortByDesc('id') as $comment)
+                    @foreach($post->commentsApproved->sortByDesc('id') as $comment)
 
                     <div class="media response-info">
                         <div class="media-left response-text-left">
@@ -171,7 +171,7 @@
 {{--                                <span class="response-to">{{  '@' . $comment->user->username }}</span>--}}
                             </div>
 
-                            @foreach($comment->replies as $reply)
+                            @foreach($comment->repliesApproved as $reply)
 
                             <div class="media response-info response-info-reply">
                                 <div class="media-left response-text-left">

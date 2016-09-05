@@ -52,6 +52,10 @@ class Post extends Model
         return $this->comments()->where('is_active', '=', 0);
     }
 
+    public function commentsApproved() {
+        return $this->comments()->where('is_active', '=', 1);
+    }
+
     public function scopeSearchByKeyword($query, $keyword)
     {
         if ($keyword!='') {

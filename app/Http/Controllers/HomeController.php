@@ -39,7 +39,7 @@ class HomeController extends Controller
         }
 
 
-        $posts = $category->posts()->orderBy('id', 'desc')->simplePaginate(8);
+        $posts = $category->postsPublished()->orderBy('id', 'desc')->simplePaginate(8);
 
         return view('category', compact('category', 'posts'));
     }
