@@ -28,7 +28,8 @@ class AdminCommentRepliesController extends Controller
 
         if ($comment != null)
         {
-            $replies = Comment::findOrFail($comment)->replies()->orderBy('id', 'desc')->paginate(10);
+            $comment_single = Comment::findOrFail($comment);
+            $replies = $comment_single->replies()->orderBy('id', 'desc')->paginate(10);
             $param = 'comment';
             $param_val = $comment;
         }
@@ -58,7 +59,7 @@ class AdminCommentRepliesController extends Controller
             $param_val = null;
         }
 
-        return view('admin.comments.replies.index', compact('replies', 'reply_all', 'reply_unapproved', 'reply_approved', 'param', 'param_val'));
+        return view('admin.comments.replies.index', compact('replies', 'reply_all', 'reply_unapproved', 'reply_approved', 'param', 'param_val', 'comment_single'));
     }
 
     /**

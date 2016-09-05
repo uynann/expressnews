@@ -29,9 +29,11 @@ class AdminCommentsController extends Controller
 
         if ($post != null)
         {
-            $comments = Post::findOrFail($post)->comments()->orderBy('id', 'desc')->paginate(10);
+            $post_single = Post::findOrFail($post);
+            $comments = $post_single->comments()->orderBy('id', 'desc')->paginate(10);
             $param = 'post';
             $param_val = $post;
+
         }
         elseif ($search != null)
         {
@@ -60,7 +62,7 @@ class AdminCommentsController extends Controller
         }
 
 
-        return view('admin.comments.index', compact('comments', 'param', 'param_val', 'comment_all', 'comment_unapproved', 'comment_approved'));
+        return view('admin.comments.index', compact('comments', 'param', 'param_val', 'comment_all', 'comment_unapproved', 'comment_approved', 'post_single'));
     }
 
     /**

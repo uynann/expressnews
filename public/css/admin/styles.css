@@ -718,3 +718,17 @@ ul.image-row li.image-wrapper-holder:nth-child(7n) {
 .items-list-page.comments-list-page .statistics {
     margin-top: 15px;
 }
+
+.sub-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.sub-title a {
+    font-size: 0.9em;
+}
+
+.sub-title span {
+    font-size: 0.8em;
+    font-weight: normal;
+}

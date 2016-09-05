@@ -35,6 +35,12 @@
             </form>
         </div>
 
+        @if(isset($comment_single))
+        <h4 class="sub-title">
+            Comments on: <span>{{ $comment_single->comment }}</span>
+        </h4>
+        @endif
+
     </div>
 
 

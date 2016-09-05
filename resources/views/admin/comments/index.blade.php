@@ -35,6 +35,12 @@
             </form>
         </div>
 
+       @if(isset($post_single))
+        <h4 class="sub-title">
+            Comments on: <a href="{{ route('admin.posts.edit', $post_single->id) }}">{{ $post_single->title }}</a>
+        </h4>
+        @endif
+
     </div>
 
 
