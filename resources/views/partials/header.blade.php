@@ -2,7 +2,7 @@
 <div class="header">
     <div class="header-top">
         <div class="wrap clearfix">
-            <div class="top-menu">
+            <div class="top-menu top-menu-left">
                 <ul>
                     <li><a href="{{ url('/') }}">Home</a></li>
                     <li><a href="{{ url('/about') }}">About Us</a></li>
@@ -17,18 +17,20 @@
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Singup</a></li>
                     @else
-                    <li class="has-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->username }} <span class="caret"></span>
-                        </a>
 
-                        <ul>
+                    <li class="btn-group">
+                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu has-dropdown">
                             <li><a href="{{ url('/') }}"><i class="fa fa-user"></i> Profile</a></li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                     </li>
                     @endif
                 </ul>
+
+
+
             </div>
             <div class="clearfix"></div>
         </div>

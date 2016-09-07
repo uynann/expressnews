@@ -64,11 +64,11 @@ label{
     font-weight: 400;
     text-transform: capitalize;
 }
-.top-menu  ul li {
+.top-menu > ul > li {
     display:inline-block;
     margin-right: 19px;
 }
-.top-menu ul li a {
+.top-menu > ul > li > a {
     color: #dddddd;
     font-size: 0.93em;
     text-decoration:none;
@@ -3565,6 +3565,14 @@ ul.cat li:first-child {
     margin-top: 0;
 }
 
+.header-top {
+    padding: 6px 0;
+}
+
+.top-menu-left {
+    padding-top: 2px;
+}
+
 /* --------------------------------------------------------------------------
 1. Home Page
 ---------------------------------------------------------------------------*/
@@ -3574,38 +3582,35 @@ ul.cat li:first-child {
     padding-right: 0;
 }
 
-.has-dropdown {
-    position: relative;
+.top-menu .btn-group .btn.btn-default {
+    color: #ddd;
+    background-color: #000;
+    border: 0;
+    font-weight: 400;
+    font-size: 1em;
 }
 
-.has-dropdown ul {
-    position: absolute;
+
+.has-dropdown {
+    right: -15px;
+    left: auto;
     border-radius: 3px;
     top: 30px;
-    right: 0;
     display: none;
-    width: 130px;
-    background: #000;
-    padding: 5px 0;
+    min-width: 130px;
 }
 
-.has-dropdown ul li {
+.has-dropdown li {
     margin-right: 0;
-    padding: 5px 20px;
     width: auto;
 }
 
-.has-dropdown ul li a {
-/*    color: #282828;*/
-    color: #fff;
-}
-
-.has-dropdown ul li a i {
+.has-dropdown li a i {
     margin-right: 8px;
 }
 
-.has-dropdown ul li a:hover {
-    color: #808080;
+.top-menu.top-menu-right ul li a:hover {
+    color: #333;
 }
 
 .sc-text {
