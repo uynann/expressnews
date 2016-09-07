@@ -2,15 +2,9 @@
 
 @section('styles')
 
-<link rel="stylesheet" href="{{asset('css/admin/slick.css')}}">
-<link rel="stylesheet" href="{{asset('css/admin/slick-theme.css')}}">
-
 @endsection
 
 @section('scripts')
-
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="{{asset('js/admin/slick.min.js')}}"></script>
 
 @endsection
 
