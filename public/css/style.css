@@ -277,7 +277,7 @@ label{
     left: 0;
     border: none;
     outline: none;
-    background:#F9F9F9;
+    background:#dedede;
     width: 96%;
     height:45px;
     margin: 0;
@@ -312,7 +312,7 @@ label{
     cursor: pointer;
 }
 .sb-search-submit {
-    background: #e2dee0 url('../images/search.png') no-repeat 0 0;
+    background: #e2dee0 url('../assets/search.png') no-repeat 0 0;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
     filter: alpha(opacity=0); /* IE 5-7 */
     color: transparent;
@@ -322,7 +322,7 @@ label{
     -webkit-appearance: none;
 }
 .sb-icon-search {
-    background:#fff url('../images/search.png') no-repeat 0px 0px;
+    background:#fff url('../assets/search.png') no-repeat 0px 0px;
     z-index: 90;
 }
 /* Open state */
@@ -493,7 +493,7 @@ ul.callbacks_tabs.callbacks1_tabs {
   text-decoration: none;
   height: 61px;
   width: 38px;
-  background: transparent url("../images/themes.gif") no-repeat left top;
+  background: transparent url("../assets/themes.gif") no-repeat left top;
   margin-top: -45px;
   }
 .callbacks_nav.next {
@@ -1813,7 +1813,7 @@ a.span_link1 {
   height: 40px;
   border: none;
   text-indent: 100%;
-  background: url("../images/to-top1.png") no-repeat 0px 0px;
+  background: url("../assets/to-top1.png") no-repeat 0px 0px;
 }
 /*-- footer --*/
 .footer-top {
@@ -2143,12 +2143,12 @@ span.msg a {
 }
 .nbs-flexisel-nav-left {
       left: -7em;
-    background: url(../images/left.png) 0px 0px no-repeat;
+    background: url(../assets/left.png) 0px 0px no-repeat;
   display:none;
 }
 .nbs-flexisel-nav-right {
     right: -7em;
-    background: url(../images/right.png) 0px 0px no-repeat;
+    background: url(../assets/right.png) 0px 0px no-repeat;
   display:none;
 }
 /*-- //sports --*/
@@ -3561,6 +3561,10 @@ address a:hover {
     text-transform: none;
 }
 
+ul.cat li:first-child {
+    margin-top: 0;
+}
+
 /* --------------------------------------------------------------------------
 1. Home Page
 ---------------------------------------------------------------------------*/
@@ -3576,23 +3580,32 @@ address a:hover {
 
 .has-dropdown ul {
     position: absolute;
-    border: 1px solid #8b8b8b;
+    border-radius: 3px;
     top: 30px;
     right: 0;
     display: none;
+    width: 130px;
+    background: #000;
+    padding: 5px 0;
 }
 
 .has-dropdown ul li {
     margin-right: 0;
     padding: 5px 20px;
+    width: auto;
 }
 
 .has-dropdown ul li a {
-    color: #282828;
+/*    color: #282828;*/
+    color: #fff;
+}
+
+.has-dropdown ul li a i {
+    margin-right: 8px;
 }
 
 .has-dropdown ul li a:hover {
-    color: #282828;
+    color: #808080;
 }
 
 .sc-text {

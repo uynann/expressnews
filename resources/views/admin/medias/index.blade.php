@@ -1,5 +1,19 @@
 @extends('layouts.admin')
 
+@section('styles')
+
+<link rel="stylesheet" href="{{asset('css/admin/slick.css')}}">
+<link rel="stylesheet" href="{{asset('css/admin/slick-theme.css')}}">
+
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="{{asset('js/admin/slick.min.js')}}"></script>
+
+@endsection
+
 @section('content')
 
 <article class="content items-list-page medias-list-page">
@@ -69,14 +83,17 @@
                             <img src="{{ asset($photo->file_path) }}" alt="" class="image-gallary">
                         </div>
 
+
+{{--
                         <div class="window window-show-media">
                             <div class="window-content">
                                 <div class="window-header">
                                     <h4 class="modal-title">Attachment Details</h4>
                                     <div class="window-controls">
-                                        <span><i class="fa fa-chevron-left"></i></span>
-                                        <span><i class="fa fa-chevron-right"></i></span>
-                                        <span class="close-window"><i class="fa fa-times"></i></span>
+                                        <span><i class="fa fa-chevron-left"></i> </span>
+                                        <span><i class="fa fa-chevron-right"></i> </span>
+                                        <span class="close-window"><i class="fa fa-times"></i> </span>
+
                                     </div>
 
                                 </div>
@@ -97,6 +114,8 @@
                             </div>
 
                         </div>
+--}}
+
 
                     </li>
                     @endforeach
@@ -106,6 +125,76 @@
             </div>
         </div>
     </div>
+
+    <div class="window window-show-media">
+        <div class="window-content slides-master clearfix " id="cslide-slides">
+            <div class="window-header">
+                <h4 class="modal-title">Attachment Details</h4>
+
+            </div>
+
+            <div class="window-controls slide-prev-next">
+                <span class="slide-prev"><i class="fa fa-chevron-left"></i> </span>
+                <span class="slide-next"><i class="fa fa-chevron-right"></i> </span>
+                <span class="close-window"><i class="fa fa-times"></i> </span>
+
+            </div>
+
+            <div class="slides-container clearfix">
+{{--                @foreach($photos as $photo)--}}
+
+                    <div class="window-body slide active clearfix">
+                        <div class="image-show">
+                            <div class="image-holder">
+                                <img src="{{ asset($photo->find(3)->file_path) }}" alt="">
+                            </div>
+
+                            <a href="" class="btn btn-secondary btn-sm">Edit Image</a>
+
+                        </div>
+                        <div class="image-description">
+                            <div class="image-desc-header">
+                                <p><strong>File name: </strong>{{ $photo->find(4)->file_name }} </p>
+                                <p><strong>File type: </strong>{{ $photo->find(4)->file_mime }} </p>
+                                <p><strong>Uploaded on: </strong>{{ $photo->find(4)->created_at->format('M d, Y') }} </p>
+                                <p><strong>File size: </strong>{{ $photo->find(4)->file_size }} </p>
+                            </div>
+
+                            <div class="image-desc-form">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="window-body slide clearfix">
+                        <div class="image-show">
+                            <div class="image-holder">
+                                <img src="{{ asset($photo->find(4)->file_path) }}" alt="">
+                            </div>
+
+                            <a href="" class="btn btn-secondary btn-sm">Edit Image</a>
+
+                        </div>
+                        <div class="image-description">
+                            <div class="image-desc-header">
+                                <p><strong>File name: </strong>{{ $photo->find(4)->file_name }} </p>
+                            </div>
+
+                            <div class="image-desc-form">
+
+                            </div>
+                        </div>
+                    </div>
+
+{{--                @endforeach--}}
+
+
+            </div>
+        </div>
+
+    </div>
+
 
     <nav class="text-xs-right">
 

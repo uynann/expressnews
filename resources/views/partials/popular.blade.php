@@ -7,46 +7,24 @@
                 <div class="scrollbar" id="style-2">
                     <div class="force-overflow">
                         <div class="popular-post-grids">
+
+                            @if(count($popular_posts))
+                            @foreach($popular_posts as $post)
+
                             <div class="popular-post-grid">
                                 <div class="post-img">
-                                    <a href="single.html"><img src="{{ asset('assets/bus2.jpg') }}" alt="" /></a>
+                                    <a href="{{ route('show', ['category'=> $post->category->slug, 'id_title'=>$post->id . '-' . $post->slug]) }}"><img src="@if(isset($post->photo)) {{ asset($post->photo->file_path) }} @endif" alt="" /></a>
                                 </div>
                                 <div class="post-text">
-                                    <a class="pp-title" href="single.html"> The section of the mass media industry</a>
-                                    <p>On Feb 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>3 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
+                                    <a class="pp-title" href="{{ route('show', ['category'=> $post->category->slug, 'id_title'=>$post->id . '-' . $post->slug]) }}"> {{ $post->title }}</a>
+                                    <p>{{ $post->created_at }} <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>{{ count($post->commentsApproved) }} </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>{{ $post->view_count }} </a></p>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="popular-post-grid">
-                                <div class="post-img">
-                                    <a href="single.html"><img src="{{ asset('assets/bus1.jpg') }}" alt="" /></a>
-                                </div>
-                                <div class="post-text">
-                                    <a class="pp-title" href="single.html"> Lorem Ipsum is simply dummy text printing</a>
-                                    <p>On Apr 14 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>2 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="popular-post-grid">
-                                <div class="post-img">
-                                    <a href="single.html"><img src="{{ asset('assets/bus3.jpg') }}" alt="" /></a>
-                                </div>
-                                <div class="post-text">
-                                    <a class="pp-title" href="single.html">There are many variations of Lorem</a>
-                                    <p>On Jun 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="popular-post-grid">
-                                <div class="post-img">
-                                    <a href="single.html"><img src="{{ asset('assets/bus4.jpg') }}" alt="" /></a>
-                                </div>
-                                <div class="post-text">
-                                    <a class="pp-title" href="single.html">Sed ut perspiciatis unde omnis iste natus</a>
-                                    <p>On Jan 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>1 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
+
+                            @endforeach
+                            @endif
+
                         </div>
                     </div>
                 </div>
@@ -59,46 +37,24 @@
                 <div class="scrollbar" id="style-2">
                     <div class="force-overflow">
                         <div class="popular-post-grids">
-                            <div class="popular-post-grid">
-                                <div class="post-img">
-                                    <a href="single.html"><img src="{{ asset('assets/tec2.jpg') }}" alt="" /></a>
+
+                           @if(count($recent_posts))
+                            @foreach($recent_posts as $post)
+                                <div class="popular-post-grid">
+                                    <div class="post-img">
+                                        <a href="{{ route('show', ['category'=> $post->category->slug, 'id_title'=>$post->id . '-' . $post->slug]) }}"><img src="@if(isset($post->photo)) {{ asset($post->photo->file_path) }} @endif" alt="" /></a>
+                                    </div>
+                                    <div class="post-text">
+                                        <a class="pp-title" href="{{ route('show', ['category'=> $post->category->slug, 'id_title'=>$post->id . '-' . $post->slug]) }}"> {{ $post->title }}</a>
+                                        <p>{{ $post->created_at }} <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>{{ count($post->commentsApproved) }} </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
+                                    </div>
+                                    <div class="clearfix"></div>
                                 </div>
-                                <div class="post-text">
-                                    <a class="pp-title" href="single.html"> The section of the mass media industry</a>
-                                    <p>On Feb 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>3 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="popular-post-grid">
-                                <div class="post-img">
-                                    <a href="single.html"><img src="{{ asset('assets/tec2.jpg') }}" alt="" /></a>
-                                </div>
-                                <div class="post-text">
-                                    <a class="pp-title" href="single.html"> Lorem Ipsum is simply dummy text printing</a>
-                                    <p>On Apr 14 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>2 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="popular-post-grid">
-                                <div class="post-img">
-                                    <a href="single.html"><img src="{{ asset('assets/tec2.jpg') }}" alt="" /></a>
-                                </div>
-                                <div class="post-text">
-                                    <a class="pp-title" href="single.html">There are many variations of Lorem</a>
-                                    <p>On Jun 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="popular-post-grid">
-                                <div class="post-img">
-                                    <a href="single.html"><img src="{{ asset('assets/tec2.jpg') }}" alt="" /></a>
-                                </div>
-                                <div class="post-text">
-                                    <a class="pp-title" href="single.html">Sed ut perspiciatis unde omnis iste natus</a>
-                                    <p>On Jan 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>1 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
+
+                            @endforeach
+                            @endif
+
+
                         </div>
                     </div>
                 </div>
@@ -111,125 +67,29 @@
                 <div class="scrollbar" id="style-2">
                     <div class="force-overflow">
                         <div class="response">
-                            <div class="media response-info">
-                                <div class="media-left response-text-left">
-                                    <a href="#">
-                                        <img class="media-object" src="{{ asset('assets/icon1.png') }}" alt="" />
-                                    </a>
-                                    <h5><a href="#">Username</a></h5>
+
+                            @if(count($recent_comments))
+                            @foreach($recent_comments as $comment)
+                                <div class="media response-info">
+                                    <div class="media-left response-text-left">
+                                        <a href="#">
+                                            <img class="media-object" src="{{ isset($comment->user->photo->file_path) ? asset($comment->user->photo->file_path) : 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }}" alt="" />
+                                        </a>
+                                        <h5><a href="#">{{ $comment->user->username }}</a></h5>
+                                    </div>
+                                    <div class="media-body response-text-right">
+                                        <p>{{ $comment->comment }}</p>
+                                        <ul>
+                                            <li>{{ $comment->created_at->format('M d, Y') }}</li>
+                                            <li><a href="single.html">Reply</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"> </div>
                                 </div>
-                                <div class="media-body response-text-right">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <ul>
-                                        <li>MARCH 21, 2015</li>
-                                        <li><a href="single.html">Reply</a></li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="media response-info">
-                                <div class="media-left response-text-left">
-                                    <a href="#">
-                                        <img class="media-object" src="{{ asset('assets/icon1.png') }}" alt="" />
-                                    </a>
-                                    <h5><a href="#">Username</a></h5>
-                                </div>
-                                <div class="media-body response-text-right">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <ul>
-                                        <li>MARCH 26, 2015</li>
-                                        <li><a href="single.html">Reply</a></li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="media response-info">
-                                <div class="media-left response-text-left">
-                                    <a href="#">
-                                        <img class="media-object" src="{{ asset('assets/icon1.png') }}" alt="" />
-                                    </a>
-                                    <h5><a href="#">Username</a></h5>
-                                </div>
-                                <div class="media-body response-text-right">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <ul>
-                                        <li>MAY 25, 2015</li>
-                                        <li><a href="single.html">Reply</a></li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="media response-info">
-                                <div class="media-left response-text-left">
-                                    <a href="#">
-                                        <img class="media-object" src="{{ asset('assets/icon1.png') }}" alt="" />
-                                    </a>
-                                    <h5><a href="#">Username</a></h5>
-                                </div>
-                                <div class="media-body response-text-right">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <ul>
-                                        <li>FEB 13, 2015</li>
-                                        <li><a href="single.html">Reply</a></li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="media response-info">
-                                <div class="media-left response-text-left">
-                                    <a href="#">
-                                        <img class="media-object" src="{{ asset('assets/icon1.png') }}" alt="" />
-                                    </a>
-                                    <h5><a href="#">Username</a></h5>
-                                </div>
-                                <div class="media-body response-text-right">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <ul>
-                                        <li>JAN 28, 2015</li>
-                                        <li><a href="single.html">Reply</a></li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="media response-info">
-                                <div class="media-left response-text-left">
-                                    <a href="#">
-                                        <img class="media-object" src="{{ asset('assets/icon1.png') }}" alt="" />
-                                    </a>
-                                    <h5><a href="#">Username</a></h5>
-                                </div>
-                                <div class="media-body response-text-right">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <ul>
-                                        <li>APR 18, 2015</li>
-                                        <li><a href="single.html">Reply</a></li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="media response-info">
-                                <div class="media-left response-text-left">
-                                    <a href="#">
-                                        <img class="media-object" src="{{ asset('assets/icon1.png') }}" alt="" />
-                                    </a>
-                                    <h5><a href="#">Username</a></h5>
-                                </div>
-                                <div class="media-body response-text-right">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <ul>
-                                        <li>DEC 25, 2014</li>
-                                        <li><a href="single.html">Reply</a></li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
+                            @endforeach
+                            @endif
+
+
                         </div>
                     </div>
 

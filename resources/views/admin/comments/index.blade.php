@@ -135,7 +135,7 @@
                     <div class="item-col item-col-category no-overflow">
                         <div class="item-heading">Submitted On</div>
                         <div class="no-overflow item-date">
-                            {{ $comment->created_at->format('M d, Y - H:i:s') }}
+                            {{ $comment->created_at->timezone('Europe/Moscow')->format('M d, Y - H:i:s') }}
                         </div>
                     </div>
 

@@ -23,7 +23,8 @@
                         </a>
 
                         <ul>
-                            <li><a href="{{ url('/logout') }}">Logout</a></li>
+                            <li><a href="{{ url('/') }}"><i class="fa fa-user"></i> Profile</a></li>
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                     </li>
                     @endif

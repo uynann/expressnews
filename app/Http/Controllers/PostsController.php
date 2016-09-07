@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Post;
 use App\Comment;
+use Session;
 
 class PostsController extends Controller
 {
@@ -51,7 +52,18 @@ class PostsController extends Controller
     {
         $id = current(explode("-", $id_title));
 
+        $postKey = 'post_' . $id;
+
         $post = Post::findOrFail($id);
+
+        // Check if blog session key exists
+        // If not, update view_count and create session key
+        if (!Session::has($postKey))
+        {
+            $post->increment('view_count');
+            Session::put($postKey, 1);
+        }
+
 
         if ($post->category->slug == $category) {
             return view('show', compact('post'));

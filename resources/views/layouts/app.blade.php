@@ -66,32 +66,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     @include('partials.popular')
 
+                    @include('partials.popular-news')
 
-                    <div class="side-bar-articles">
-                        <div class="side-bar-article">
-                            <a href="single.html"><img src="{{ asset('assets/sai.jpg') }}" alt="" /></a>
-                            <div class="side-bar-article-title">
-                                <a href="single.html">Contrary to popular belief, Lorem Ipsum is not simply random text</a>
-                            </div>
-                        </div>
-                        <div class="side-bar-article">
-                            <a href="single.html"><img src="{{ asset('assets/sai2.jpg') }}" alt="" /></a>
-                            <div class="side-bar-article-title">
-                                <a href="single.html">There are many variations of passages of Lorem</a>
-                            </div>
-                        </div>
-                        <div class="side-bar-article">
-                            <a href="single.html"><img src="{{ asset('assets/sai3.jpg') }}" alt="" /></a>
-                            <div class="side-bar-article-title">
-                                <a href="single.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</a>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="secound_half">
                     @include('partials.tag')
 
-                    @include('partials.popular-news')
                 </div>
                 <div class="clearfix"></div>
             </div>

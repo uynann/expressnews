@@ -14,7 +14,7 @@ class Post extends Model
 
 
     protected $fillable = [
-        'title', 'body', 'user_id', 'photo_id', 'status', 'category_id', 'slug',
+        'title', 'body', 'user_id', 'photo_id', 'status', 'category_id', 'slug', 'view_count',
     ];
 
     public function user() {
@@ -27,13 +27,13 @@ class Post extends Model
 
     public function getCreatedAtAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('M d, Y');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->timezone('Europe/Moscow')->format('M d, Y');
 
     }
 
     public function getUpdatedAtAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('M d, Y - H:i:s');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->timezone('Europe/Moscow')->format('M d, Y - H:i:s');
     }
 
     public function category() {

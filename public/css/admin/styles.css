@@ -440,7 +440,7 @@ ul.image-row li.image-wrapper-holder:nth-child(7n) {
     height: 100%; /* Full height */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    display: none;
+/*    display: none;*/
 }
 
 .window .window-content {
@@ -459,29 +459,50 @@ ul.image-row li.image-wrapper-holder:nth-child(7n) {
     padding: 10px 20px;
 }
 
-.window-header .window-controls {
+.window-controls {
     position: absolute;
     right: 0;
-    top: 16px;
+    top: 16.5px;
 }
 
-.window-header .window-controls span {
+.window-controls span {
     cursor: pointer;
     border-left: 2px solid #69c605;
-    padding: 17px 20px;
+    padding: 17.5px 20px 16.5px 20px;
     margin: 0;
+    color: #fff;
 }
 
-.window-header .window-controls span:hover,
-.window-header .window-controls span:active {
+.window-controls span.close-window {
+    padding-right: 0;
+}
+
+.window-controls span.close-window i {
+    padding-right: 20px;
+}
+
+.window-controls span:hover,
+.window-controls span:active {
     background-color: #69c605;
 }
 
-.window-body {
+.slides-container {
     text-align: left;
     height: -moz-calc(100% - 56px);
     height: -webkit-calc(100% - 56px);
     height: calc(100% - 56px);
+}
+
+.slide {
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
+
+.window-body {
+    height: 100%;
 }
 
 .window-body .image-show {
@@ -494,10 +515,23 @@ ul.image-row li.image-wrapper-holder:nth-child(7n) {
 
 .window-body .image-description {
     width: 37.5%;
-    padding-left: 2.5%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 10px;
+    padding-top: 10px;
     float: right;
     height: 100%;
     background-color: #f0f3f6;
+}
+
+.image-desc-header p {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.image-desc-header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d6d9db;
 }
 
 .window-body .image-holder {
@@ -554,6 +588,8 @@ ul.image-row li.image-wrapper-holder:nth-child(7n) {
     font-size: 1.2em;
     color: #9e9e9e;
 }
+
+
 
 /* --------------------------------------------------------------------------
 4. Admin - Comments Page

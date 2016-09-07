@@ -119,7 +119,7 @@
                     <div class="item-col item-col-category no-overflow">
                         <div class="item-heading">Submitted On</div>
                         <div class="no-overflow item-date">
-                            {{ $reply->created_at->format('M d, Y - H:i:s') }}
+                            {{ $reply->created_at->timezone('Europe/Moscow')->format('M d, Y - H:i:s') }}
                         </div>
                     </div>
 

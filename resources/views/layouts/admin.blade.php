@@ -402,6 +402,7 @@ else
         <script src="{{asset('js/admin/dropzone.js')}}"></script>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
 
+
         @yield('scripts')
 
         <script src="{{ asset('js/admin/app.js') }}"></script>
