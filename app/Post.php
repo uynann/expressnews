@@ -60,8 +60,7 @@ class Post extends Model
     {
         if ($keyword!='') {
             $query->where(function ($query) use ($keyword) {
-                $query->where("title", "LIKE","%$keyword%")
-                    ->orWhere("status", "LIKE", "%$keyword%");
+                $query->where("title", "LIKE","%$keyword%");
             });
         }
         return $query;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Post;
 
 class HomeController extends Controller
 {
@@ -55,4 +56,23 @@ class HomeController extends Controller
     public function privacyPolicy() {
         return view('privacy-policy');
     }
+
+
+    public function search(Request $request) {
+        $search = $request->input('search');
+
+        if ($search != null) {
+            $posts = Post::SearchByKeyword($search)->orderBy('id', 'desc')->simplePaginate(10);
+            $posts_all = Post::SearchByKeyword($search)->get();
+
+        }
+        $param = 'search';
+        $param_val = $search;
+
+        return view('search', compact('posts', 'search', 'param', 'param_val', 'posts_all'));
+
+
+
+    }
+
 }

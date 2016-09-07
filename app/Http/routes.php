@@ -90,6 +90,8 @@ Route::get('about', 'HomeController@about');
 Route::get('privacy-policy', 'HomeController@privacyPolicy');
 Route::get('contact', 'HomeController@contact');
 
+Route::get('search', 'HomeController@search');
+
 
 Route::get('{category}/{id_title}', ['as' => 'show', 'uses' => 'PostsController@show']);
 
