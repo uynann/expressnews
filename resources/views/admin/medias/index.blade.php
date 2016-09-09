@@ -1,12 +1,5 @@
 @extends('layouts.admin')
 
-@section('styles')
-
-@endsection
-
-@section('scripts')
-
-@endsection
 
 @section('content')
 
@@ -32,9 +25,7 @@
 
                 </div>
             </div>
-            @if(session('status'))
-            <div class="status update-status">{{ session('status') }} <span><i class="fa fa-times" aria-hidden="true"></i></span></div>
-            @endif
+
         </div>
         <div class="items-search">
             <form class="form-inline">
@@ -51,7 +42,7 @@
     <div class="card">
         <div class="upload-container">
             <div id="dropzone">
-                <form action="{{ url('admin/medias') }}" class="dropzone needsclick dz-clickable" id="demo-upload">
+                <form action="{{ url('admin/medias') }}" class="dropzone needsclick dz-clickable" id="mediaUpload2" enctype="multipart/form-data">
                     <div class="dz-message-block">
                         <div class="dz-message needsclick"> Drop files here or click to upload. </div>
                     </div>

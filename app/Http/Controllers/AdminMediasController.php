@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Photo;
+use Auth;
 
 class AdminMediasController extends Controller
 {
@@ -30,14 +31,14 @@ class AdminMediasController extends Controller
         $file->move('images', $filename);
 
         // save the image details into the database
-        $upload = [
+        $photo = Photo::create([
             'file_name' => $filename,
             'file_size' => $file->getClientSize(),
             'file_mime' => $file->getClientMimeType(),
             'file_path' => 'images/' . $filename,
-        ];
+            'user_id'   => Auth::user()->id,
+        ]);
 
-        Photo::create($upload);
-
+        return $photo;
     }
 }

@@ -1388,10 +1388,6 @@ NProgress.start();
 // end loading bar
 NProgress.done();
 
-/***********************************************
-*        Upload Files with DropzoneJs
-***********************************************/
-
 
 /***********************************************
 *        Select Picture
@@ -1400,7 +1396,13 @@ $(function() {
 
     $('#insert-selected').prop( "disabled", true );
 
-    $('ul.image-row li .image-wrapper').click(function () {
+//    $('ul.image-row li .image-wrapper').click(function () {
+//        $('ul.image-row li .image-wrapper.selected').removeClass('selected');
+//        $(this).toggleClass('selected');
+//        $('#insert-selected').prop( "disabled", false );
+//    });
+
+    $('ul.image-row').on('click', 'li .image-wrapper', function () {
         $('ul.image-row li .image-wrapper.selected').removeClass('selected');
         $(this).toggleClass('selected');
         $('#insert-selected').prop( "disabled", false );
@@ -1431,8 +1433,14 @@ $(function() {
 ***********************************************/
 $(function() {
     $('.status span').click(function() {
-        $('.status').remove();
+        $(this).parent().remove();
     });
+
+
+    $('.medias-create-page').on('click', '.uploaded-image span', function() {
+        $(this).parent().remove();
+    });
+
 });
 
 
@@ -1766,9 +1774,16 @@ $(function() {
 
 
 /***********************************************
-*       Photos Slider
+*        Upload Files with DropzoneJs
 ***********************************************/
-$(function() {
+Dropzone.options.mediaUpload = {
+    maxFilesize: 2, // MB
+    acceptedFiles: "image/*",
+    success: function(file, response) {
+        console.log(file);
+        console.log(response);
+    }
+};
 
-});
+
 

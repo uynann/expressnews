@@ -9,8 +9,12 @@ class Photo extends Model
     //
 
     protected $fillable = [
-        'file_name', 'file_size', 'file_mime', 'file_path',
+        'file_name', 'file_size', 'file_mime', 'file_path', 'user_id',
     ];
+
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 
 
     public function getFileSizeAttribute($bytes)

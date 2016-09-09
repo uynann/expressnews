@@ -13,8 +13,6 @@
         <!-- Place favicon.ico in the root directory -->
         <link rel="stylesheet" href="{{asset('css/admin/vendor.css')}}">
 
-        @yield('styles')
-
         <link rel="stylesheet" href="{{asset('css/admin/app-default.css')}}">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css">
 
@@ -280,7 +278,7 @@ else
                                 <h4 class="modal-title">Media Library</h4> </div>
                             <div class="modal-body modal-tab-container">
                                 <ul class="nav nav-tabs modal-tabs" role="tablist">
-                                    <li class="nav-item"> <a class="nav-link" href="#gallery" data-toggle="tab" role="tab">Gallery</a> </li>
+                                    <li class="nav-item"> <a class="nav-link nav-link-gallery" href="#gallery" data-toggle="tab" role="tab">Gallery</a> </li>
                                     <li class="nav-item"> <a class="nav-link active" href="#upload" data-toggle="tab" role="tab">Upload</a> </li>
                                 </ul>
                                 <div class="tab-content modal-tab-content">
@@ -304,7 +302,7 @@ else
                                     <div class="tab-pane fade active in" id="upload" role="tabpanel">
                                         <div class="upload-container">
                                             <div id="dropzone">
-                                                <form action="{{ url('admin/medias') }}" class="dropzone needsclick dz-clickable" id="demo-upload">
+                                                <form action="{{ url('admin/medias') }}" class="dropzone needsclick dz-clickable" id="mediaUpload1">
                                                     <div class="dz-message-block">
                                                         <div class="dz-message needsclick"> Drop files here or click to upload. </div>
                                                     </div>
@@ -397,18 +395,22 @@ else
                 <div class="color-secondary"></div>
             </div>
         </div>
+
+        <script type="text/javascript">
+            var baseUrl = "{{ url('/') }}";
+        </script>
+
+
+        <script src="{{ asset('js/admin/dropzone.js')}}"></script>
+        <script src="{{ asset('js/admin/dropzone-options.js') }}"></script>
+
         <script src="{{asset('js/admin/vendor.js')}}"></script>
 
-        <script src="{{asset('js/admin/dropzone.js')}}"></script>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
-
 
         @yield('scripts')
 
         <script src="{{ asset('js/admin/app.js') }}"></script>
 
-
-
     </body>
-
 </html>
