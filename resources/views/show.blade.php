@@ -1,5 +1,29 @@
 @extends('layouts.app')
 
+@section('meta-styles')
+{{--You can use Open Graph tags to customize link previews.
+Learn more: https://developers.facebook.com/docs/sharing/webmasters--}}
+<meta property="og:url"                content="{{ url($post->category->slug) }}/{{ $post->id }}-{{ $post->slug }}" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="{{ $post->title }}" />
+<meta property="og:description"        content="{{ str_limit($post->body, 100) }}" />
+<meta property="og:image"              content="{{ isset($post->photo) ? asset($post->photo->file_path) : '' }}" />
+
+@endsection
+
+@section('facebook-sdk')
+{{--    Load Facebook SDK for JavaScript --}}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=211172419301898";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+@endsection
+
+
 @section('content')
 
 <ol class="breadcrumb">
@@ -20,6 +44,7 @@
                     </div>
                     <div class="clearfix"></div>
                 </a>
+
             </li>
             <li>
                 <a href="#">

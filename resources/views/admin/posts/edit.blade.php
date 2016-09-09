@@ -58,7 +58,7 @@
             {!! Form::label('slug', '* Permalink:', ['class'=>'col-sm-2 form-control-label text-xs-right']) !!}
             <div class="col-sm-10">
                 <div class="permalink-show">
-                    <a class="permalink" href="{{ route('show', ['category'=> $post->category->slug, 'id_title'=>$post->id . '-' . $post->slug]) }}">{{ url($post->category->slug) }}/<span class="slug">{{ $post->slug }}</span></a>
+                    <a class="permalink" href="{{ route('show', ['category'=> $post->category->slug, 'id_title'=>$post->id . '-' . $post->slug]) }}">{{ url($post->category->slug) }}/{{ $post->id }}-<span class="slug">{{ $post->slug }}</span></a>
                     <div class="slug-edit-form">
                         {!! Form::text('slug', null, ['class'=>'form-control form-control-sm boxed']) !!}
                         <span class="btn btn-primary btn-sm ok-post-slug-change">OK</span> <span class="cancel-post-slug-change">Cancel</span>
