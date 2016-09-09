@@ -40,6 +40,22 @@ class User extends Authenticatable
         }
     }
 
+    public function isEditor() {
+        if ($this->role->name == 'Editor') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isAuthor() {
+        if ($this->role->name == 'Author') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function posts() {
         return $this->hasMany('App\Post');
     }

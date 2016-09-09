@@ -18,11 +18,11 @@
                         <li class="has-submenu"><a><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;New</a>
 
                             <ul>
-                                <li><a href="">Post</a></li>
-                                <li><a href="">Category</a></li>
-                                <li><a href="">Tag</a></li>
-                                <li><a href="">Media</a></li>
-                                <li><a href="">User</a></li>
+                                <li><a href="{{ url('/admin/posts/create') }}">Post</a></li>
+                                <li><a href="{{ url('/admin/categories') }}">Category</a></li>
+                                <li><a href="{{ url('/admin/tags') }}">Tag</a></li>
+                                <li><a href="{{ url('/admin/medias/create') }}">Media</a></li>
+                                <li><a href="{{ url('/admin/users/create') }}">User</a></li>
                             </ul>
                         </li>
                     </ul>
