@@ -3557,21 +3557,103 @@ address a:hover {
 /*-----------------------------------------------------*/
 /* ADDITIONAL STYLES */
 
-.top-menu ul li a {
-    text-transform: none;
-}
-
 ul.cat li:first-child {
     margin-top: 0;
 }
 
 .header-top {
-    padding: 6px 0;
+    padding: 0;
 }
 
-.top-menu-left {
-    padding-top: 2px;
+.small-menu {
+    height: inherit;
 }
+
+.small-menu > ul {
+    font-size: 0;
+    display: inline-block;
+}
+
+.small-menu > ul > li {
+    font-size: 14px;
+    display: inline-block;
+    list-style: none;
+    height: 33px;
+}
+
+.small-menu > ul > li > a {
+    text-decoration: none;
+    color: #eee;
+    padding: 8px 15px;
+    line-height: 33px;
+}
+
+.small-menu ul li a:hover,
+.small-menu ul li a:active {
+    color: #00b9eb;
+}
+
+.small-menu-left {
+    float: left;
+}
+
+.small-menu-right {
+    float: right;
+}
+
+.has-submenu {
+    position: relative;
+}
+
+.has-submenu a {
+    cursor: pointer;
+}
+
+.has-submenu > ul {
+    position: absolute;
+    background: #000;
+    padding: 5px 80px 5px 10px;
+    top: 26px;
+    display: none;
+    transition: display 0.2s;
+}
+
+.has-submenu > ul > li {
+    list-style: none;
+    padding: 3px 0;
+}
+
+.has-submenu > ul > li > a {
+    color: rgba(240,245,250,.7);
+    text-decoration: none;
+    padding: 3px 0;
+}
+
+.admin-menu > li:first-child > a {
+    cursor: default;
+}
+
+.admin-menu > li:first-child > a:hover {
+    color: #eee;
+}
+
+.auth-menu .has-submenu > ul {
+    right: 0;
+    width: 150px;
+    padding-right: 50px;
+}
+
+.has-submenu > a > img {
+    max-height: 25px;
+    max-width: 25px;
+    margin-left: 5px;
+
+}
+
+.auth-menu .has-submenu > ul > li > a > i {
+    margin-right: 10px;
+}
+
 
 /* --------------------------------------------------------------------------
 1. Home Page
@@ -3594,7 +3676,7 @@ ul.cat li:first-child {
 .has-dropdown {
     right: -15px;
     left: auto;
-    border-radius: 3px;
+    border-radius: 0;
     top: 30px;
     display: none;
     min-width: 130px;

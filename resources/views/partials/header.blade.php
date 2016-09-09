@@ -2,34 +2,50 @@
 <div class="header">
     <div class="header-top">
         <div class="wrap clearfix">
-            <div class="top-menu top-menu-left">
+            <div class="small-menu small-menu-left">
                 <ul>
                     <li><a href="{{ url('/') }}">Home</a></li>
                     <li><a href="{{ url('/about') }}">About Us</a></li>
                     <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
                     <li><a href="{{ url('/contact') }}">Contact Us</a></li>
                 </ul>
-            </div>
-            <div class="top-menu top-menu-right">
-                <ul>
 
+                @if((Auth::check()))
+                    @if(Auth::user()->role->name == 'Administrator')
+                    <ul class="admin-menu">
+                        <li><a>&#124;</a></li>
+                        <li><a href="{{ url('/admin') }}">Dashboard</a></li>
+                        <li class="has-submenu"><a><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;New</a>
+
+                            <ul>
+                                <li><a href="">Post</a></li>
+                                <li><a href="">Category</a></li>
+                                <li><a href="">Tag</a></li>
+                                <li><a href="">Media</a></li>
+                                <li><a href="">User</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    @endif
+                @endif
+
+            </div>
+
+            <div class="small-menu small-menu-right">
+                <ul class="auth-menu">
                     @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Singup</a></li>
                     @else
+                    <li class="has-submenu"><a>{{ Auth::user()->username }}  <img src="{{ isset(Auth::user()->photo->file_path) ? asset(Auth::user()->photo->file_path) : 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }}" alt=""></a>
 
-                    <li class="btn-group">
-                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }} <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu has-dropdown">
+                        <ul>
                             <li><a href="{{ url('/') }}"><i class="fa fa-user"></i> Profile</a></li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                     </li>
                     @endif
                 </ul>
-
-
 
             </div>
             <div class="clearfix"></div>
