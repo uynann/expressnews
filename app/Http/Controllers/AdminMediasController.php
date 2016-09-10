@@ -11,8 +11,9 @@ use Auth;
 class AdminMediasController extends Controller
 {
     public function index() {
-        $photos = Photo::orderBy('id', 'desc')->paginate(28);;
-        return view('admin.medias.index', compact('photos'));
+        $photos = Photo::orderBy('id', 'desc')->paginate(28);
+        $photos_all = Photo::orderBy('id', 'desc')->get();
+        return view('admin.medias.index', compact('photos', 'photos_all'));
     }
 
     public function create() {
@@ -27,6 +28,11 @@ class AdminMediasController extends Controller
         // set my file name
         $filename = uniqid() . $file->getClientOriginalName();
 
+        // Create a folder in public dir, if it doesn't exist
+//        if (!file_exists('images')) {
+//            mkdir('images', 0777, true);
+//        }
+
         // move the file to correct location
         $file->move('images', $filename);
 
@@ -37,6 +43,7 @@ class AdminMediasController extends Controller
             'file_mime' => $file->getClientMimeType(),
             'file_path' => 'images/' . $filename,
             'user_id'   => Auth::user()->id,
+//            file->get
         ]);
 
         return $photo;

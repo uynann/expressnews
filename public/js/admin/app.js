@@ -1537,42 +1537,6 @@ $(function() {
 
 
 /***********************************************
-*       Medias Window
-***********************************************/
-$(function () {
-    $(".window-show-media").click(function(){
-        $(this).fadeOut("fast");
-    }).children().click(function(e) {
-        return false;
-    });
-
-    $('.close-window').click(function() {
-        $('.window-show-media').fadeOut('fast');
-    });
-
-
-    $('.image-wrapper-for-medias-page').click(function() {
-        $(this).siblings().fadeIn('fast');
-    });
-
-
-});
-
-
-/***********************************************
-*       Upload Picture Form
-***********************************************/
-$(function() {
-    $('#btn-addnew-media').click(function() {
-        $('.medias-list-page .upload-container').fadeToggle('fast');
-    });
-
-    $('.close-uploadform').click(function() {
-        $('.medias-list-page .upload-container').fadeOut('fast');
-    });
-});
-
-/***********************************************
 *       Edit Comments
 ***********************************************/
 $(function() {
@@ -1774,16 +1738,90 @@ $(function() {
 
 
 /***********************************************
-*        Upload Files with DropzoneJs
+*       Upload Picture Form
 ***********************************************/
-Dropzone.options.mediaUpload = {
-    maxFilesize: 2, // MB
-    acceptedFiles: "image/*",
-    success: function(file, response) {
-        console.log(file);
-        console.log(response);
-    }
-};
+$(function() {
+    $('#btn-addnew-media').click(function() {
+        $('.medias-list-page .upload-container').fadeToggle('fast');
+    });
 
+    $('.close-uploadform').click(function() {
+        $('.medias-list-page .upload-container').fadeOut('fast');
+    });
+});
+
+
+/***********************************************
+*        Carousel for Media Library
+***********************************************/
+$(function() {
+
+    var ul = $('ul.slides-container');
+    var slideCount = ul.children().length;
+    var slideWidthPc = 100.0 / slideCount;
+    var slideIndex = 0;
+
+    ul.find('li').each(function(index) {
+        var leftPercent = (slideWidthPc * index) + '%';
+        $(this).css({'left':leftPercent});
+        $(this).css({width:(100 / slideCount) + '%'});
+    });
+
+    // Listen for click of prev button
+    $('.slide-prev-next .slide-prev').click(function() {
+        slide(slideIndex - 1);
+    });
+
+    // Listen for click of next button
+    $('.slide-prev-next .slide-next').click(function() {
+        slide(slideIndex + 1);
+    });
+
+
+    function slide(newSlideIndex) {
+
+        if(newSlideIndex < 0 || newSlideIndex >= slideCount) return;
+
+        var marginLeftPc = (newSlideIndex * (-100)) + '%';
+        ul.animate({'margin-left': marginLeftPc}, 400, function() {
+            slideIndex = newSlideIndex;
+        });
+    }
+
+
+    function show(newSlideIndex) {
+
+        if(newSlideIndex < 0 || newSlideIndex >= slideCount) return;
+
+        var marginLeftPc = (newSlideIndex * (-100)) + '%';
+        ul.animate({'margin-left': marginLeftPc}, 0, function() {
+            slideIndex = newSlideIndex;
+        });
+    }
+
+
+    /***********************************************
+    *       Medias Window
+    ***********************************************/
+        $(".window-show-media").click(function(){
+            $(this).fadeOut("fast");
+        }).children().click(function(e) {
+            return false;
+        });
+
+        $('.close-window').click(function() {
+            $('.window-show-media').fadeOut('fast');
+        });
+
+
+        $('.image-wrapper-for-medias-page').click(function() {
+            $('.window-show-media').fadeIn('fast');
+            var liIndex = parseInt($(this).attr('data-index'), 10);
+            show(liIndex);
+        });
+
+
+
+});
 
 

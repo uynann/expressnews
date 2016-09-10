@@ -62,46 +62,11 @@
             <div class="images-container">
                 <ul class="row image-row clearfix">
                     @if(isset($photos))
-                    @foreach($photos as $photo)
+                    @foreach($photos as $key=>$photo)
                     <li class="image-wrapper-holder clearfix">
-                        <div class="image-wrapper-for-medias-page">
+                        <div class="image-wrapper-for-medias-page" data-index="{{ $key + ($photos->currentPage() - 1) * 28 }}">
                             <img src="{{ asset($photo->file_path) }}" alt="" class="image-gallary">
                         </div>
-
-
-{{--
-                        <div class="window window-show-media">
-                            <div class="window-content">
-                                <div class="window-header">
-                                    <h4 class="modal-title">Attachment Details</h4>
-                                    <div class="window-controls">
-                                        <span><i class="fa fa-chevron-left"></i> </span>
-                                        <span><i class="fa fa-chevron-right"></i> </span>
-                                        <span class="close-window"><i class="fa fa-times"></i> </span>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="window-body clearfix">
-                                    <div class="image-show">
-                                        <div class="image-holder">
-                                            <img src="{{ asset($photo->file_path) }}" alt="">
-                                        </div>
-
-                                        <a href="" class="btn btn-secondary btn-sm">Edit Image</a>
-
-                                    </div>
-                                    <div class="image-description">
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
---}}
-
-
                     </li>
                     @endforeach
                     @endif
@@ -112,7 +77,7 @@
     </div>
 
     <div class="window window-show-media">
-        <div class="window-content slides-master clearfix " id="cslide-slides">
+        <div class="window-content clearfix">
             <div class="window-header">
                 <h4 class="modal-title">Attachment Details</h4>
 
@@ -125,13 +90,13 @@
 
             </div>
 
-            <div class="slides-container clearfix">
-{{--                @foreach($photos as $photo)--}}
+            <ul class="slides-container clearfix" style="width: {{ 100 * count($photos_all) }}%">
 
-                    <div class="window-body slide active clearfix">
+            @foreach($photos_all as $photo)
+                    <li class="window-body clearfix">
                         <div class="image-show">
                             <div class="image-holder">
-                                <img src="{{ asset($photo->find(3)->file_path) }}" alt="">
+                                <img src="{{ asset($photo->file_path) }}" alt="">
                             </div>
 
                             <a href="" class="btn btn-secondary btn-sm">Edit Image</a>
@@ -139,43 +104,21 @@
                         </div>
                         <div class="image-description">
                             <div class="image-desc-header">
-                                <p><strong>File name: </strong>{{ $photo->find(4)->file_name }} </p>
-                                <p><strong>File type: </strong>{{ $photo->find(4)->file_mime }} </p>
-                                <p><strong>Uploaded on: </strong>{{ $photo->find(4)->created_at->format('M d, Y') }} </p>
-                                <p><strong>File size: </strong>{{ $photo->find(4)->file_size }} </p>
+                                <p><strong>File name: </strong>{{ $photo->file_name }} </p>
+                                <p><strong>File type: </strong>{{ $photo->file_mime }} </p>
+                                <p><strong>Uploaded on: </strong>{{ $photo->created_at->format('M d, Y') }} </p>
+                                <p><strong>File size: </strong>{{ $photo->file_size }} </p>
                             </div>
 
                             <div class="image-desc-form">
 
                             </div>
                         </div>
-                    </div>
+                    </li>
+              @endforeach
 
 
-                    <div class="window-body slide clearfix">
-                        <div class="image-show">
-                            <div class="image-holder">
-                                <img src="{{ asset($photo->find(4)->file_path) }}" alt="">
-                            </div>
-
-                            <a href="" class="btn btn-secondary btn-sm">Edit Image</a>
-
-                        </div>
-                        <div class="image-description">
-                            <div class="image-desc-header">
-                                <p><strong>File name: </strong>{{ $photo->find(4)->file_name }} </p>
-                            </div>
-
-                            <div class="image-desc-form">
-
-                            </div>
-                        </div>
-                    </div>
-
-{{--                @endforeach--}}
-
-
-            </div>
+            </ul>
         </div>
 
     </div>

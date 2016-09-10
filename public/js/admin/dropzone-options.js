@@ -1,5 +1,3 @@
-
-
 Dropzone.options.mediaUpload1 = {
     maxFilesize: 2, // MB
     acceptedFiles: "image/*",

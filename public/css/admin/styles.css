@@ -449,6 +449,7 @@ ul.image-row li.image-wrapper-holder:nth-child(7n) {
     width: 95%;
     height: 92%;
     position: relative;
+    overflow: hidden;
 }
 
 .window-header {
@@ -486,23 +487,24 @@ ul.image-row li.image-wrapper-holder:nth-child(7n) {
     background-color: #69c605;
 }
 
-.slides-container {
+ul.slides-container {
     text-align: left;
     height: -moz-calc(100% - 56px);
     height: -webkit-calc(100% - 56px);
     height: calc(100% - 56px);
+/*    width: 300%;*/
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: absolute;
+    overflow: hidden;
 }
 
-.slide {
-    display: none;
-}
-
-.slide.active {
-    display: block;
-}
-
-.window-body {
+li.window-body {
     height: 100%;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
 }
 
 .window-body .image-show {
