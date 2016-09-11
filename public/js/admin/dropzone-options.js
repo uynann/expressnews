@@ -36,6 +36,18 @@ Dropzone.options.mediaUpload3 = {
     }
 };
 
+Dropzone.options.mediaUpload4 = {
+    maxFilesize: 2, // MB
+    acceptedFiles: "image/*",
+    success: function(file, response) {
+        if (file.status == 'success') {
+            handleDropzoneFileUpload4.handleSuccess(response);
+        } else {
+            handleDropzoneFileUpload4.handleError(response);
+        }
+    }
+};
+
 
 var handleDropzoneFileUpload1 = {
     handleError: function(response) {
@@ -89,6 +101,21 @@ var handleDropzoneFileUpload3 = {
         imageHolder    +=  '</div>';
 
         $('.medias-create-page').append(imageHolder);
+        //        console.log(response);
+    }
+};
+
+var handleDropzoneFileUpload4 = {
+    handleError: function(response) {
+        console.log(response);
+    },
+    handleSuccess: function(response) {
+//        var imageHolder = '<div class="status uploaded-image">';
+//        imageHolder    +=    '<img src="' + baseUrl + '/' + response.file_path + '" alt="">';
+//        imageHolder    +=    '<span><i class="fa fa-times" aria-hidden="true"></i></span>';
+//        imageHolder    +=  '</div>';
+//
+//        $('.medias-create-page').append(imageHolder);
         //        console.log(response);
     }
 };

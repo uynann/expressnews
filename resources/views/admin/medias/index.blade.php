@@ -12,15 +12,7 @@
                         Media Library
                         <span class="btn btn-primary btn-sm rounded-s" id="btn-addnew-media">
                             Add New
-                        </span><div class="action dropdown">
-                        <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More actions...
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o icon"></i>Mark as a draft</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#confirm-modal"><i class="fa fa-close icon"></i>Delete</a>
-                        </div>
-                        </div>
+                        </span>
                     </h3>
 
                 </div>
@@ -56,6 +48,13 @@
         </div>
     </div>
 
+    <div class="card">
+        <ul class="view-mode">
+            <li><a href="{{ url('admin/medias?view=list') }}"><i class="fa fa-th-list" aria-hidden="true"></i></a></li>
+            <li class="active"><a href="{{ url('admin/medias') }}"><i class="fa fa-th-large" aria-hidden="true"></i></a></li>
+        </ul>
+    </div>
+
 
     <div class="card items medias-list">
         <div class="medias-content">
@@ -64,7 +63,7 @@
                     @if(isset($photos))
                     @foreach($photos as $key=>$photo)
                     <li class="image-wrapper-holder clearfix">
-                        <div class="image-wrapper-for-medias-page" data-index="{{ $key + ($photos->currentPage() - 1) * 28 }}">
+                        <div class="image-wrapper-for-medias-page" data-index="{{ $key + ($photos->currentPage() - 1) * $photos->perPage() }}">
                             <img src="{{ asset($photo->file_path) }}" alt="" class="image-gallary">
                         </div>
                     </li>
@@ -76,53 +75,7 @@
         </div>
     </div>
 
-    <div class="window window-show-media">
-        <div class="window-content clearfix">
-            <div class="window-header">
-                <h4 class="modal-title">Attachment Details</h4>
-
-            </div>
-
-            <div class="window-controls slide-prev-next">
-                <span class="slide-prev"><i class="fa fa-chevron-left"></i> </span>
-                <span class="slide-next"><i class="fa fa-chevron-right"></i> </span>
-                <span class="close-window"><i class="fa fa-times"></i> </span>
-
-            </div>
-
-            <ul class="slides-container clearfix" style="width: {{ 100 * count($photos_all) }}%">
-
-            @foreach($photos_all as $photo)
-                    <li class="window-body clearfix">
-                        <div class="image-show">
-                            <div class="image-holder">
-                                <img src="{{ asset($photo->file_path) }}" alt="">
-                            </div>
-
-                            <a href="" class="btn btn-secondary btn-sm">Edit Image</a>
-
-                        </div>
-                        <div class="image-description">
-                            <div class="image-desc-header">
-                                <p><strong>File name: </strong>{{ $photo->file_name }} </p>
-                                <p><strong>File type: </strong>{{ $photo->file_mime }} </p>
-                                <p><strong>Uploaded on: </strong>{{ $photo->created_at->format('M d, Y') }} </p>
-                                <p><strong>File size: </strong>{{ $photo->file_size }} </p>
-                            </div>
-
-                            <div class="image-desc-form">
-
-                            </div>
-                        </div>
-                    </li>
-              @endforeach
-
-
-            </ul>
-        </div>
-
-    </div>
-
+    @include('admin.partials.window')
 
     <nav class="text-xs-right">
 

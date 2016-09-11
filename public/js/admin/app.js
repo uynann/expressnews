@@ -1803,22 +1803,30 @@ $(function() {
     /***********************************************
     *       Medias Window
     ***********************************************/
-        $(".window-show-media").click(function(){
-            $(this).fadeOut("fast");
-        }).children().click(function(e) {
-            return false;
-        });
+    $(".window-show-media").click(function(){
+        $(this).fadeOut("fast");
+    }).children().click(function(e) {
+        return false;
+    });
 
-        $('.close-window').click(function() {
-            $('.window-show-media').fadeOut('fast');
-        });
+    $('.close-window').click(function() {
+        $('.window-show-media').fadeOut('fast');
+    });
 
 
-        $('.image-wrapper-for-medias-page').click(function() {
-            $('.window-show-media').fadeIn('fast');
-            var liIndex = parseInt($(this).attr('data-index'), 10);
-            show(liIndex);
-        });
+    $('.image-wrapper-for-medias-page').click(function() {
+        $('.window-show-media').fadeIn('fast');
+        var liIndex = parseInt($(this).attr('data-index'), 10);
+        show(liIndex);
+    });
+
+    $('.image-list-holder').click(function() {
+        $('.window-show-media').fadeIn('fast');
+        var liIndex = parseInt($(this).attr('data-index'), 10);
+        show(liIndex);
+    });
+
+
 
 
 

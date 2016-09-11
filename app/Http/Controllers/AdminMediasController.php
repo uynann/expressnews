@@ -10,10 +10,22 @@ use Auth;
 
 class AdminMediasController extends Controller
 {
-    public function index() {
-        $photos = Photo::orderBy('id', 'desc')->paginate(28);
+    public function index(Request $request) {
+
         $photos_all = Photo::orderBy('id', 'desc')->get();
-        return view('admin.medias.index', compact('photos', 'photos_all'));
+
+        $view = $request->input('view');
+
+        if ($view == 'list') {
+            $photos = Photo::orderBy('id', 'desc')->paginate(15);
+            $param = 'view';
+            $param_val = $view;
+            return view('admin.medias.index-list', compact('photos', 'photos_all', 'param', 'param_val'));
+        } else {
+            $photos = Photo::orderBy('id', 'desc')->paginate(50);
+            return view('admin.medias.index', compact('photos', 'photos_all'));
+        }
+
     }
 
     public function create() {
