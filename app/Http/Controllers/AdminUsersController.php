@@ -187,9 +187,9 @@ class AdminUsersController extends Controller
             CommentReply::where('user_id', '=', $id)->delete();
 
             $user->delete();
-            return redirect('/admin/users')->with('status', 'User deleted!');
+            return redirect()->back()->with('status', 'User deleted!');
         } else {
-            return redirect('/admin/users')->with('status', 'This user cannot be deleted!');
+            return redirect()->back()->with('status', 'This user cannot be deleted!');
         }
 
     }
@@ -238,13 +238,13 @@ class AdminUsersController extends Controller
                 }
             }
 
-            return redirect('/admin/users')->with('status', $status);
+            return redirect()->back()->with('status', $status);
 
         }
 
         else
         {
-            return redirect('/admin/users');
+            return redirect()->back();
         }
 
     }
