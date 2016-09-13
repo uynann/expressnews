@@ -59,7 +59,7 @@ var handleDropzoneFileUpload1 = {
 
         var imageHolder = '<li class="col-sm-2">';
         imageHolder    +=    '<div class="image-wrapper selected" photo-id="' + response.id + '">';
-        imageHolder    +=        '<img src="' + baseUrl + '/' + response.file_path + '" alt="" class="image-gallary">';
+        imageHolder    +=        '<img src="' + baseUrl + '/images/thumbs/' + response.file_name + '" alt="" class="image-gallary">';
         imageHolder    +=        '<span><i class="fa fa-check" aria-hidden="true"></i></span>';
         imageHolder    +=     '</div>';
         imageHolder    += '</li>';
@@ -81,7 +81,7 @@ var handleDropzoneFileUpload2 = {
     handleSuccess: function(response) {
         var imageHolder = '<li class="image-wrapper-holder clearfix">';
         imageHolder    +=    '<div class="image-wrapper-for-medias-page">';
-        imageHolder    +=        '<img src="' + baseUrl + '/' + response.file_path + '" alt="" class="image-gallary">';
+        imageHolder    +=        '<img src="' + baseUrl + '/images/thumbs/' + response.file_name + '" alt="" class="image-gallary">';
         imageHolder    +=     '</div>';
         imageHolder    += '</li>';
 
@@ -96,7 +96,7 @@ var handleDropzoneFileUpload3 = {
     },
     handleSuccess: function(response) {
         var imageHolder = '<div class="status uploaded-image">';
-        imageHolder    +=    '<img src="' + baseUrl + '/' + response.file_path + '" alt="">';
+        imageHolder    +=    '<img src="' + baseUrl + '/images/thumbs/' + response.file_name + '" alt="">';
         imageHolder    +=    '<span><i class="fa fa-times" aria-hidden="true"></i></span>';
         imageHolder    +=  '</div>';
 
