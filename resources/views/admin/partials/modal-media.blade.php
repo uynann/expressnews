@@ -19,7 +19,7 @@
                                 @foreach($photos as $photo)
                                 <li class="col-sm-2" >
                                     <div class="image-wrapper" photo-id="{{ $photo->id }}">
-                                        <img src="{{ asset($photo->file_path) }}" alt="" class="image-gallary">
+                                        <img src="{{ file_exists(public_path('images/thumbs/' . $photo->file_name)) ?  asset('images/thumbs/' . $photo->file_name) : asset($photo->file_path) }}" alt="" class="image-gallary">
                                         <span><i class="fa fa-check" aria-hidden="true"></i></span>
                                     </div>
                                 </li>

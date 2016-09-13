@@ -9,6 +9,7 @@ use App\Photo;
 use App\Post;
 use App\User;
 use Auth;
+use Intervention\Image\Facades\Image;
 
 class AdminMediasController extends Controller
 {
@@ -73,6 +74,12 @@ class AdminMediasController extends Controller
         // move the file to correct location
         $file->move('images', $filename);
 
+        if (!file_exists('images/thumbs')) {
+            mkdir('images/thumbs', 0777, true);
+        }
+
+        $thum = Image::make('images/' . $filename)->resize(178, 140)->save('images/thumbs/' . $filename, 50);
+
         // save the image details into the database
         $photo = Photo::create([
             'file_name' => $filename,
@@ -128,7 +135,13 @@ class AdminMediasController extends Controller
         if ($id != 1) {
             Post::where('photo_id', '=', $id)->update(['photo_id' => 0]);
             User::where('photo_id', '=', $id)->update(['photo_id' => 0]);
-            unlink(public_path($photo->file_path));
+            if (file_exists(public_path($photo->file_path))) {
+                unlink(public_path($photo->file_path));
+            }
+            if (file_exists(public_path('images/thumbs/' . $photo->file_name))) {
+                unlink(public_path('images/thumbs/' . $photo->file_name));
+            }
+
             $photo->delete();
 
             return redirect()->back()->with('status', 'Photo deleted!');
@@ -151,7 +164,14 @@ class AdminMediasController extends Controller
                 foreach($input['checkboxMediasArray'] as $id) {
                     Post::where('photo_id', '=', $id)->update(['photo_id' => 0]);
                     User::where('photo_id', '=', $id)->update(['photo_id' => 0]);
-                    unlink(public_path(Photo::findOrFail($id)->file_path));
+
+                    $photo = Photo::findOrFail($id);
+                    if (file_exists(public_path($photo->file_path))) {
+                        unlink(public_path($photo->file_path));
+                    }
+                    if (file_exists(public_path('images/thumbs/' . $photo->file_name))) {
+                        unlink(public_path('images/thumbs/' . $photo->file_name));
+                    }
                 }
 
                 Photo::whereIn('id', $input['checkboxMediasArray'])->delete();

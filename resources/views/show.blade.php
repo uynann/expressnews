@@ -172,7 +172,12 @@ Learn more: https://developers.facebook.com/docs/sharing/webmasters--}}
                         <div class="media-left response-text-left">
                             <a href="#">
 
-                                <div class="media-object img" style="background-image: url({{ isset($comment->user->photo->file_path) ? asset($comment->user->photo->file_path) : 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }})"></div>
+                                <div class="media-object img" style="background-image: url(
+
+                                 @if(isset($comment->user->photo->file_path))
+                                 {{ file_exists(public_path('images/thumbs/' . $comment->user->photo->file_name)) ?  asset('images/thumbs/' . $comment->user->photo->file_name) : asset($comment->user->photo->file_path) }} @else
+                                 {{ 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }} @endif
+                                )"></div>
                             </a>
                             <h5 class="comment-author"></h5>
                         </div>
@@ -202,7 +207,14 @@ Learn more: https://developers.facebook.com/docs/sharing/webmasters--}}
                                 <div class="media-left response-text-left">
                                     <a href="#">
 
-                                        <div class="media-object img" style="background-image: url({{ isset($reply->user->photo->file_path) ? asset($reply->user->photo->file_path) : 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }})"></div>
+                                        <div class="media-object img" style="background-image: url(
+
+                                         @if(isset($reply->user->photo->file_path))
+                                         {{ file_exists(public_path('images/thumbs/' . $reply->user->photo->file_name)) ?  asset('images/thumbs/' . $reply->user->photo->file_name) : asset($reply->user->photo->file_path) }} @else
+                                         {{ 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }} @endif
+
+
+                                        )"></div>
                                     </a>
                                     <h5 class="comment-author"></h5>
                                 </div>

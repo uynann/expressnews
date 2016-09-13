@@ -37,7 +37,9 @@
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Singup</a></li>
                     @else
-                    <li class="has-submenu"><a>{{ Auth::user()->username }}  <img src="{{ isset(Auth::user()->photo->file_path) ? asset(Auth::user()->photo->file_path) : 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }}" alt=""></a>
+                    <li class="has-submenu"><a>{{ Auth::user()->username }}  <img src="@if(isset(Auth::user()->photo->file_path))
+                        {{ file_exists(public_path('images/thumbs/' . Auth::user()->photo->file_name)) ?  asset('images/thumbs/' . Auth::user()->photo->file_name) : asset(Auth::user()->photo->file_path) }} @else
+                        {{ 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }} @endif" alt=""></a>
 
                         <ul>
                             <li><a href="{{ url('/') }}"><i class="fa fa-user"></i> Profile</a></li>

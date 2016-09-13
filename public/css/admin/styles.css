@@ -670,8 +670,8 @@ ul.view-mode li.active a {
 .image-list-container .image-list-holder {
     position: relative;
 /*    float: left;*/
-    height: 50px;
-    width: 80px;
+    height: 55px;
+    width: 70px;
 /*    line-height: 45.5px;*/
     border: 1px solid #e7e7e7;
     cursor: pointer;

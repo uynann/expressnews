@@ -106,7 +106,7 @@
                         <div class="item-heading">File</div>
                         <div class="no-overflow image-list-container clearfix">
                             <div class="image-list-holder" data-index="{{ $key + ($photos->currentPage() - 1) * $photos->perPage() }}">
-                                <img src="{{ asset($photo->file_path) }}" alt="" class="image-gallary">
+                                <img src="{{ file_exists(public_path('images/thumbs/' . $photo->file_name)) ?  asset('images/thumbs/' . $photo->file_name) : asset($photo->file_path) }}" alt="" class="image-gallary">
                             </div>
                             <div class="image-list-desc">
                                 <a class="file-name" data-index="{{ $key + ($photos->currentPage() - 1) * $photos->perPage() }}"><h5 class="item-title">{{ $photo->file_name }}</h5></a>

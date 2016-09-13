@@ -104,7 +104,9 @@
                             </label> </div>
                         <div class="item-col fixed item-col-img md">
                             <a href="item-editor.html">
-                                <div class="item-img rounded" style="background-image: url({{ isset($user->photo->file_path) ? asset($user->photo->file_path) : 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }})"></div>
+                                <div class="item-img rounded" style="background-image: url(@if(isset($user->photo->file_path))
+                                {{ file_exists(public_path('images/thumbs/' . $user->photo->file_name)) ?  asset('images/thumbs/' . $user->photo->file_name) : asset($user->photo->file_path) }} @else
+                                {{ 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg' }} @endif)"></div>
                             </a>
                         </div>
                         <div class="item-col fixed pull-left item-col-title">

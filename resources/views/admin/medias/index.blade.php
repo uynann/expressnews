@@ -64,7 +64,7 @@
                     @foreach($photos as $key=>$photo)
                     <li class="image-wrapper-holder clearfix">
                         <div class="image-wrapper-for-medias-page" data-index="{{ $key + ($photos->currentPage() - 1) * $photos->perPage() }}">
-                            <img src="{{ asset($photo->file_path) }}" alt="" class="image-gallary">
+                            <img src="{{ file_exists(public_path('images/thumbs/' . $photo->file_name)) ?  asset('images/thumbs/' . $photo->file_name) : asset($photo->file_path) }}" alt="" class="image-gallary">
                         </div>
                     </li>
                     @endforeach
