@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Photo;
+use App\Post;
+use App\User;
 use Auth;
 
 class AdminMediasController extends Controller
@@ -59,5 +61,56 @@ class AdminMediasController extends Controller
         ]);
 
         return $photo;
+    }
+
+
+    public function show($id)
+    {
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $photo = Photo::findOrFail($id);
+
+        if ($id != 1) {
+            Post::where('photo_id', '=', $id)->update(['photo_id' => 0]);
+            User::where('photo_id', '=', $id)->update(['photo_id' => 0]);
+            unlink(public_path($photo->file_path));
+            $photo->delete();
+
+            return redirect()->back()->with('status', 'Photo deleted!');
+        } else {
+            return redirect()->back()->with('status', 'This photo cannot be deleted!');
+        }
     }
 }

@@ -26,6 +26,10 @@
                 </div>
             </div>
 
+            @if(session('status'))
+            <div class="status update-status">{{ session('status') }} <span><i class="fa fa-times" aria-hidden="true"></i></span></div>
+            @endif
+
         </div>
         <div class="items-search">
             <form class="form-inline">
@@ -144,7 +148,7 @@
 
                                     @if ($photo->id != 1)
                                     <li>
-                                        <a class="remove remove-item remove-comment" data-link="{{ url('admin/medias/' .$photo->id) }}" data-id="{{ $photo->id }}"> <i class="fa fa-trash-o"></i> </a>
+                                        <a class="remove remove-item romove-photo" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o " data-item-id="{{ $photo->id }}"></i> </a>
 
                                     </li>
                                     @endif
