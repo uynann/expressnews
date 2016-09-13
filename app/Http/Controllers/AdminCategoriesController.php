@@ -113,7 +113,7 @@ class AdminCategoriesController extends Controller
         Post::where('category_id', '=', $id)->update(['category_id' => 5]);
 
         Category::findOrFail($id)->delete();
-        return redirect('/admin/categories')->with('status', 'Category deleted!');
+        return redirect()->back()->with('status', 'Category deleted!');
     }
 
 
@@ -137,11 +137,11 @@ class AdminCategoriesController extends Controller
                 $status = $category_count . ' categories deleted!';
             }
 
-            return redirect('/admin/categories')->with('status', $status);
+            return redirect()->back()->with('status', $status);
         }
         else
         {
-            return redirect('/admin/categories');
+            return redirect()->back();
         }
 
     }

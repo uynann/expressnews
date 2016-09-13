@@ -212,13 +212,13 @@ class AdminCommentRepliesController extends Controller
                     $status = $reply_count . ' comments deleted!';
                 }
             } else {
-                return redirect('/admin/comment/replies');
+                return redirect()->back();
             }
 
-            return redirect('/admin/comment/replies')->with('status', $status);
+            return redirect()->back()->with('status', $status);
 
         } else {
-            return redirect('/admin/comment/replies');
+            return redirect()->back();
         }
     }
 

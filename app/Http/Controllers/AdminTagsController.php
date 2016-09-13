@@ -115,7 +115,7 @@ class AdminTagsController extends Controller
         }
 
         Tag::findOrFail($id)->delete();
-        return redirect('/admin/tags')->with('status', 'Tag deleted!');
+        return redirect()->back()->with('status', 'Tag deleted!');
     }
 
     public function storeFromAjax(TagsRequest $request)
@@ -160,11 +160,11 @@ class AdminTagsController extends Controller
                 $status = $tag_count . ' tags deleted!';
             }
 
-            return redirect('/admin/tags')->with('status', $status);
+            return redirect()->back()->with('status', $status);
         }
         else
         {
-            return redirect('/admin/tags');
+            return redirect()->back();
         }
     }
 

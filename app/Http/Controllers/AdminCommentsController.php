@@ -220,13 +220,13 @@ class AdminCommentsController extends Controller
                     $status = $comment_count . ' comments deleted!';
                 }
             } else {
-                return redirect('/admin/comments');
+                return redirect()->back();
             }
 
-            return redirect('/admin/comments')->with('status', $status);
+            return redirect()->back()->with('status', $status);
 
         } else {
-            return redirect('/admin/comments');
+            return redirect()->back();
         }
     }
 

@@ -251,9 +251,9 @@ class AdminPostsController extends Controller
             CommentReply::where('post_id', '=', $id)->delete();
             $post->delete();
 
-            return redirect('/admin/posts')->with('status', 'Post deleted!');
+            return redirect()->back()->with('status', 'Post deleted!');
         } else {
-            return redirect('/admin/users')->with('status', 'This post cannot be deleted!');
+            return redirect()->back()->with('status', 'This post cannot be deleted!');
         }
     }
 
@@ -299,10 +299,10 @@ class AdminPostsController extends Controller
                 }
             }
 
-            return redirect('/admin/posts')->with('status', $status);
+            return redirect()->back()->with('status', $status);
 
         } else {
-            return redirect('/admin/posts');
+            return redirect()->back();
         }
 
     }
