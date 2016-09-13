@@ -12,15 +12,7 @@
                         Media Library
                         <span class="btn btn-primary btn-sm rounded-s" id="btn-addnew-media">
                             Add New
-                        </span><div class="action dropdown">
-                        <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More actions...
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o icon"></i>Mark as a draft</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#confirm-modal"><i class="fa fa-close icon"></i>Delete</a>
-                        </div>
-                        </div>
+                        </span>
                     </h3>
 
                 </div>
@@ -33,8 +25,9 @@
         </div>
         <div class="items-search">
             <form class="form-inline">
-                <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..."> <span class="input-group-btn">
-                    <button class="btn btn-secondary rounded-s" type="button">
+                <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..." name="search"> <span class="input-group-btn">
+                   <input type="hidden" name="view" value="list">
+                    <button class="btn btn-secondary rounded-s" type="submit">
                         <i class="fa fa-search"></i>
                     </button>
                     </span> </div>
@@ -68,6 +61,11 @@
     </div>
 
 
+    <form action="/admin/medias/bulkactions" method="post" id="bulk-action-form">
+
+        {{ csrf_field() }}
+
+
     <div class="card items">
         <ul class="item-list striped">
             <li class="item item-list-header hidden-sm-down">
@@ -99,7 +97,7 @@
             <li class="item">
                 <div class="item-row">
                     <div class="item-col fixed item-col-check"> <label class="item-check" id="select-all-items">
-                        <input type="checkbox" class="checkbox" name="checkboxPhotosArray[]" value="{{ $photo->id }}">
+                        <input type="checkbox" class="checkbox" name="checkboxMediasArray[]" value="{{ $photo->id }}">
                         <span></span>
                         </label>
                     </div>
@@ -171,12 +169,23 @@
         </ul>
     </div>
 
+    <div class="action bulk-action dropdown">
+        <button class="btn  btn-sm rounded-s btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            More actions...
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target=".comfirm-bulk-delete" id="bulk-delete"><i class="fa fa-close icon"></i> Delete Permanently</a>
+        </div>
+    </div>
+
+    </form>
+
     @include('admin.partials.window')
 
 
     <nav class="text-xs-right">
 
-        {!! $photos->appends([$param => $param_val])->render() !!}
+        {!! $photos->appends([$param => $param_val, $param1 => $param1_val])->render() !!}
 
     </nav>
 

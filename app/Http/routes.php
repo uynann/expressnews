@@ -62,10 +62,8 @@ Route::group(['middleware' => 'admin'], function() {
     Route::post('admin/tags/bulkactions', 'AdminTagsController@bulkActions');
 
 
-//    Route::get('/admin/medias', ['as'=>'admin.medias.index', 'uses'=>'AdminMediasController@index']);
-//    Route::get('/admin/medias/create', ['as'=>'admin.medias.create', 'uses'=>'AdminMediasController@create']);
-//    Route::post('admin/medias', 'AdminMediasController@store');
     Route::resource('admin/medias', 'AdminMediasController');
+    Route::post('admin/medias/bulkactions', 'AdminMediasController@bulkActions');
 
 
     Route::resource('admin/comments', 'AdminCommentsController');

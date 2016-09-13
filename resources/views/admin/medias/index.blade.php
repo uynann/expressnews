@@ -21,8 +21,8 @@
         </div>
         <div class="items-search">
             <form class="form-inline">
-                <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..."> <span class="input-group-btn">
-                    <button class="btn btn-secondary rounded-s" type="button">
+                <div class="input-group"> <input type="text" class="form-control boxed rounded-s" placeholder="Search for..." name="search"> <span class="input-group-btn">
+                    <button class="btn btn-secondary rounded-s" type="submit">
                         <i class="fa fa-search"></i>
                     </button>
                     </span> </div>
@@ -79,7 +79,7 @@
 
     <nav class="text-xs-right">
 
-        @if(isset($photos)) {{ $photos->links() }} @endif
+        {!! $photos->appends([$param1 => $param1_val])->render() !!}
 
     </nav>
 

@@ -17,15 +17,38 @@ class AdminMediasController extends Controller
         $photos_all = Photo::orderBy('id', 'desc')->get();
 
         $view = $request->input('view');
+        $search = $request->input('search');
 
         if ($view == 'list') {
-            $photos = Photo::orderBy('id', 'desc')->paginate(15);
+
+            if ($search != null)
+            {
+                $photos = Photo::SearchByKeyword($search)->orderBy('id', 'desc')->paginate(15);
+                $param1 = 'search';
+                $param1_val = $search;
+            } else {
+                $photos = Photo::orderBy('id', 'desc')->paginate(15);
+                $param1 = null;
+                $param1_val = null;
+            }
+
             $param = 'view';
             $param_val = $view;
-            return view('admin.medias.index-list', compact('photos', 'photos_all', 'param', 'param_val'));
+            return view('admin.medias.index-list', compact('photos', 'photos_all', 'param', 'param_val', 'param1', 'param1_val'));
         } else {
-            $photos = Photo::orderBy('id', 'desc')->paginate(50);
-            return view('admin.medias.index', compact('photos', 'photos_all'));
+
+            if ($search != null)
+            {
+                $photos = Photo::SearchByKeyword($search)->orderBy('id', 'desc')->paginate(50);
+                $param1 = 'search';
+                $param1_val = $search;
+            } else {
+                $photos = Photo::orderBy('id', 'desc')->paginate(50);
+                $param1 = null;
+                $param1_val = null;
+            }
+
+            return view('admin.medias.index', compact('photos', 'photos_all', 'param1', 'param1_val'));
         }
 
     }
@@ -113,4 +136,41 @@ class AdminMediasController extends Controller
             return redirect()->back()->with('status', 'This photo cannot be deleted!');
         }
     }
+
+
+    public function bulkActions(Request $request)
+    {
+        $input = $request->all();
+
+        if(isset($input['checkboxMediasArray'])) {
+
+            $photo_count = count($input['checkboxMediasArray']);
+
+            if (isset($input['delete'])) {
+
+                foreach($input['checkboxMediasArray'] as $id) {
+                    Post::where('photo_id', '=', $id)->update(['photo_id' => 0]);
+                    User::where('photo_id', '=', $id)->update(['photo_id' => 0]);
+                    unlink(public_path(Photo::findOrFail($id)->file_path));
+                }
+
+                Photo::whereIn('id', $input['checkboxMediasArray'])->delete();
+
+                if ($photo_count == 1) {
+                    $status = $photo_count . ' photo deleted!';
+                } else {
+                    $status = $photo_count . ' photos deleted!';
+                }
+            }
+
+            return redirect()->back()->with('status', $status);
+
+        } else {
+            return redirect()->back();
+        }
+
+        return $input;
+
+    }
+
 }

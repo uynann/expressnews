@@ -27,4 +27,15 @@ class Photo extends Model
 
         return round($bytes, 2) . ' ' . $units[$i];
     }
+
+    public function scopeSearchByKeyword($query, $keyword)
+    {
+        if ($keyword!='') {
+            $query->where(function ($query) use ($keyword) {
+                $query->where("file_name", "LIKE","%$keyword%")
+                    ->orWhere("file_mime", "LIKE", "%$keyword%");
+            });
+        }
+        return $query;
+    }
 }
