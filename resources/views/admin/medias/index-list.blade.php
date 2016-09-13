@@ -111,7 +111,7 @@
                                 <img src="{{ asset($photo->file_path) }}" alt="" class="image-gallary">
                             </div>
                             <div class="image-list-desc">
-                                <a><h5 class="item-title">{{ $photo->file_name }}</h5></a>
+                                <a class="file-name" data-index="{{ $key + ($photos->currentPage() - 1) * $photos->perPage() }}"><h5 class="item-title">{{ $photo->file_name }}</h5></a>
                                 <p>{{ $photo->file_size }}</p>
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                                     @endif
 
                                     <li>
-                                        <a class="edit btn-edit-comment edit-comment"> <i class="fa fa-pencil"></i> </a>
+                                        <a class="edit btn-edit-comment edit-photo" data-index="{{ $key + ($photos->currentPage() - 1) * $photos->perPage() }}"> <i class="fa fa-pencil"></i> </a>
                                     </li>
 
                                 </ul>

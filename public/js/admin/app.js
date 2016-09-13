@@ -1814,19 +1814,11 @@ $(function() {
     });
 
 
-    $('.image-wrapper-for-medias-page').click(function() {
+    $('.image-wrapper-for-medias-page, .image-list-holder, .edit-photo, .file-name').click(function() {
         $('.window-show-media').fadeIn('fast');
         var liIndex = parseInt($(this).attr('data-index'), 10);
         show(liIndex);
     });
-
-    $('.image-list-holder').click(function() {
-        $('.window-show-media').fadeIn('fast');
-        var liIndex = parseInt($(this).attr('data-index'), 10);
-        show(liIndex);
-    });
-
-
 
 
 
