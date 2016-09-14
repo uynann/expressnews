@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDimensionsColumnToPhotosTable extends Migration
+class AddAlttextColumnToPhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddDimensionsColumnToPhotosTable extends Migration
     public function up()
     {
         Schema::table('photos', function (Blueprint $table) {
-            $table->string('dimensions');
+            $table->string('alttext');
         });
     }
 
@@ -25,7 +25,7 @@ class AddDimensionsColumnToPhotosTable extends Migration
     public function down()
     {
         Schema::table('photos', function (Blueprint $table) {
-            $table->dropColumn('dimensions');
+            $table->dropColumn('alttext');
         });
     }
 }

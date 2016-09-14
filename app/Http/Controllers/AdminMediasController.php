@@ -10,6 +10,7 @@ use App\Post;
 use App\User;
 use Auth;
 use Intervention\Image\Facades\Image;
+use App\Http\Requests\PhotosEditRequest;
 
 class AdminMediasController extends Controller
 {
@@ -117,9 +118,17 @@ class AdminMediasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PhotosEditRequest $request, $id)
     {
+        $input = $request->all();
+        $photo = Photo::findOrFail($id);
+        $photo->update(['caption'=>$input['caption'], 'alttext'=>$input['alttext'], 'description'=>$input['description']]);
+        $response = array(
+            'status' => 'success',
+            'msg'    => 'Update saved!',
+        );
 
+        return \Response::json($response);
     }
 
     /**

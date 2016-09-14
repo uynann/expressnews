@@ -9,7 +9,7 @@ class Photo extends Model
     //
 
     protected $fillable = [
-        'file_name', 'file_size', 'file_mime', 'file_path', 'user_id',
+        'file_name', 'file_size', 'file_mime', 'file_path', 'user_id', 'caption', 'alttext', 'description',
     ];
 
     public function user() {

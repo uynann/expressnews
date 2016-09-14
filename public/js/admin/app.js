@@ -1433,7 +1433,7 @@ $(function() {
 ***********************************************/
 $(function() {
     $('.status span').click(function() {
-        $(this).parent().remove();
+        $(this).parent().hide();
     });
 
 
@@ -1821,7 +1821,45 @@ $(function() {
     });
 
 
-
 });
+
+
+/***********************************************
+*        Edit Photos info
+***********************************************/
+$(function() {
+    $('.btn-save-photo').click(function(e) {
+
+        e.preventDefault();
+        var url = $(this).closest('form').attr("data-link");
+        var form =  $(this).closest('form');
+        var formWrapper = form.parents();
+        var status = formWrapper.children('.status.update-photo-status');
+//        alert(url);
+
+        $.ajax({
+            type: "PUT",
+            url: url,
+            data:  form.serialize(), // form serizlize data
+            dataType: 'json',
+            success: function (data) {
+//                console.log(data);
+                status.fadeIn('fast');
+            }
+        });
+
+    });
+});
+
+
+/***********************************************
+*        Edit Photos info
+***********************************************/
+$(function() {
+    $('.delete-photo').click(function() {
+        $(this).parent().submit();
+    });
+});
+
 
 
