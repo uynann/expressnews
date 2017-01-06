@@ -1814,7 +1814,13 @@ $(function() {
     });
 
 
-    $('.image-wrapper-for-medias-page, .image-list-holder, .edit-photo, .file-name').click(function() {
+//    $('.image-wrapper-for-medias-page, .image-list-holder, .edit-photo, .file-name').click(function() {
+//        $('.window-show-media').fadeIn('fast');
+//        var liIndex = parseInt($(this).attr('data-index'), 10);
+//        show(liIndex);
+//    });
+
+    $('.medias-content .image-row').on('click', '.image-wrapper-holder .image-wrapper-for-medias-page', function() {
         $('.window-show-media').fadeIn('fast');
         var liIndex = parseInt($(this).attr('data-index'), 10);
         show(liIndex);
