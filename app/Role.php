@@ -17,8 +17,4 @@ class Role extends Model
         return ucfirst($value);
     }
 
-    public function setNameAttribute($value) {
-        return strtolower($value);
-    }
-
 }
