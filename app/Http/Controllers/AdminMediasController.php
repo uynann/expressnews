@@ -68,9 +68,9 @@ class AdminMediasController extends Controller
         $filename = uniqid() . $file->getClientOriginalName();
 
         // Create a folder in public dir, if it doesn't exist
-//        if (!file_exists('images')) {
-//            mkdir('images', 0777, true);
-//        }
+        if (!file_exists('images')) {
+            mkdir('images', 0777, true);
+        }
 
         // move the file to correct location
         $file->move('images', $filename);
