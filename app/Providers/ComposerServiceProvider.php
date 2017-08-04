@@ -28,7 +28,7 @@ class ComposerServiceProvider extends ServiceProvider
 
         view()->composer(['partials.popular'], function($view) {
             $view->with('popular_posts', Post::where('status', '=', 'publish')
-                ->where('created_at', '>=', Carbon::now()->subWeeks(1))
+                ->where('created_at', '>=', Carbon::now()->subWeeks(100))
                 ->orderBy('view_count', 'desc')->take(4)->get());
 
             $view->with('recent_posts', Post::where('status', '=', 'publish')->orderBy('id', 'desc')->take(4)->get());

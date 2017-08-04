@@ -28,7 +28,6 @@ class Post extends Model
     public function getCreatedAtAttribute($date)
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->timezone('Europe/Moscow')->format('M d, Y');
-
     }
 
     public function getUpdatedAtAttribute($date)
