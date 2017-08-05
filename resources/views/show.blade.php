@@ -121,34 +121,7 @@ Learn more: https://developers.facebook.com/docs/sharing/webmasters--}}
                 <div class="clearfix"></div>
 
                 <!--related-posts-->
-                <div class="row related-posts">
-                    <h4>Articles You May Like</h4>
-                    <div class="col-xs-6 col-md-3 related-grids">
-                        <a href="single.html" class="thumbnail">
-                            <img src="{{ asset('assets/f2.jpg') }}" alt=""/>
-                        </a>
-                        <h5><a href="single.html">Lorem Ipsum is simply</a></h5>
-                    </div>
-                    <div class="col-xs-6 col-md-3 related-grids">
-                        <a href="single.html" class="thumbnail">
-                            <img src="{{ asset('assets/f1.jpg') }}" alt=""/>
-                        </a>
-                        <h5><a href="single.html">Lorem Ipsum is simply</a></h5>
-                    </div>
-                    <div class="col-xs-6 col-md-3 related-grids">
-                        <a href="single.html" class="thumbnail">
-                            <img src="{{ asset('assets/f3.jpg') }}" alt=""/>
-                        </a>
-                        <h5><a href="single.html">Lorem Ipsum is simply</a></h5>
-                    </div>
-                    <div class="col-xs-6 col-md-3 related-grids">
-                        <a href="single.html" class="thumbnail">
-                            <img src="{{ asset('assets/f6.jpg') }}" alt=""/>
-                        </a>
-                        <h5><a href="single.html">Lorem Ipsum is simply</a></h5>
-                    </div>
-                </div>
-
+                 @include('partials.maylike')
                 <!--//related-posts-->
 
 

@@ -7,12 +7,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Express News a Entertainment Category Flat Bootstarp responsive Website Template | Home :: w3layouts</title>
+    <title>Express News</title>
 
     <!-- Custom Theme files -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Express News Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <meta name="keywords" content="Express News" />
     
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
@@ -48,8 +48,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <h2>Breaking News</h2>
             </div>
             <div class="marquee">
-                <div class="marquee1"><a class="breaking" href="single.html">>>The standard chunk of Lorem Ipsum used since the 1500s is reproduced..</a></div>
-                <div class="marquee2"><a class="breaking" href="single.html">>>At vero eos et accusamus et iusto qui blanditiis praesentium voluptatum deleniti atque..</a></div>
+                <div class="marquee1"><a class="breaking" href="single.html">>>Yazidi genocide still ongoing, unaddressed - UN inquiry</a></div>
+                <div class="marquee2"><a class="breaking" href="single.html">>>US embassy in Turkey denies sending tanks to groups in Syria</a></div>
+                <div class="marquee2"><a class="breaking" href="single.html">>>Libyan general orders navy to confront ships entering waters</a></div>
+                <div class="marquee2"><a class="breaking" href="single.html">>>US Senate panel approves bill to cut off aid to Palestinians</a></div>
                 <div class="clearfix"></div>
             </div>
             <div class="clearfix"></div>
@@ -79,8 +81,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
 
                     @include('partials.popular')
-
-                    @include('partials.popular-news')
 
 
                 </div>

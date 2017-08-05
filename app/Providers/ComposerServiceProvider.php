@@ -35,14 +35,14 @@ class ComposerServiceProvider extends ServiceProvider
 
             $view->with('recent_comments', Comment::where('is_active', '=', 1)->orderBy('id', 'desc')->take(7)->get());
         });
-
-        view()->composer(['partials.popular-news'], function($view) {
-            $view->with('most_comment_posts',
+        
+        view()->composer(['partials.whatshot'], function($view) {
+            $view->with('hot_posts',
                     Post::leftJoin('comments', 'comments.post_id', '=', 'posts.id')
                         ->groupBy('posts.id')
                         ->orderBy('comments_count','desc')
                         ->selectRaw('posts.*, count(comments.id) as comments_count')
-                        ->where('posts.created_at', '>=', Carbon::now()->subWeeks(1))
+                        ->where('posts.created_at', '>=', Carbon::now()->subWeeks(100))
                         ->take(3)
                         ->get()
             );

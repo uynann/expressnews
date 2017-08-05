@@ -63,10 +63,15 @@ class PostsController extends Controller
             $post->increment('view_count');
             Session::put($postKey, 1);
         }
+        
+        $similar_posts = Post::where('status', '=', 'publish')->where('category_id', $post->category_id)
+            ->where('id', '<>', $post->id)
+            ->orderBy('created_at', 'desc')
+            ->take(4)->get();
 
 
         if ($post->category->slug == $category) {
-            return view('show', compact('post'));
+            return view('show', compact('post', 'similar_posts'));
         } else {
             return view('errors.404');
         }
